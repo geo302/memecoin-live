@@ -4,7 +4,7 @@ Copy everything below the line into Claude Code, run from a clone of https://git
 
 ---
 
-You are building a live dashboard for my **paper (simulated) Base meme coin trading bot** ("Rio"). Work in this repo, `geo302/memecoin-live`, on the `main` branch. It must be a **static site** (no backend, no build server required at runtime) deployed on **GitHub Pages from `main` / root**. GitHub Pages is already enabled at https://geo302.github.io/memecoin-live/.
+You are building a live dashboard for my **paper (simulated) Base meme coin trading bot** ("Rio"). Work in this repo, `geo302/memecoin-live`, on the `main` branch. It must be a **static site** (no backend, no build server required at runtime) deployed on **GitHub Pages from `main` / root**. The site URL will be https://geo302.github.io/memecoin-live/ (Settings > Pages > Deploy from a branch: `main`, `/ (root)`). If Pages is not enabled yet, enable it with `gh api -X POST repos/geo302/memecoin-live/pages -f 'source[branch]=main' -f 'source[path]=/'` if you have admin rights, otherwise tell me to turn it on in Settings > Pages.
 
 ## Read these first
 1. `docs/DATA_SCHEMA.md`: every data file and field, with examples. Treat it as the contract. Fields can be `null`; new fields may appear.
@@ -70,6 +70,6 @@ From `status.json`: equity vs $1,000 start, total P&L $ and % (green/red), cash,
 
 ## Deliverables
 1. Replace `index.html` and add `assets/`. Commit to `main` with clear messages and push.
-2. Confirm GitHub Pages serves it at https://geo302.github.io/memecoin-live/ (Settings > Pages: source `main`, `/ (root)`, already enabled). Wait for the Pages build to finish and open the URL.
+2. Confirm GitHub Pages serves it at https://geo302.github.io/memecoin-live/ (Settings > Pages: source `main`, `/ (root)`; enable it first if needed). Wait for the Pages build to finish and open the URL.
 3. Test against the real data: it currently has run 2 with possibly zero trades, so also test with `archive/run1/trades.json` loaded into the map/table to check the full UI with 101 trades.
 4. Tell me the URL and anything that didn't work. Do not touch `live-data` or any `data/` files.
