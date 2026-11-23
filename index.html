@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>memecoin-live (paper)</title>
+<style>body{background:#000;color:#ffb000;font:14px/1.5 Menlo,Consolas,monospace;padding:24px}a{color:#ffd400}pre{color:#9f9;white-space:pre-wrap}</style></head>
+<body>
+<h1>MEMECOIN LIVE &mdash; PAPER TRADING</h1>
+<p>Placeholder. The full dashboard is being built from <code>CLAUDE_PROMPT.md</code>. Simulated trading only.</p>
+<pre id="s">loading status...</pre>
+<script>
+async function load(){
+  try{
+    const sha=(await (await fetch('https://api.github.com/repos/geo302/memecoin-live/commits/live-data',{headers:{Accept:'application/vnd.github.sha'}})).text()).trim();
+    const base=/^[0-9a-f]{40}$/.test(sha)?`https://raw.githubusercontent.com/geo302/memecoin-live/${sha}`:'https://raw.githubusercontent.com/geo302/memecoin-live/live-data';
+    const s=await (await fetch(base+'/data/status.json')).json();
+    document.getElementById('s').textContent=`equity $${s.equity_usd.toFixed(2)} | cash $${s.cash_usd.toFixed(2)} | open ${s.open_trades} | closed ${s.closed_trades} | updated ${s.last_update}`;
+  }catch(e){document.getElementById('s').textContent='data unavailable: '+e}
+}
+load();setInterval(load,75000);
+</script></body></html>
