@@ -214,3 +214,67 @@ The bot's full Excel journal for run 2 (trades, mistakes and lessons). Link it a
 ## archive/run1/summary.json and archive/run1/trades.json (read-only)
 `summary.json`: `start`, `end`, `starting_active_bankroll_usd` (100), `reserve_usd` (900), `final_equity_usd`, `realized_pnl_usd`, `closed_trades` (101), `wins`, `losses`, `win_rate_pct`, `winner_pattern` {trades, wins, pnl_usd}, `best_trade`, `worst_trade`, `exit_type_breakdown`, `realized_steps` (equity curve by close), `readme_markdown` (the human-written run summary), `note`.
 `trades.json`: `{"run":1,"count":101,"trades":[<closed trade>]}`. Run 1 has no `checks`, no breakeven/F6 fields and no per-tick price history.
+
+## New data (added 2026-11-23): F7 contract safety, near misses, smart wallets, Obsidian vault
+
+All of it is on the `live-data` branch and refreshed with every push (about every 30s). It is still PAPER trading only.
+
+### F7 fields (contract safety, a hard entry gate)
+F7 checks GoPlus `token_security` on Base (chain 8453) plus the honeypot.is sell simulation. It fails on any of: honeypot or cannot sell, buy or sell tax > 10%, owner can mint/pause/blacklist/change balances (unless renounced), hidden owner, self-destruct, top-10 holders excluding LP/pool/burn > 40%, or LP reported but < 50% locked/burned. An API error, a timeout or an unindexed token gives `UNKNOWN`, which blocks the buy (fail closed).
+- `data/scout.json` rows:
+  - `f7_status`: `PASS` | `FAIL` | `UNKNOWN` | `SKIP`. `SKIP` means not checked, because F7 only runs when every other check passes or exactly one fails.
+  - `f7_text`: a one-line summary.
+  - `f7_fields`: every field fetched, or null when skipped.
+  - `checks`: now has `F1`-`F5`, `F6`, `F7`, `b` and `WP`, each `{pass, status, detail, value, threshold, diff, diff_pct}`.
+  - `failed_checks`: list of failed check ids.
+  - `n_failed_checks`, `near_miss_id`.
+  - `smart_wallet_count`, `smart_wallets`.
+- `data/positions.json` / `data/trades.json` (run 2) trade records add:
+  - `f7_status`, `f7_text`, `f7_reasons`, `f7_checked_at`
+  - `f7_fields` (taxes, owner flags, `top10_excl_lp_burn_pct`, `lp_locked_or_burned_pct`, `holders_top`, `lp_holders`, `dex`, honeypot.is results, `not_reported`, ...)
+  - `entry_checks` (per-check results at entry)
+  - `smart_wallet_count`, `smart_wallets`
+- `data/status.json` adds `f7_last_round` (`{t, text}` of the last scout round's F7 summary), `near_misses_total`, `near_misses_tracking`, `near_misses_done`, `smart_wallets_known_good` and `smart_wallets_coins_tracked`.
+- `data/rules.json`: `entry_gates` now includes `F7` (`max_tax_pct` 10, `max_top10_pct` 40, `min_lp_locked_pct` 50, `fail_closed` true). New `near_misses` and `smart_wallets` blocks.
+- `data/feed.json` line types: `F7` (per-round summary), `NEARMISS` (new near miss / 30-minute result), `SMARTWALLET` (known-good wallets bought a tracked coin; log only).
+
+### data/near_misses.json
+A near miss is a scouted coin that failed exactly ONE entry check: F1-F5, F7, `b` (score >= 12) or `WP` (winner_pattern age/1h/buys). Filter (c) sits inside F3 and filter (a) inside F5. Near misses are never traded.
+```
+{"updated":ISO,"paper_only":true,"never_traded":true,"definition":"...",
+ "summary":{"total":N,"tracking":N,"done":N},
+ "stats_by_failed_check":[{"check":"F2","name":"...","count":N,"tracking":N,"done":N,"hyp_wins":N,"hyp_win_rate_pct":x,
+                           "tp_before_sl":N,"tp_before_sl_rate_pct":x,"avg_hyp_pnl_pct":x,"avg_max_gain_pct":x,"avg_max_drawdown_pct":x,"avg_chg_30m_pct":x}],
+ "count":N,
+ "items":[{"id":"NM-0001","detected_at":ISO,"symbol":"..","name":"..","address":"0x..","pair_address":"..","dexscreener_url":"..",
+           "failed_check":"F7","failed_check_name":"..","failed_detail":"..","margin":{"value":x,"threshold":x,"diff":x,"diff_pct":x},
+           "checks":{"F1":{"pass":true,"detail":".."},...},"f7":{"status":"FAIL","text":"..","reasons":[..],"fields":{..}},
+           "smart_wallet_count":n|null,"snapshot":{"price":x,"liq":x,"mc":x,"m5":x,"h1":x,"vol1h_liq":x,"buys_1h":n,"sells_1h":n,"age_h":x,"score":x,...},
+           "seen_count":n,"last_seen":ISO,
+           "tracking":{"status":"tracking|done","start_price":x,"hyp_entry_price":x,"tp_price":x,"sl_price":x,"last_price":x,
+                       "max_gain_pct":x,"max_drawdown_pct":x,"chg_30m_pct":x|null,"first_touch":"TP|SL|neither|null","tp_before_sl":bool|null,
+                       "sim":{"exit":"TP|STOP|BREAKEVEN|F6_TIME|TIME_30M","exit_sec":s,"exit_price":x,"pnl_pct":x,"win":bool},
+                       "hypothetical_outcome":"WIN|LOSS","points":[[sec,price],...]}}]}
+```
+- The hypothetical entry is the detection price +1%.
+- `sim` applies our live exit rules to the polled prices (about every 15s): TP +20% full, breakeven entry+2% after +10%, -10% stop, F6 at 8 min, 1% exit fee.
+- The same data is in `near_misses.csv` in the bot folder and in the journal's `Near Misses` sheet.
+
+### data/smart_wallets.json (LOG ONLY)
+Never used to block or allow a trade.
+```
+{"updated":ISO,"log_only":true,"params":{"hit_rule":"..","known_good_rule":"..",...},
+ "stats":{"coins_tracked":N,"wallets_scored":N,"wallets_with_hits":N,"known_good":N,"flags":N},
+ "wallets_top":[{"wallet":"0x..","n_coins":n,"hits":n,"hit_rate":x,"known_good":bool,"last_buy":ISO,"coins":[{"address","symbol","hit","max_gain_pct"}]}],
+ "coins":{"0x<token>":{"symbol":"..","pair":"..","why":[..],"buyers_tracked":n,"smart_wallet_count":n,"smart_wallets":[..],
+                       "early_buyers":[{"wallet","t","price","usd","max_gain_pct"}],"max_price":x,"last_price":x,"updated":ISO}},
+ "flags":[{"t":ISO,"address":"0x..","symbol":"..","wallets":[..],"why":[..]}]}
+```
+- Buyers come from GeckoTerminal pool trades (buys >= $20).
+- A hit means the coin later traded >= +50% above that wallet's buy.
+- Known-good means >= 2 hits and a >= 40% hit rate, counted on the wallet's other coins.
+
+### Obsidian vault: `vault/` folder and `vault.zip`
+- The vault has one note per trade (run 2 and the run 1 archive) with YAML frontmatter: trade, run, symbol, contract, result, pnl, exit_type, `check_F1`..`check_F7`/`check_b`/`check_c`, F7 fields and smart_wallet_count.
+- There are also coin notes, `Exit <type>` notes, `Lesson - <topic>` notes, `Rule F1`..`Rule F7`/`Rule a|b|c|WP` notes, `NM-xxxx` near-miss notes, `Smart Wallets` and MOC notes, plus a `00 Index` home.
+- Download `vault.zip`, unzip it, and open the `memecoin-vault` folder in Obsidian. `.obsidian/graph.json` colors the graph: green = win, red = loss, yellow = open, blue = near miss.

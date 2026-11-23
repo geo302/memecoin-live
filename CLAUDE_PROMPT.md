@@ -73,3 +73,16 @@ From `status.json`: equity vs $1,000 start, total P&L $ and % (green/red), cash,
 2. Confirm GitHub Pages serves it at https://geo302.github.io/memecoin-live/ (Settings > Pages: source `main`, `/ (root)`; enable it first if needed). Wait for the Pages build to finish and open the URL.
 3. Test against the real data: it currently has run 2 with possibly zero trades, so also test with `archive/run1/trades.json` loaded into the map/table to check the full UI with 101 trades.
 4. Tell me the URL and anything that didn't work. Do not touch `live-data` or any `data/` files.
+
+---
+**New data available (2026-11-23):**
+- `data/near_misses.json`
+- `data/smart_wallets.json`
+- F7 contract-safety fields (`f7_status`, `f7_text`, `f7_fields`, `checks.F7`) on scout rows and trades
+- `vault.zip` / `vault/` (the Obsidian vault)
+
+Field details are in `docs/DATA_SCHEMA.md` under "New data". Keep the same 7 tabs, and add these:
+- FEED tab: show the `F7`, `NEARMISS` and `SMARTWALLET` line types.
+- BOARD tab: an F7 column (PASS/FAIL/UNKNOWN/SKIP), a near-miss marker and the smart-wallet count.
+- TRADES tab: each trade's F7 status/reasons and smart_wallet_count, and the near-miss stats per failed check from `near_misses.json`.
+- A `vault.zip` download link.
