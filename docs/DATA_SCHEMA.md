@@ -220,7 +220,7 @@ The bot's full Excel journal for run 2 (trades, mistakes and lessons). Link it a
 All of it is on the `live-data` branch and refreshed with every push (about every 30s). It is still PAPER trading only.
 
 ### F7 fields (contract safety, a hard entry gate)
-F7 checks GoPlus `token_security` on Base (chain 8453) plus the honeypot.is sell simulation. It fails on any of: honeypot or cannot sell, buy or sell tax > 10%, owner can mint/pause/blacklist/change balances (unless renounced), hidden owner, self-destruct, top-10 holders excluding LP/pool/burn > 40%, or LP reported but < 50% locked/burned. An API error, a timeout or an unindexed token gives `UNKNOWN`, which blocks the buy (fail closed).
+F7 checks GoPlus `token_security` on Base (chain 8453) plus the honeypot.is sell simulation. It fails on any of: honeypot or cannot sell, buy or sell tax > 10%, owner can mint/pause/blacklist/change balances (unless renounced), hidden owner, self-destruct, or top-10 holders excluding LP/pool/burn > 40%. LP lock/burn (`lp_locked_or_burned_pct`, `lp_holders`, `lp_lock_note`) is logged as info only, not a gate (dropped 2026-11-23 07:40 ET). An API error, a timeout or an unindexed token gives `UNKNOWN`, which blocks the buy (fail closed).
 - `data/scout.json` rows:
   - `f7_status`: `PASS` | `FAIL` | `UNKNOWN` | `SKIP`. `SKIP` means not checked, because F7 only runs when every other check passes or exactly one fails.
   - `f7_text`: a one-line summary.
@@ -235,7 +235,7 @@ F7 checks GoPlus `token_security` on Base (chain 8453) plus the honeypot.is sell
   - `entry_checks` (per-check results at entry)
   - `smart_wallet_count`, `smart_wallets`
 - `data/status.json` adds `f7_last_round` (`{t, text}` of the last scout round's F7 summary), `near_misses_total`, `near_misses_tracking`, `near_misses_done`, `smart_wallets_known_good` and `smart_wallets_coins_tracked`.
-- `data/rules.json`: `entry_gates` now includes `F7` (`max_tax_pct` 10, `max_top10_pct` 40, `min_lp_locked_pct` 50, `fail_closed` true). New `near_misses` and `smart_wallets` blocks.
+- `data/rules.json`: `entry_gates` now includes `F7` (`max_tax_pct` 10, `max_top10_pct` 40, `min_lp_locked_pct` null, `lp_lock` "info only, not a gate", `fail_closed` true). New `near_misses` and `smart_wallets` blocks.
 - `data/feed.json` line types: `F7` (per-round summary), `NEARMISS` (new near miss / 30-minute result), `SMARTWALLET` (known-good wallets bought a tracked coin; log only).
 
 ### data/near_misses.json
