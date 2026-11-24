@@ -5,7 +5,9 @@
 const REPO = 'geo302/memecoin-live';
 const API_SHA = `https://api.github.com/repos/${REPO}/commits/live-data`;
 const RAW = `https://raw.githubusercontent.com/${REPO}`;
-export const FILES = ['meta', 'status', 'positions', 'trades', 'equity', 'scout', 'prices', 'feed', 'rules'];
+export const FILES = ['meta', 'status', 'positions', 'trades', 'equity', 'scout', 'prices', 'feed', 'rules', 'near_misses'];
+// Large, log-only files fetched on demand (see loadExtra) instead of on every poll.
+export const LAZY_FILES = ['smart_wallets'];
 
 export const SOURCES = { LIVE: 'LIVE', SHA: 'GITHUB SHA', CACHE: 'GITHUB CACHE', DEMO: 'DEMO' };
 export const STALE_MS = { LIVE: 120e3, 'GITHUB SHA': 180e3, 'GITHUB CACHE': 360e3, DEMO: Infinity };
@@ -161,4 +163,16 @@ export async function loadArchive() {
     throw lastErr;
   })();
   return archiveCache.p;
+}
+
+const extraCache = {};
+/** Lazy-load a large data file (e.g. smart_wallets) from the active source; cached per SHA / source. */
+export async function loadExtra(name) {
+  const key = `${name}|${st.source}|${st.sha || ''}`;
+  const c = extraCache[name];
+  if (c && c.key === key) return c.p;
+  const p = getJSON(fileUrl(`data/${name}.json`), { noStore: st.source === SOURCES.LIVE, timeout: 20000 })
+    .catch(e => { if (extraCache[name] && extraCache[name].p === p) delete extraCache[name]; throw e; });
+  extraCache[name] = { key, p };
+  return p;
 }

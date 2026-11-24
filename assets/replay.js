@@ -580,7 +580,7 @@ function round(g, x, y, w, h, r) {
   g.moveTo(x + rr, y);
   g.arcTo(x + w, y, x + w, y + h, rr);
   g.arcTo(x + w, y + h, x, y + h, rr);
-  g.arcTo(x, y, x, y, rr);
+  g.arcTo(x, y + h, x, y, rr);
   g.arcTo(x, y, x + w, y, rr);
   g.closePath();
 }

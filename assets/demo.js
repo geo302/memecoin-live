@@ -8,10 +8,12 @@ const iso = t => { // ISO in ET-ish fixed -05:00 offset (display converts to ET 
   return d.toISOString().replace(/\.\d+Z$/, '-05:00');
 };
 
-export function makeDemo(real, archive) {
+// n = how many run-1 trades have "arrived" so far (starts at 1 and grows; the newest one is the live open position).
+export function makeDemo(real, archive, n = 34) {
   const R = rng(42);
   const now = Date.now();
-  const src = (archive.trades.trades || []).slice(-34);
+  const all = (archive.trades.trades || []).slice().sort((a, b) => a.id - b.id);
+  const src = all.slice(0, Math.max(1, Math.min(n, all.length)));
   const N = src.length;
   const start = now - (N * 7 + 20) * 60e3;
   const trades = [], positions = [], prices = [], feed = [];
@@ -21,8 +23,8 @@ export function makeDemo(real, archive) {
   const types = ['TP', 'STOP', 'BREAKEVEN', 'F6_TIME', 'F6_TIME', 'STOP', 'TP', 'BREAKEVEN'];
 
   src.forEach((o, i) => {
-    const open = i >= N - 2;
-    const entryT = open ? now - (i === N - 1 ? 3.2 : 11) * 60e3 : start + i * 7 * 60e3;
+    const open = i === N - 1;
+    const entryT = open ? now - 3.2 * 60e3 : start + i * 7 * 60e3;
     const e = o.entry_price || 1e-5;
     const usdIn = 50, tokens = usdIn / e;
     const tp = e * 1.2, stop0 = e * 0.9, armP = e * 1.1, beStop = e * 1.02;
@@ -76,7 +78,9 @@ export function makeDemo(real, archive) {
         F4: { pass: true, detail: 'buys/sells ' + (2 + R() * 2).toFixed(2) + ' (need >=2.0)' },
         F5: { pass: true, detail: 'fresh (no TP on ticker/address <6h)' },
         F6: { pass: true, detail: 'exit rule: +10% within 8m or sell' },
+        F7: { pass: true, status: 'PASS', detail: 'DEMO: contract safety not checked (synthetic)' },
       }, checks_all_pass: true,
+      f7_status: 'PASS', f7_text: 'DEMO data: F7 not actually checked', f7_reasons: [], smart_wallet_count: Math.floor(R() * 30),
     };
     prices.push({ id: i, symbol: o.symbol, name: o.name, address: o.address, status: open ? 'open' : 'closed', dexscreener_url: o.dexscreener_url,
       entry_time: base.entry_time, entry_price: e, exit_time: exitT ? iso(exitT) : null, exit_price: open ? null : exitMkt * 0.99, exit_type: exitType,
@@ -128,7 +132,9 @@ export function makeDemo(real, archive) {
   const by = [...trades].sort((a, b) => b.pnl_usd - a.pnl_usd);
   const brief = t => t && { id: t.id, symbol: t.symbol, pnl_usd: t.pnl_usd, pnl_pct: t.pnl_pct };
   const nowIso = iso(now - 4000);
-  const status = { ...real.status, run_number: 2, equity_usd: 1000 + realized + unreal, cash_usd: cash, open_positions_value_usd: openVal,
+  const avg = arr => arr.length ? arr.reduce((x, t) => x + t.pnl_pct, 0) / arr.length : null;
+  const status = { ...real.status, run_number: 2, starting_capital_usd: 1000, halt_equity_usd: 500, halted: false, halt_reason: null,
+    avg_win_pct: avg(wins), avg_loss_pct: avg(losses), equity_usd: 1000 + realized + unreal, cash_usd: cash, open_positions_value_usd: openVal,
     total_pnl_usd: realized + unreal, total_return_pct: (realized + unreal) / 10, realized_pnl_usd: realized, unrealized_pnl_usd: unreal,
     closed_trades: trades.length, open_trades: positions.length, wins: wins.length, losses: losses.length,
     win_rate_pct: trades.length ? wins.length / trades.length * 100 : null, best_trade: brief(by[0]), worst_trade: brief(by[by.length - 1]),
@@ -137,7 +143,7 @@ export function makeDemo(real, archive) {
   const realFeed = (real.feed && real.feed.lines) || [];
   return {
     ...real,
-    meta: { ...real.meta, last_update: nowIso },
+    meta: { ...real.meta, last_update: nowIso, starting_capital_usd: 1000 },
     status, scout,
     positions: { run: 2, updated: nowIso, count: positions.length, positions },
     trades: { run: 2, updated: nowIso, count: trades.length, trades },

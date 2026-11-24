@@ -1,12 +1,14 @@
 // TRADES (+ exit-type breakdown), FEED, RULES and RUN 1 views.
 import { price, priceFull, usd, usdSigned, pct, cls, esc, ts, tm, dt, dur, isNum, num, big, md } from './fmt.js';
 import { makeTable, toCSV, download } from './table.js';
+import { f7tag } from './board.js';
+import { loadExtra } from './data.js';
 
 const EXIT_ORDER = ['TP', 'BREAKEVEN', 'F6_TIME', 'STOP', 'LIQUIDITY', 'TRAIL', 'DISCRETIONARY', 'RESET', 'OTHER'];
 const EXIT_COL = { TP: '#22c55e', BREAKEVEN: '#f4f6fb', F6_TIME: '#9aa3b5', STOP: '#ef4444', LIQUIDITY: '#a5b4fc', TRAIL: '#8b5cf6', DISCRETIONARY: '#6b7590', RESET: '#444c5e', OTHER: '#333' };
 const EXIT_LABEL = { TP: 'TP +20% full sell', BREAKEVEN: 'breakeven (armed at +10%)', F6_TIME: 'F6 8-min time stop', STOP: '-10% stop' };
 
-const checksSq = checks => !checks ? '<span class="dim">—</span>' : ['F1', 'F2', 'F3', 'F4', 'F5', 'F6'].map(f => {
+const checksSq = checks => !checks ? '<span class="dim">—</span>' : ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', ...(checks.F7 ? ['F7'] : [])].map(f => {
   const c = checks[f]; return `<span class="sq ${!c ? 'n' : c.pass ? 'p' : 'f'}" title="${f} ${c ? esc((c.pass ? 'PASS ' : 'FAIL ') + (c.detail || '')) : 'n/a'}"></span>`;
 }).join('');
 
@@ -27,7 +29,9 @@ export function tradeColumns() {
     { k: 'exit_gap_vs_trigger_pct', label: 'GAP vs TRIG', r: 1, f: r => `<span class="${cls(r.exit_gap_vs_trigger_pct)}">${pct(r.exit_gap_vs_trigger_pct)}</span>`, csv: r => r.exit_gap_vs_trigger_pct },
     { k: 'entry_score', label: 'SCORE', r: 1, f: r => num(r.entry_score, 1), csv: r => r.entry_score },
     { k: 'liquidity_at_entry', label: 'LIQ', r: 1, f: r => big(r.liquidity_at_entry), csv: r => r.liquidity_at_entry },
-    { k: 'checks', label: 'F1-F6', v: r => r.checks ? Object.values(r.checks).filter(c => c && c.pass).length : -1, f: r => checksSq(r.checks), csv: r => r.checks ? Object.entries(r.checks).map(([k, c]) => k + (c && c.pass ? ':P' : ':F')).join(' ') : '' },
+    { k: 'checks', label: 'CHECKS', v: r => r.checks ? Object.values(r.checks).filter(c => c && c.pass).length : -1, f: r => checksSq(r.checks), csv: r => r.checks ? Object.entries(r.checks).map(([k, c]) => k + (c && c.pass ? ':P' : ':F')).join(' ') : '' },
+    { k: 'f7_status', label: 'F7', f: r => f7tag(r.f7_status, r.f7_text), csv: r => r.f7_status, tip: 'F7 contract safety at entry' },
+    { k: 'smart_wallet_count', label: 'SW', r: 1, f: r => isNum(r.smart_wallet_count) ? String(r.smart_wallet_count) : '<span class="dim">—</span>', csv: r => r.smart_wallet_count, tip: 'smart wallets (log only)' },
     { k: 'mistake', label: 'MISTAKE', f: r => `<span class="dim">${esc((r.mistake || '').slice(0, 50))}${(r.mistake || '').length > 50 ? '…' : ''}</span>`, title: r => r.mistake, csv: r => r.mistake },
     { k: 'lesson', label: 'LESSON', f: r => `<span class="dim">${esc((r.lesson || '').slice(0, 50))}${(r.lesson || '').length > 50 ? '…' : ''}</span>`, title: r => r.lesson, csv: r => r.lesson },
   ];
@@ -39,6 +43,8 @@ export function expandTrade(r) {
     <div style="margin-top:4px" class="dn"><span class="k">mistake:</span> ${esc(r.mistake || '—')}</div>
     <div style="margin-top:4px" class="cyan"><span class="k">lesson:</span> ${esc(r.lesson || '—')}</div>
     ${chk ? `<div style="margin-top:4px">${chk}</div>` : ''}
+    ${r.f7_status ? `<div style="margin-top:4px"><span class="k">F7:</span> ${f7tag(r.f7_status, r.f7_text)} <span class="dim">${esc(r.f7_text || '')}</span>${(r.f7_reasons || []).length ? `<div class="dn">reasons: ${r.f7_reasons.map(esc).join(' · ')}</div>` : ''}</div>` : ''}
+    ${isNum(r.smart_wallet_count) ? `<div style="margin-top:4px"><span class="k">smart wallets:</span> ${r.smart_wallet_count} <span class="dim">(log only, never gates a trade)</span></div>` : ''}
     <div style="margin-top:4px">${r.dexscreener_url ? `<a href="${esc(r.dexscreener_url)}" target="_blank" rel="noopener">DexScreener ↗</a> · ` : ''}<a href="#" data-open="${r.run || 2}:${r.id}">full detail ›</a></div>`;
 }
 
@@ -115,15 +121,80 @@ function wireTradeTable(root, prefix, tableEl, getRows, ctx, fileName) {
 
 // ---------------- TRADES ----------------
 export function initTrades(el, ctx) {
-  el.innerHTML = `<div class="hdr">CLOSED TRADES · RUN <span id="t-run">2</span><span class="sp"></span><span class="dim" style="color:#000">click a row to expand</span></div>
+  el.innerHTML = `<div class="hdr">CLOSED TRADES · RUN <span id="t-run">2</span><span class="sp"></span><span class="dim">click a row to expand</span></div>
     ${tradeFilters('t')}<div id="t-table"></div>
     <div class="hdr blue">EXIT-TYPE BREAKDOWN · EXIT TRIAL <span id="t-trial" style="font-weight:400"></span></div>
     <div class="bd"><div><div id="t-bd2"></div><div class="hdr sub">RUN 1 COMPARISON (older rules: trail, +25% TP, $5 sizes)</div><div id="t-bd1"><div class="empty">loading run 1…</div></div></div>
-    <div><div class="donut" id="t-donut"></div><div class="pad dim" id="t-gap"></div></div></div>`;
+    <div><div class="donut" id="t-donut"></div><div class="pad dim" id="t-gap"></div></div></div>
+    <div class="hdr">NEAR MISSES · failed exactly one check · never traded · hypothetical outcomes <span class="sp"></span><span id="nm-sum" style="font-weight:400"></span></div>
+    <div id="nm-stats"></div>
+    <div class="filters"><label>failed check <select id="nm-chk"><option value="">all</option></select></label><span class="cnt" id="nm-n"></span></div>
+    <div id="nm-items"></div>
+    <div class="hdr">SMART WALLETS · LOG ONLY · never used to block or allow a trade<span class="sp"></span><span id="sw-sum" style="font-weight:400"></span></div>
+    <div id="sw"><div class="empty">opens with this tab…</div></div>`;
   const $ = s => el.querySelector(s);
   let dn = null;
   const rows = () => ((ctx.d && ctx.d.trades && ctx.d.trades.trades) || []).map(t => ({ ...t, run: t.run ?? 2 }));
   const render = wireTradeTable(el, 't', $('#t-table'), rows, ctx, () => `rio-run${ctx.run ?? 2}-trades.csv`);
+  let nmFilter = '';
+  const nmStatsT = makeTable($('#nm-stats'), { key: r => r.check, sort: 'count', desc: true, empty: 'No near misses recorded yet.', columns: [
+    { k: 'check', label: 'CHECK', f: r => `<b>${esc(r.check)}</b> <span class="dim">${esc(r.name || '')}</span>` },
+    { k: 'count', label: 'COUNT', r: 1 }, { k: 'tracking', label: 'TRACKING', r: 1 }, { k: 'done', label: 'DONE', r: 1 },
+    { k: 'hyp_win_rate_pct', label: 'HYP WIN %', r: 1, f: r => `${isNum(r.hyp_win_rate_pct) ? r.hyp_win_rate_pct.toFixed(0) + '%' : '—'} <span class="dim">${r.hyp_wins ?? 0}W</span>` },
+    { k: 'tp_before_sl_rate_pct', label: 'TP BEFORE SL', r: 1, f: r => `${isNum(r.tp_before_sl_rate_pct) ? r.tp_before_sl_rate_pct.toFixed(0) + '%' : '—'} <span class="dim">${r.tp_before_sl ?? 0}</span>` },
+    { k: 'avg_hyp_pnl_pct', label: 'AVG HYP P&L', r: 1, f: r => `<span class="${cls(r.avg_hyp_pnl_pct)}">${pct(r.avg_hyp_pnl_pct)}</span>` },
+    { k: 'avg_max_gain_pct', label: 'AVG MAX GAIN', r: 1, f: r => `<span class="up">${pct(r.avg_max_gain_pct, 0)}</span>` },
+    { k: 'avg_max_drawdown_pct', label: 'AVG MAX DD', r: 1, f: r => `<span class="dn">${pct(r.avg_max_drawdown_pct)}</span>` },
+    { k: 'avg_chg_30m_pct', label: 'AVG 30M', r: 1, f: r => `<span class="${cls(r.avg_chg_30m_pct)}">${pct(r.avg_chg_30m_pct, 0)}</span>` },
+  ] });
+  const nmT = makeTable($('#nm-items'), { key: r => r.id, sort: 'detected_at', desc: true, empty: 'No near misses for this filter.',
+    expand: r => `<div><span class="k">failed:</span> ${esc(r.failed_check_name || r.failed_check)} · ${esc(r.failed_detail || '')}</div>
+      ${r.f7 ? `<div style="margin-top:4px"><span class="k">F7:</span> ${f7tag(r.f7.status, r.f7.text)} <span class="dim">${esc(r.f7.text || '')}</span></div>` : ''}
+      ${r.checks ? `<div style="margin-top:4px">${Object.entries(r.checks).map(([k, c]) => `<div class="chk ${c && c.pass ? 'p' : 'f'}"><b>${esc(k)}</b><span>${esc(c && c.detail || '')}</span></div>`).join('')}</div>` : ''}
+      <div style="margin-top:4px" class="dim">HYPOTHETICAL only: entry = detection price +1%, live exit rules simulated on ~15 s polls. Never traded.${r.dexscreener_url ? ` · <a href="${esc(r.dexscreener_url)}" target="_blank" rel="noopener">DexScreener ↗</a>` : ''}</div>`,
+    columns: [
+      { k: 'id', label: 'ID', f: r => `<span class="nm">◆</span> ${esc(r.id)}` },
+      { k: 'symbol', label: 'SYMBOL', f: r => `<b>${esc(r.symbol)}</b>`, title: r => r.name },
+      { k: 'detected_at', label: 'DETECTED ET', v: r => ts(r.detected_at), f: r => dt(r.detected_at) },
+      { k: 'failed_check', label: 'FAILED', f: r => `<span class="tag STOP">${esc(r.failed_check)}</span>`, title: r => r.failed_detail },
+      { k: 'margin', label: 'MISSED BY', r: 1, v: r => r.margin && r.margin.diff_pct, f: r => r.margin && isNum(r.margin.diff_pct) ? pct(r.margin.diff_pct) : '<span class="dim">—</span>', title: r => r.margin ? `value ${r.margin.value} vs threshold ${r.margin.threshold}` : '' },
+      { k: 'status', label: 'STATUS', v: r => r.tracking && r.tracking.status, f: r => r.tracking && r.tracking.status === 'tracking' ? '<span class="yel">tracking</span>' : `<span class="dim">${esc(r.tracking && r.tracking.status || '—')}</span>` },
+      { k: 'outcome', label: 'HYP OUTCOME', v: r => r.tracking && r.tracking.hypothetical_outcome, f: r => { const o = r.tracking && r.tracking.hypothetical_outcome; return o ? `<span class="${o === 'WIN' ? 'up' : 'dn'}">${o}</span>` : '<span class="dim">—</span>'; } },
+      { k: 'sim', label: 'SIM EXIT', v: r => r.tracking && r.tracking.sim && r.tracking.sim.exit, f: r => { const x = r.tracking && r.tracking.sim; return x ? `<span class="tag ${esc(x.exit)}">${esc(x.exit)}</span> <span class="${cls(x.pnl_pct)}">${pct(x.pnl_pct)}</span>` : '<span class="dim">—</span>'; } },
+      { k: 'max_gain', label: 'MAX GAIN', r: 1, v: r => r.tracking && r.tracking.max_gain_pct, f: r => `<span class="up">${pct(r.tracking && r.tracking.max_gain_pct, 0)}</span>` },
+      { k: 'max_dd', label: 'MAX DD', r: 1, v: r => r.tracking && r.tracking.max_drawdown_pct, f: r => `<span class="dn">${pct(r.tracking && r.tracking.max_drawdown_pct)}</span>` },
+      { k: 'chg30', label: '30M', r: 1, v: r => r.tracking && r.tracking.chg_30m_pct, f: r => { const v = r.tracking && r.tracking.chg_30m_pct; return `<span class="${cls(v)}">${pct(v, 0)}</span>`; } },
+      { k: 'smart_wallet_count', label: 'SW', r: 1, f: r => isNum(r.smart_wallet_count) ? String(r.smart_wallet_count) : '<span class="dim">—</span>' },
+    ] });
+  function renderNM() {
+    const nm = (ctx.d && ctx.d.near_misses) || {};
+    const items = nm.items || [], sum = nm.summary || {};
+    $('#nm-sum').textContent = `${sum.total ?? items.length} total · ${sum.tracking ?? 0} tracking · ${sum.done ?? 0} done`;
+    nmStatsT.update(nm.stats_by_failed_check || [], false);
+    const chks = [...new Set(items.map(i => i.failed_check).filter(Boolean))].sort();
+    const sel = $('#nm-chk'), html = '<option value="">all</option>' + chks.map(c => `<option>${esc(c)}</option>`).join('');
+    if (sel.innerHTML !== html) { sel.innerHTML = html; sel.value = chks.includes(nmFilter) ? nmFilter : ''; }
+    const shown = items.filter(i => !nmFilter || i.failed_check === nmFilter);
+    nmT.update(shown, false);
+    $('#nm-n').textContent = `${shown.length}/${items.length}`;
+  }
+  $('#nm-chk').addEventListener('change', e => { nmFilter = e.target.value; renderNM(); });
+  let swBusy = false;
+  async function renderSW() {
+    const s = (ctx.d && ctx.d.status) || {};
+    $('#sw-sum').textContent = `${s.smart_wallets_known_good ?? '—'} known-good · ${s.smart_wallets_coins_tracked ?? '—'} coins tracked`;
+    if (swBusy || ctx.demo && !ctx.d) return; swBusy = true;
+    try {
+      const w = await loadExtra('smart_wallets');
+      const st = w.stats || {}, top = (w.wallets_top || []).slice(0, 15), flags = (w.flags || []).slice(-8).reverse();
+      const short = a => a ? a.slice(0, 6) + '…' + a.slice(-4) : '';
+      $('#sw').innerHTML = `<div class="cards">${[['coins tracked', st.coins_tracked], ['wallets scored', st.wallets_scored], ['with hits', st.wallets_with_hits], ['known good', st.known_good], ['flags', st.flags]].map(([l, v]) => `<div class="card"><div class="amb" style="font-size:10px">${l}</div><div class="big">${v ?? '—'}</div></div>`).join('')}</div>
+        <div class="pad dim">${esc((w.params && (w.params.hit_rule || '')) || 'hit = coin later traded >= +50% above the wallet buy')} · ${esc((w.params && w.params.known_good_rule) || 'known-good = >= 2 hits and >= 40% hit rate')}</div>
+        <div class="bd"><div class="tw"><table class="t"><thead><tr><th>TOP WALLET</th><th class="r">COINS</th><th class="r">HITS</th><th class="r">HIT RATE</th><th>KNOWN GOOD</th><th>LAST BUY ET</th></tr></thead><tbody>${top.map(x => `<tr><td title="${esc(x.wallet)}">${esc(short(x.wallet))}</td><td class="r">${x.n_coins ?? '—'}</td><td class="r">${x.hits ?? '—'}</td><td class="r">${isNum(x.hit_rate) ? (x.hit_rate * 100).toFixed(0) + '%' : '—'}</td><td>${x.known_good ? '<span class="up">yes</span>' : '<span class="dim">no</span>'}</td><td>${dt(x.last_buy)}</td></tr>`).join('')}</tbody></table></div>
+        <div class="tw"><table class="t"><thead><tr><th>RECENT FLAG ET</th><th>COIN</th><th class="r">WALLETS</th></tr></thead><tbody>${flags.map(f => `<tr><td>${dt(f.t)}</td><td title="${esc((f.why || []).join(' · '))}"><b>${esc(f.symbol)}</b></td><td class="r">${(f.wallets || []).length}</td></tr>`).join('') || '<tr><td colspan="3" class="dim">no flags yet</td></tr>'}</tbody></table></div></div>`;
+    } catch (e) { $('#sw').innerHTML = `<div class="empty">smart_wallets.json unavailable (${esc(e.message)})</div>`; }
+    finally { swBusy = false; }
+  }
   async function run1() {
     try {
       const a = await ctx.loadArchive();
@@ -140,12 +211,13 @@ export function initTrades(el, ctx) {
       let b = s.exit_type_breakdown && Object.keys(s.exit_type_breakdown).length ? s.exit_type_breakdown : computeBreakdown(rows());
       $('#t-bd2').innerHTML = bdTable(b, 'RUN ' + (ctx.run ?? 2));
       $('#t-trial').textContent = s.exit_trial ? `${s.exit_trial.id || ''} · ${s.exit_trial.note || ''}` : '';
+      renderNM(); if (vis) renderSW();
       $('#t-gap').innerHTML = `avg stop gap (STOP/BREAKEVEN prints below trigger): <b class="${cls(s.avg_stop_gap_pct)}">${pct(s.avg_stop_gap_pct)}</b>`;
       if (vis) dn = donut($('#t-donut'), b, dn); else this._b = b;
     },
     visible(v) {
       vis = v;
-      if (v) { if (!r1) { r1 = true; run1(); } requestAnimationFrame(() => { dn = donut($('#t-donut'), this._b || computeBreakdown(rows()), dn); dn && dn.resize(); }); }
+      if (v) { renderSW(); if (!r1) { r1 = true; run1(); } requestAnimationFrame(() => { dn = donut($('#t-donut'), this._b || computeBreakdown(rows()), dn); dn && dn.resize(); }); }
     },
   };
 }
@@ -153,7 +225,8 @@ export function initTrades(el, ctx) {
 // ---------------- FEED ----------------
 export function initFeed(el, ctx) {
   el.innerHTML = `<div class="toolbar"><b>LIVE LOG</b> <span class="chips" id="fd-chips"></span><span style="flex:1"></span>
-    <label style="display:flex;gap:4px;align-items:center;font-weight:700"><input type="checkbox" id="fd-auto" checked> auto-scroll</label><span id="fd-n"></span></div>
+    <label style="display:flex;gap:4px;align-items:center;font-weight:700"><input type="checkbox" id="fd-auto" checked> auto-scroll</label><span id="fd-n"></span>
+    <a class="chip" id="fd-vault" href="#" download title="Obsidian vault: one note per trade, coin, rule, near miss">⬇ vault.zip</a></div>
     <div class="feed" id="fd"></div>`;
   const $ = s => el.querySelector(s);
   const off = new Set(); let lines = [];
@@ -168,7 +241,7 @@ export function initFeed(el, ctx) {
     $('#fd-n').textContent = `${shown.length} lines`;
   }
   $('#fd-chips').addEventListener('click', e => { const b = e.target.closest('button[data-t]'); if (!b) return; const t = b.dataset.t; off.has(t) ? off.delete(t) : off.add(t); render(); });
-  return { update(d) { lines = (d.feed && d.feed.lines) || []; render(); } };
+  return { update(d) { lines = (d.feed && d.feed.lines) || []; $('#fd-vault').href = ctx.fileUrl('vault.zip'); render(); } };
 }
 
 // ---------------- RULES ----------------
@@ -180,7 +253,7 @@ export function initRules(el, ctx) {
       const x = r.exits || {}, f = r.extra_entry_filters || {}, s = r.sizing || {}, h = r.halt || {}, tr = r.exit_trial || {};
       const card = (t, body) => `<div class="card"><h4>${t}</h4>${body}</div>`;
       const row = (k, v) => `<div><span class="amb">${k}</span> ${v}</div>`;
-      el.innerHTML = `<div class="hdr">ENTRY GATES · ALL SIX MUST PASS</div>
+      el.innerHTML = `<div class="hdr">ENTRY GATES · ALL MUST PASS (F6 is the 8-min exit rule)</div>
         <div class="cards">${(r.entry_gates || []).map(g => card(`<span class="tag" style="background:#f4f6fb">${esc(g.id)}</span> ${esc(g.rule || '')}`,
           Object.entries(g).filter(([k]) => !['id', 'rule'].includes(k)).map(([k, v]) => row(k, esc(typeof v === 'number' ? v.toLocaleString() : v))).join(''))).join('')}</div>
         <div class="hdr red">EXITS · ${esc(tr.id || '')}</div>
@@ -196,6 +269,8 @@ export function initRules(el, ctx) {
           ${card('Sizing', Object.entries(s).map(([k, v]) => row(k, esc(v ?? '—'))).join(''))}
           ${card('Halt', row('halt equity', usd(h.halt_equity_usd, 0)) + `<div class="dim">${esc(h.note || '')}</div>`)}
           ${card('Exit trial', row('id', esc(tr.id || '—')) + row('start', dt(tr.start) + ' ET') + `<div class="dim">${esc(tr.note || '')}</div>`)}
+          ${r.near_misses ? card('Near misses (never traded)', Object.entries(r.near_misses).map(([k, v]) => row(k, esc(typeof v === 'object' && v !== null ? JSON.stringify(v) : v))).join('')) : ''}
+          ${r.smart_wallets ? card('Smart wallets (log only)', Object.entries(r.smart_wallets).map(([k, v]) => row(k, esc(typeof v === 'object' && v !== null ? JSON.stringify(v) : v))).join('')) : ''}
         </div>
         <div class="hdr">LIVE RULES (as written by the bot)</div>
         <ol class="rules">${(r.live_rules_text || []).map(t => `<li>${esc(t)}</li>`).join('')}</ol>

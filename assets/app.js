@@ -11,6 +11,10 @@ import { initWhatIf } from './whatif.js';
 
 const qs = new URLSearchParams(location.search);
 const DEMO = qs.get('demo') === '1';
+// ?demo=1&speed=2 -> a new canned run-1 trade arrives every 6 s / speed (min 1 s)
+const SPEED = Math.max(0.1, Math.min(20, parseFloat(qs.get('speed')) || 1));
+const DEMO_STEP_MS = Math.max(1000, 6000 / SPEED);
+const demoState = { n: 1, real: null, timer: null };
 
 export const ctx = {
   d: null, run: null, archive: null, demo: DEMO,
@@ -66,15 +70,14 @@ function renderHeader() {
     kpi('Equity · run ' + (s.run_number ?? m.run_number ?? '?'), usd(s.equity_usd), 'start ' + usd(start, 0), cls((s.equity_usd ?? start) - start), true),
     kpi('Total P&L', usdSigned(s.total_pnl_usd), pct(s.total_return_pct, 2), cls(s.total_pnl_usd), true),
     kpi('Cash', usd(s.cash_usd), 'open value ' + usd(s.open_positions_value_usd)),
-    kpi('Realized', usdSigned(s.realized_pnl_usd), 'unrealized ' + usdSigned(s.unrealized_pnl_usd), cls(s.realized_pnl_usd)),
-    kpi('Unrealized', usdSigned(s.unrealized_pnl_usd), (s.open_trades ?? 0) + ' open', cls(s.unrealized_pnl_usd)),
+    kpi('Realized · unreal.', usdSigned(s.realized_pnl_usd), 'unrealized ' + usdSigned(s.unrealized_pnl_usd), cls(s.realized_pnl_usd)),
     kpi('Win rate', isNum(s.win_rate_pct) ? s.win_rate_pct.toFixed(1) + '%' : '—', `<span class="up">${s.wins ?? 0}W</span> / <span class="dn">${s.losses ?? 0}L</span>`),
     kpi('Closed · open', `${s.closed_trades ?? 0} · <span class="yel">${s.open_trades ?? 0}</span>`, 'avg W ' + pct(s.avg_win_pct) + ' · L ' + pct(s.avg_loss_pct)),
     kpi('Best trade', tlink(bt), tsub(bt)),
     kpi('Worst trade', tlink(wt), tsub(wt)),
     kpi('Scanner', `${s.scanner_rounds_last_10min ?? '—'} <span class="dim">/10m</span>`, 'last <span data-ago="' + esc(s.scanner_last_round || '') + '"></span>'),
     kpi('Halt level', usd(s.halt_equity_usd, 0), s.halted ? '<span class="dn">HALTED</span>' : 'running', s.halted ? 'dn' : ''),
-    kpi('Journal', `<a class="xl" href="${esc(xl)}" download>⬇ EXCEL</a>`, 'journal.xlsx'),
+    kpi('Journal · vault', `<span class="links"><a class="xl" href="${esc(xl)}" download>⬇ EXCEL</a><a class="xl" href="${esc(fileUrl('vault.zip'))}" download title="Obsidian vault">⬇ VAULT</a></span>`, 'journal.xlsx · vault.zip'),
   ].join('');
   $('kpis').querySelectorAll('a[data-trade]').forEach(a => a.addEventListener('click', e => {
     e.preventDefault(); const t = ctx.allTrades().find(x => x.id === +a.dataset.trade); if (t) ctx.openTrade(t);
@@ -102,14 +105,14 @@ function renderBanners(now) {
   const d = ctx.d; if (!d) return;
   const m = d.meta || {}, s = d.status || {};
   const out = [];
-  if (DEMO) out.push(`<div class="b-demo">DEMO MODE · synthetic run-2 data replayed from run-1 coins · <a href="${location.pathname}">switch to real data</a></div>`);
+  if (DEMO) out.push(`<div class="b-demo">DEMO MODE · canned run-1 trades arriving one every ${(DEMO_STEP_MS / 1000).toFixed(1)} s (trade ${demoState.n}) · synthetic prices · not real data · <a href="${location.pathname}">switch to real data</a></div>`);
   if (s.halted) out.push(`<div class="b-halt">■ HALTED · ${esc(s.halt_reason || 'equity at or below halt level')} · no new entries</div>`);
   const thr = STALE_MS[d.source] ?? 360e3;
   const mt = ts(m.last_update), wt = ts(s.watcher_last_update);
   const stale = [];
   if (mt !== null && now - mt > thr) stale.push(`data built ${ago(mt, now)} (limit ${thr / 60e3} min on ${d.source})`);
   if (!DEMO && wt !== null && now - wt > 120e3) stale.push(`position watcher last ran ${ago(wt, now)}`);
-  if (stale.length) out.push(`<div class="b-stale">⚠ STALE · ${stale.join(' · ')}</div>`);
+  if (stale.length) out.push(`<div class="b-stale">⚠ STALE DATA · ${stale.join(' · ')}</div>`);
   if (d.error && !DEMO) out.push(`<div class="b-err">fetch note: ${esc(d.error)}</div>`);
   const html = out.join('');
   if ($('banners').innerHTML !== html) $('banners').innerHTML = html;
@@ -130,10 +133,7 @@ async function poll() {
   clearTimeout(timer);
   try {
     let d = await loadAll();
-    if (DEMO) {
-      const arch = await ctx.loadArchive();
-      d = { ...makeDemo(d, arch), source: SOURCES.DEMO, sha: d.sha, fetchedAt: d.fetchedAt, changed: true, error: null };
-    }
+    if (DEMO) { demoState.real = d; await ctx.loadArchive(); d = demoData(); }
     const first = !ctx.d;
     if (d.changed || first) {
       const run = (d.meta && d.meta.run_number) ?? (d.status && d.status.run_number);
@@ -151,11 +151,27 @@ async function poll() {
     if (!ctx.d) $('banners').innerHTML = `<div class="b-stale">Could not load data from any source: ${esc(e.message)}. Retrying…</div>`;
   } finally {
     busy = false;
-    const delay = DEMO ? 30e3 : nextDelay();
+    const delay = nextDelay();
     nextAt = Date.now() + delay;
     timer = setTimeout(poll, delay);
   }
 }
+function demoData() {
+  const d = demoState.real;
+  return { ...makeDemo(d, ctx.archive, demoState.n), source: SOURCES.DEMO, sha: d.sha, fetchedAt: Date.now(), changed: true, error: null };
+}
+function demoStep() {
+  if (!demoState.real || !ctx.archive) return;
+  const total = (ctx.archive.trades.trades || []).length;
+  demoState.n = demoState.n >= total ? 1 : demoState.n + 1; // loop back to trade 1 after the last one
+  const d = demoData(), runChanged = demoState.n === 1;
+  ctx.d = d;
+  if (runChanged) Object.values(views).forEach(v => v.reset && v.reset());
+  renderHeader();
+  for (const v of Object.values(views)) { try { v.update(d, { first: false, runChanged }); } catch (e) { console.error(e); } }
+  renderSrc(Date.now()); renderBanners(Date.now());
+}
+if (DEMO) demoState.timer = setInterval(demoStep, DEMO_STEP_MS);
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden && ctx.d && Date.now() - (ctx.d.fetchedAt || 0) > 75e3) poll();
 });

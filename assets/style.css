@@ -97,7 +97,7 @@ table.t tbody tr.link{cursor:pointer}
 .sq.p{background:var(--grn)}.sq.f{background:var(--red)}.sq.n{background:var(--dim2)}
 .tag{padding:0 5px;font-size:10px;font-weight:700;color:#05060a;border-radius:3px}
 .tag.TP{background:var(--grn)}.tag.STOP{background:var(--red)}.tag.BREAKEVEN{background:#e2e8f0}.tag.F6_TIME{background:#9aa3b5}
-.tag.OTHER,.tag.DISCRETIONARY,.tag.TRAIL,.tag.RESET,.tag.LIQUIDITY{background:#6b7590}
+.tag.TIME_30M{background:#64748b}.tag.OTHER,.tag.DISCRETIONARY,.tag.TRAIL,.tag.RESET,.tag.LIQUIDITY{background:#6b7590}
 tr.exp td{background:rgba(6,8,13,.95)!important;white-space:normal;color:var(--txt);padding:8px 12px}
 tr.exp .k{color:var(--amb)}
 
@@ -309,3 +309,16 @@ body.rp-open{overflow:hidden}
 .wi-preview canvas{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--edge);background:#05060a}
 table.t tbody tr.on td{background:rgba(255,255,255,.07)}
 #wi-entry{accent-color:#e2e8f0;min-width:140px}
+
+/* F7 contract safety, near misses, smart wallets (added 2026-11-24) */
+.f7{display:inline-block;padding:0 5px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.4px;border:1px solid var(--edge,#2a3140)}
+.f7-PASS{color:#bbf7d0;border-color:rgba(34,197,94,.45);background:rgba(34,197,94,.10)}
+.f7-FAIL{color:#fecaca;border-color:rgba(239,68,68,.5);background:rgba(239,68,68,.12)}
+.f7-UNKNOWN{color:#e2e8f0;border-color:rgba(226,232,240,.35);background:rgba(226,232,240,.06)}
+.f7-SKIP{color:#64748b;border-color:#1e2430}
+.nm{color:#a5b4fc;font-weight:600}
+.sw{color:#94a3b8}.sw.on{color:#f4f6fb;font-weight:600}
+.fl.F7{color:#cbd5e1}.fl.NEARMISS{color:#a5b4fc}.fl.SMARTWALLET{color:#e2e8f0;font-style:italic}
+.kpis{display:flex!important;flex-wrap:wrap}.kpis .kpi{flex:1 1 auto;min-width:0}.kpis .kpi.big{flex:1.3 1 auto;min-width:150px}
+.kpis .kpi .v,.kpis .kpi .s,.kpis .kpi .l{overflow:visible;text-overflow:clip}
+.kpi .links{display:flex;gap:4px}.kpi .links a.xl{margin-top:2px;padding:1px 6px;font-size:10.5px}

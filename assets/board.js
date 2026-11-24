@@ -7,6 +7,13 @@ const sqs = checks => ['F1', 'F2', 'F3', 'F4', 'F5', 'F6'].map(f => {
   return `<span class="sq ${!c ? 'n' : c.pass ? 'p' : 'f'}" title="${f}: ${c ? esc((c.pass ? 'PASS ' : 'FAIL ') + (c.detail || '')) : 'n/a'}"></span>`;
 }).join('');
 
+export const f7tag = (st, text) => {
+  const v = st || null;
+  if (!v) return '<span class="dim">—</span>';
+  return `<span class="f7 f7-${esc(v)}" title="${esc(text || ('F7 ' + v))}">${esc(v)}</span>`;
+};
+const swCell = n => isNum(n) ? `<span class="sw ${n > 0 ? 'on' : ''}" title="smart wallets (log only, never gates a trade)">${n}</span>` : '<span class="dim">—</span>';
+
 export function initBoard(el, ctx) {
   el.classList.add('board');
   el.innerHTML = `
@@ -50,6 +57,8 @@ export function initBoard(el, ctx) {
       { k: 'stop_loss_price', label: 'STOP', r: 1, f: r => r.breakeven_armed_at ? `<span class="yel" title="breakeven armed ${dt(r.breakeven_armed_at)} ET">BE ${price(r.stop_loss_price)}</span>` : price(r.stop_loss_price) },
       { k: 'take_profit_price', label: 'TP', r: 1, f: r => price(r.take_profit_price), flash: false },
       { k: 'f6_deadline', label: 'F6', r: 1, f: countdown, v: r => ts(r.f6_deadline), flash: false, tip: 'F6: must touch +10% within 8 min or it is sold' },
+      { k: 'f7_status', label: 'F7', f: r => f7tag(r.f7_status, r.f7_text), flash: false, tip: 'F7 contract safety (GoPlus + honeypot.is)' },
+      { k: 'smart_wallet_count', label: 'SW', r: 1, f: r => swCell(r.smart_wallet_count), flash: false, tip: 'smart wallets that bought (log only)' },
       { k: 'liquidity_usd', label: 'LIQ', r: 1, f: r => big(r.liquidity_usd) },
       { k: 'held_seconds', label: 'HELD', r: 1, f: held, flash: false },
     ],
@@ -92,7 +101,10 @@ export function initBoard(el, ctx) {
       { k: 'age_h', label: 'AGE', r: 1, f: r => !isNum(r.age_h) ? '—' : r.age_h < 48 ? r.age_h.toFixed(1) + 'h' : Math.round(r.age_h / 24) + 'd' },
       { k: 'score', label: 'SCORE', r: 1, f: r => `<span class="${isNum(r.score) && r.score >= 12 ? 'yel' : ''}">${num(r.score, 2)}</span>` },
       { k: 'setup', label: 'SETUP', f: r => esc(r.setup || (r.hard_filtered ? 'filtered' : '—')), flash: false },
-      { k: 'checks', label: 'F1-F6', v: r => r.checks ? Object.values(r.checks).filter(c => c && c.pass).length : -1, f: r => sqs(r.checks), flash: false },
+      { k: 'checks', label: 'F1-F6', tip: 'six entry gates (hover a square for detail)', v: r => r.checks ? Object.values(r.checks).filter(c => c && c.pass).length : -1, f: r => sqs(r.checks), flash: false },
+      { k: 'f7_status', label: 'F7', v: r => ({ PASS: 3, UNKNOWN: 2, FAIL: 1, SKIP: 0 })[r.f7_status] ?? -1, f: r => f7tag(r.f7_status, r.f7_text || (r.checks && r.checks.F7 && r.checks.F7.detail)), flash: false, tip: 'F7 contract safety: PASS / FAIL / UNKNOWN (blocks) / SKIP (not checked)' },
+      { k: 'n_failed_checks', label: 'NM', r: 1, v: r => r.near_miss_id ? 1 : 0, f: r => r.near_miss_id ? `<span class="nm" title="near miss ${esc(r.near_miss_id)}: failed ${esc((r.failed_checks || []).join(', '))} only">◆ ${esc(r.near_miss_id)}</span>` : (isNum(r.n_failed_checks) ? `<span class="dim" title="${esc((r.failed_checks || []).join(', '))}">${r.n_failed_checks}✕</span>` : '<span class="dim">—</span>'), flash: false, tip: 'near miss = failed exactly one check (never traded); otherwise number of failed checks' },
+      { k: 'smart_wallet_count', label: 'SW', r: 1, f: r => swCell(r.smart_wallet_count), tip: 'smart wallets that bought (log only, never gates a trade)' },
       { k: 'decision', label: 'DECISION', f: r => `<span class="${r.decision === 'Buy' ? 'up' : 'dim'}">${esc(r.decision || '—')}</span>`, title: r => r.reason, flash: false },
       { k: 'reason', label: 'REASON', f: r => `<span class="dim">${esc((r.reason || '').slice(0, 70))}${(r.reason || '').length > 70 ? '…' : ''}</span>`, title: r => r.reason, flash: false },
     ],
