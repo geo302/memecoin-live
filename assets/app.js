@@ -7,6 +7,7 @@ import { initCharts } from './charts.js';
 import { initTrades, initFeed, initRules, initRun1 } from './views.js';
 import { openTrade, closePanel } from './detail.js';
 import { initCalendar } from './calendar.js';
+import { initWhatIf } from './whatif.js';
 
 const qs = new URLSearchParams(location.search);
 const DEMO = qs.get('demo') === '1';
@@ -27,7 +28,7 @@ export const ctx = {
 
 const $ = id => document.getElementById(id);
 const views = {};
-const TABS = ['map', 'board', 'charts', 'trades', 'feed', 'rules', 'run1', 'calendar', 'all'];
+const TABS = ['map', 'board', 'charts', 'trades', 'feed', 'rules', 'run1', 'calendar', 'whatif', 'all'];
 let tab = null;
 
 function showTab(t) {
@@ -45,6 +46,7 @@ window.addEventListener('hashchange', () => showTab(location.hash.slice(1)));
 document.addEventListener('keydown', e => {
   if (e.target.matches('input,select,textarea') || e.ctrlKey || e.metaKey || e.altKey) return;
   if (e.key === 'Escape') closePanel();
+  if (e.key === '0') showTab('all');
   const n = +e.key; if (n >= 1 && n <= 9) showTab(TABS[n - 1]);
 });
 $('panel-x').addEventListener('click', closePanel);
@@ -174,5 +176,6 @@ views.feed = initFeed($('v-feed'), ctx);
 views.rules = initRules($('v-rules'), ctx);
 views.run1 = initRun1($('v-run1'), ctx);
 views.calendar = initCalendar($('v-calendar'), ctx);
+views.whatif = initWhatIf($('v-whatif'), ctx);
 showTab(location.hash.slice(1) || 'map');
 poll();

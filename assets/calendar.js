@@ -1,7 +1,8 @@
-// CALENDAR: black P&L calendar (green / red days) + Day Breakdown + @riogeo Trophy Room flex-card generator.
+// CALENDAR: black P&L calendar (green / red days) + Day Breakdown + @whatscoinbase Trophy Room flex-card generator.
 // Days are bucketed by the ET date of each closed trade's exit_time. Reads ctx data only; never writes anything.
 // Trophy cards are drawn on a <canvas> (what you see is exactly what downloads). Spec: CLAUDE_PROMPT.md "CALENDAR".
 import { usd, usdSigned, pct, cls, esc, isNum, dur, tm, TZ } from './fmt.js';
+import { openTradeReplay } from './replay.js';
 
 const BACKDROPS = [
   { id: 'auto', name: 'Auto' },
@@ -11,7 +12,7 @@ const BACKDROPS = [
   { id: 'battle-crimson', name: 'Crimson', src: 'assets/trophy/battle-crimson.webp' },
   { id: 'none', name: 'Stars' },
 ];
-const LS = 'riogeo.trophy.v1';
+const LS = 'whatscoinbase.trophy.v1';
 const W = 1200, H = 675;
 const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -181,7 +182,7 @@ export function initCalendar(el, ctx) {
     R.innerHTML = `<div class="glass">
       <div class="day-h"><div><div class="day-t">${esc(longDay(key))}</div><div class="dim">${d.trades.length} closed trade${d.trades.length === 1 ? '' : 's'} · ${d.w}W ${d.l}L · ${usd(d.inv)} deployed</div></div>
         <div class="r"><div class="day-p ${cls(d.pnl)}">${money(d.pnl)}</div><div class="${cls(d.pnl)}">${pct(dep, 2)} <span class="dim">deployed</span> · ${pct(acct, 2)} <span class="dim">acct</span></div></div></div>
-      <div class="tr-h"><span>🏆 TROPHY ROOM</span><span class="dim">@riogeo flex card</span></div>
+      <div class="tr-h"><span>🏆 TROPHY ROOM</span><span class="dim">@whatscoinbase flex card</span></div>
       <div class="tr-pick" id="tr-pick">
         <button data-card="day" class="${st.card === 'day' ? 'on' : ''}">DAY CARD</button>
         ${d.trades.map(t => `<button data-card="${cardKey(t)}" class="${st.card === cardKey(t) ? 'on' : ''} ${t.pnl_usd > 0 ? 'w' : 'l'}">${esc(t.symbol || '?')}</button>`).join('')}
@@ -194,11 +195,12 @@ export function initCalendar(el, ctx) {
         <input type="url" id="tr-url" placeholder="…or paste an image URL" aria-label="Image URL">
         <button class="btn" id="tr-urlgo">USE URL</button>
         <span class="sp"></span>
+        <button class="btn" id="tr-replay"${st.card === 'day' ? ' disabled title="Pick a trade card to replay"' : ''}>▶ REPLAY</button>
         <button class="btn pri" id="tr-dl">⬇ DOWNLOAD PNG</button>
       </div>
       <div class="tr-msg dim" id="tr-msg"></div>
       <div class="tr-h"><span>TRADES · ${esc(shortDay(key))}</span><span class="dim">click a symbol for full detail</span></div>
-      <div class="tw"><table class="t day-t"><thead><tr><th>Symbol</th><th>Entry → Exit ET</th><th class="r">Hold</th><th class="r">In</th><th class="r">Out</th><th class="r">P&amp;L</th><th class="r">%</th><th>Exit</th><th class="r">Score</th><th class="r">5m</th><th class="r">Liq</th><th></th><th></th></tr></thead><tbody>
+      <div class="tw"><table class="t day-t"><thead><tr><th>Symbol</th><th>Entry → Exit ET</th><th class="r">Hold</th><th class="r">In</th><th class="r">Out</th><th class="r">P&amp;L</th><th class="r">%</th><th>Exit</th><th class="r">Score</th><th class="r">5m</th><th class="r">Liq</th><th></th><th></th><th></th></tr></thead><tbody>
         ${d.trades.map(t => `<tr>
           <td><a href="#" data-open="${cardKey(t)}">${esc(t.symbol || '?')}</a> <span class="dim">#${t.id}${t.run === 1 ? ' r1' : ''}</span></td>
           <td class="nowrap">${tm(t.entry_time)} → ${tm(t.exit_time)}</td>
@@ -208,8 +210,9 @@ export function initCalendar(el, ctx) {
           <td class="r">${isNum(t.entry_score) ? t.entry_score.toFixed(2) : '—'}</td><td class="r">${pct(t.entry_m5_pct, 1)}</td>
           <td class="r">${isNum(t.liquidity_at_entry) ? '$' + (t.liquidity_at_entry / 1000).toFixed(1) + 'k' : '—'}</td>
           <td>${t.dexscreener_url ? `<a href="${esc(t.dexscreener_url)}" target="_blank" rel="noopener">DEX ↗</a>` : '<span class="dim">—</span>'}</td>
+          <td><button class="btn sm" data-replay="${cardKey(t)}">▶ REPLAY</button></td>
           <td><button class="btn sm" data-card="${cardKey(t)}">🏆 CARD</button></td></tr>
-          ${t.exit_reason ? `<tr class="why"><td colspan="13">${esc(t.exit_reason)}</td></tr>` : ''}`).join('')}
+          ${t.exit_reason ? `<tr class="why"><td colspan="14">${esc(t.exit_reason)}</td></tr>` : ''}`).join('')}
       </tbody></table></div>
     </div>`;
     wireDay(d, key);
@@ -243,6 +246,16 @@ export function initCalendar(el, ctx) {
     R.querySelector('#tr-urlgo').addEventListener('click', go);
     R.querySelector('#tr-url').addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
     R.querySelector('#tr-dl').addEventListener('click', () => download(d, key));
+    const replayOf = key => {
+      const t = d.trades.find(x => cardKey(x) === key);
+      if (t) openTradeReplay(t, ctx);
+    };
+    R.querySelectorAll('[data-replay]').forEach(b => b.addEventListener('click', ev => {
+      ev.stopPropagation();
+      replayOf(b.dataset.replay);
+    }));
+    const rb = R.querySelector('#tr-replay');
+    if (rb) rb.addEventListener('click', () => { if (st.card && st.card !== 'day') replayOf(st.card); });
   }
   function msg(t, bad = false) { const m = $('#tr-msg'); if (m) { m.textContent = t; m.classList.toggle('dn', bad); } }
   function setCustom(src, name, d, key) {
@@ -331,7 +344,7 @@ export function initCalendar(el, ctx) {
     g.strokeStyle = 'rgba(255,255,255,.9)'; g.lineWidth = 2.5; g.beginPath(); g.ellipse(0, 0, 24, 9, -0.45, 0, Math.PI * 2); g.stroke();
     g.fillStyle = '#fff'; g.shadowColor = '#fff'; g.shadowBlur = 14; g.beginPath(); g.arc(0, 0, 7, 0, 7); g.fill(); g.restore();
     g.fillStyle = 'rgba(244,246,251,.7)'; g.font = `600 17px ${SANS}`; g.textBaseline = 'middle'; g.textAlign = 'left';
-    g.fillText('R I O   ×   G E O', X + 62, 71);
+    g.fillText('RIO  ·  WHATSCOINBASE', X + 62, 71);
     // title + subtitle
     g.textBaseline = 'alphabetic';
     let fs = 64; g.font = `800 ${fs}px ${SANS}`;
@@ -355,18 +368,18 @@ export function initCalendar(el, ctx) {
       g.font = `700 ${rfs}px ${SANS}`; g.fillStyle = k === 'up' ? '#34d399' : k === 'dn' ? '#f87171' : '#f4f6fb'; g.fillText(v, colX, y);
       y += many ? 34 : 46;
     }
-    // tag: avatar + @riogeo
+    // tag: avatar + @whatscoinbase
     const ay = H - 70, ax = X + 30;
     g.save();
     const ag = g.createLinearGradient(ax - 30, ay - 30, ax + 30, ay + 30); ag.addColorStop(0, '#1e293b'); ag.addColorStop(1, '#020305');
     g.beginPath(); g.arc(ax, ay, 30, 0, 7); g.fillStyle = ag; g.fill();
     g.strokeStyle = c.pnl >= 0 ? 'rgba(52,211,153,.9)' : 'rgba(248,113,113,.9)'; g.lineWidth = 2.5; g.stroke();
     g.strokeStyle = 'rgba(255,255,255,.55)'; g.lineWidth = 1.5; g.beginPath(); g.ellipse(ax, ay, 22, 8, -0.5, 0, Math.PI * 2); g.stroke();
-    g.fillStyle = '#fff'; g.font = `800 19px ${SANS}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('RG', ax, ay + 1);
+    g.fillStyle = '#fff'; g.font = `800 19px ${SANS}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('WC', ax, ay + 1);
     g.restore();
     g.textAlign = 'left'; g.textBaseline = 'alphabetic';
-    g.fillStyle = '#fff'; g.font = `800 34px ${SANS}`; g.fillText('@riogeo', ax + 46, ay + 4);
-    g.fillStyle = 'rgba(203,213,225,.6)'; g.font = `600 14px ${SANS}`; g.fillText('RIO × GEO  ·  PAPER TRADING' + (c.demo ? '  ·  DEMO DATA' : ''), ax + 48, ay + 28);
+    g.fillStyle = '#fff'; g.font = `800 28px ${SANS}`; g.fillText('@whatscoinbase', ax + 46, ay + 4);
+    g.fillStyle = 'rgba(203,213,225,.6)'; g.font = `600 14px ${SANS}`; g.fillText('WHATSCOINBASE  ·  PAPER TRADING' + (c.demo ? '  ·  DEMO DATA' : ''), ax + 48, ay + 28);
     g.textAlign = 'right'; g.fillStyle = 'rgba(203,213,225,.55)'; g.font = `500 14px ${SANS}`; g.fillText(c.foot, W - 36, H - 30);
     g.textAlign = 'left';
     // hairline frame
@@ -375,7 +388,7 @@ export function initCalendar(el, ctx) {
   function download(d, key) {
     const cv = $('#tr-cv'); if (!cv) return;
     const c = cardData(d, key);
-    const name = `riogeo-${c.slug}-pnl.png`;
+    const name = `whatscoinbase-${c.slug}-pnl.png`;
     try {
       cv.toBlob(b => {
         if (!b) { msg('Download failed, try again.', true); return; }

@@ -1,5 +1,6 @@
 // Trade detail side panel (opened from map nodes, tables, board rows).
 import { price, priceFull, usd, usdSigned, pct, cls, dt, dur, esc, isNum, tradeState, dot, ts, num, big } from './fmt.js';
+import { openTradeReplay } from './replay.js';
 
 let mini = null;
 const $ = id => document.getElementById(id);
@@ -25,6 +26,7 @@ export function openTrade(t, ctx) {
     <h2>${dot(st)}${esc(t.symbol || '?')} <span class="dim">#${t.id}${t.run === 1 ? ' · run 1' : ''}</span></h2>
     <div class="dim">${esc(t.name || '')} · ${esc(t.setup || '')} · ${esc(t.source || '')}</div>
     <div style="margin:6px 0;font-size:16px" class="${cls(pnlU)}">${usdSigned(pnlU)} <span style="font-size:13px">${pct(pnlP)}</span> ${open ? '<span class="yel" style="font-size:11px">OPEN · unrealized</span>' : `<span class="tag ${esc(t.exit_type)}">${esc(t.exit_type || '')}</span>`}</div>
+    <div style="margin:8px 0 10px"><button class="btn pri" id="pd-replay">▶ REPLAY</button> <span class="dim">PAPER TRADING · SIMULATED</span></div>
     <h3>EXECUTION</h3>
     <div class="kv">
       ${kv('entry', dt(t.entry_time))}${kv(open ? 'last chk' : 'exit', dt(open ? t.last_checked : t.exit_time))}
@@ -57,6 +59,8 @@ export function openTrade(t, ctx) {
   $('panel').classList.add('on'); $('panel').setAttribute('aria-hidden', 'false');
   const pc = $('pd-chart');
   if (pc) pc.addEventListener('click', e => { e.preventDefault(); ctx.selectChart && ctx.selectChart(t.id); ctx.showTab('charts'); closePanel(); });
+  const rb = $('pd-replay');
+  if (rb) rb.addEventListener('click', () => openTradeReplay(t, ctx));
   if (mini) { mini.dispose(); mini = null; }
   if (pr && pr.points && pr.points.length && window.echarts) {
     mini = echarts.init($('mini'), null, { renderer: 'canvas' });
