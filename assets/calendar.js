@@ -4,6 +4,8 @@
 import { usd, usdSigned, pct, cls, esc, isNum, dur, tm, TZ } from './fmt.js';
 import { openTradeReplay } from './replay.js';
 import { seedFrom, preloadArtLayer, drawAnimeBackdrop } from './backdrop.js';
+import { preloadPfp, drawPfp } from './pfp.js';
+preloadPfp();
 
 const BACKDROPS = [
   { id: 'auto', name: 'Auto · coin' },
@@ -318,6 +320,7 @@ export function initCalendar(el, ctx) {
     } else {
       try { bg = await getBg(id); } catch (e) { if (id === 'custom') msg('Could not load that image. Try another link, or save it and use Upload.', true); }
     }
+    try { await preloadPfp(); } catch (e) {}
     if (seq !== drawSeq) return;
     st.tainted = !!(bg && bg.tainted);
     if (st.tainted) msg('Image shown, but that site blocks downloads. Save the picture to your device and use Upload to download this card.', true);
@@ -353,12 +356,10 @@ export function initCalendar(el, ctx) {
       g.fillStyle = vg; g.fillRect(0, 0, W, H);
     }
     const X = 64;
-    // logo: orbit mark
-    g.save(); g.translate(X + 22, 70);
-    g.strokeStyle = 'rgba(255,255,255,.9)'; g.lineWidth = 2.5; g.beginPath(); g.ellipse(0, 0, 24, 9, -0.45, 0, Math.PI * 2); g.stroke();
-    g.fillStyle = '#fff'; g.shadowColor = '#fff'; g.shadowBlur = 14; g.beginPath(); g.arc(0, 0, 7, 0, 7); g.fill(); g.restore();
+    // logo: circular @whatscoinbase pfp
+    drawPfp(g, X + 22, 70, 20, { stroke: 'rgba(255,255,255,.7)', lineWidth: 1.6 });
     g.fillStyle = 'rgba(244,246,251,.7)'; g.font = `600 17px ${SANS}`; g.textBaseline = 'middle'; g.textAlign = 'left';
-    g.fillText('RIO  ·  WHATSCOINBASE', X + 62, 71);
+    g.fillText('RIO  ·  WHATSCOINBASE', X + 52, 71);
     // title + subtitle
     g.textBaseline = 'alphabetic';
     let fs = 64; g.font = `800 ${fs}px ${SANS}`;
@@ -382,15 +383,10 @@ export function initCalendar(el, ctx) {
       g.font = `700 ${rfs}px ${SANS}`; g.fillStyle = k === 'up' ? '#34d399' : k === 'dn' ? '#f87171' : '#f4f6fb'; g.fillText(v, colX, y);
       y += many ? 34 : 46;
     }
-    // tag: avatar + @whatscoinbase
+    // tag: circular pfp + @whatscoinbase
     const ay = H - 70, ax = X + 30;
-    g.save();
-    const ag = g.createLinearGradient(ax - 30, ay - 30, ax + 30, ay + 30); ag.addColorStop(0, '#1e293b'); ag.addColorStop(1, '#020305');
-    g.beginPath(); g.arc(ax, ay, 30, 0, 7); g.fillStyle = ag; g.fill();
-    g.strokeStyle = c.pnl >= 0 ? 'rgba(52,211,153,.9)' : 'rgba(248,113,113,.9)'; g.lineWidth = 2.5; g.stroke();
-    g.strokeStyle = 'rgba(255,255,255,.55)'; g.lineWidth = 1.5; g.beginPath(); g.ellipse(ax, ay, 22, 8, -0.5, 0, Math.PI * 2); g.stroke();
-    g.fillStyle = '#fff'; g.font = `800 19px ${SANS}`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('WC', ax, ay + 1);
-    g.restore();
+    const rim = c.pnl >= 0 ? 'rgba(52,211,153,.9)' : 'rgba(248,113,113,.9)';
+    drawPfp(g, ax, ay, 30, { stroke: rim, lineWidth: 2.5 });
     g.textAlign = 'left'; g.textBaseline = 'alphabetic';
     g.fillStyle = '#fff'; g.font = `800 28px ${SANS}`; g.fillText('@whatscoinbase', ax + 46, ay + 4);
     g.fillStyle = 'rgba(203,213,225,.6)'; g.font = `600 14px ${SANS}`; g.fillText('WHATSCOINBASE  ·  PAPER TRADING' + (c.demo ? '  ·  DEMO DATA' : ''), ax + 48, ay + 28);

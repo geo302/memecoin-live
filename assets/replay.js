@@ -6,6 +6,8 @@
 // Price data is the real series; interpolation, camera, glow and particles are presentation only.
 
 import { seedFrom, preloadArtLayer, drawAnimeBackdrop } from './backdrop.js';
+import { preloadPfp, drawPfp } from './pfp.js';
+preloadPfp();
 
 const HANDLE = '@whatscoinbase';
 const BADGE_PAPER = 'PAPER TRADING · SIMULATED';
@@ -381,17 +383,12 @@ export function drawFrame(g, model, clock, W, H) {
 
   // ---- header ----
   const ox = pad + 16, oy = vert ? 44 : 36;
-  g.save();
-  g.translate(ox, oy);
-  g.strokeStyle = 'rgba(255,255,255,0.9)'; g.lineWidth = 1.6;
-  g.beginPath(); g.ellipse(0, 0, 16, 6, -0.45, 0, Math.PI * 2); g.stroke();
-  g.fillStyle = '#fff'; g.shadowColor = '#fff'; g.shadowBlur = 10;
-  g.beginPath(); g.arc(0, 0, 4.2, 0, Math.PI * 2); g.fill();
-  g.restore();
+  const pr = vert ? 16 : 14;
+  drawPfp(g, ox, oy, pr, { stroke: 'rgba(255,255,255,.65)', lineWidth: 1.2 });
   g.fillStyle = '#fff';
   g.font = `800 ${vert ? 22 : 20}px ${SANS}`;
   g.textBaseline = 'middle'; g.textAlign = 'left';
-  g.fillText(HANDLE, pad + 40, oy);
+  g.fillText(HANDLE, ox + pr + 10, oy);
 
   if (model.mode !== 'whatif') {
     // Paper badge (top-right) — keep the honesty label on Rio replays
@@ -769,6 +766,9 @@ export function openReplay(modelOrOpts) {
   preloadArtLayer(seedFrom(model.symbol, model.address)).then(im => {
     if (im && state === opened) { model.artIm = im; if (!state.playing) paint(); }
   });
+  preloadPfp().then(im => {
+    if (im && state === opened && !state.playing) paint();
+  });
 }
 
 export function closeReplay() {
@@ -800,6 +800,7 @@ async function exportWebm() {
   if (!state.model.artIm) {
     try { state.model.artIm = await Promise.race([preloadArtLayer(seedFrom(state.model.symbol, state.model.address)), new Promise(r => setTimeout(() => r(null), 600))]); } catch (e) {}
   }
+  try { await Promise.race([preloadPfp(), new Promise(r => setTimeout(() => r(null), 600))]); } catch (e) {}
   state.speed = 1;
   restart();
   sizeCanvas();
