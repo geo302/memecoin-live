@@ -1,12 +1,15 @@
 // Obsidian Galaxy trade replay modal + canvas player.
 // Used by Calendar / Trophy Room / Trade Detail (paper trades) and the What-If Lab.
 // Paper replays are stamped PAPER TRADING · SIMULATED.
-// What-If replays are stamped WHAT-IF BACKTEST · HYPOTHETICAL · NOT AN ACTUAL TRADE.
+// What-If frames/exports carry a small corner HYPOTHETICAL tag (never "DEMO").
 // Reads only; never writes to Rio's ledger, vault, or counts.
+// Price data is the real series; interpolation, camera, glow and particles are presentation only.
+
+import { seedFrom, preloadArtLayer, drawAnimeBackdrop } from './backdrop.js';
 
 const HANDLE = '@whatscoinbase';
 const BADGE_PAPER = 'PAPER TRADING · SIMULATED';
-const BADGE_WHATIF = 'WHAT-IF BACKTEST · HYPOTHETICAL · NOT AN ACTUAL TRADE';
+const TAG_HYPOTHETICAL = 'HYPOTHETICAL';
 const CURVE_SEC = 10;   // seconds to draw the curve at 1x
 const HOLD_SEC = 2;     // hold the exit banner at the end
 const TOTAL_SEC = CURVE_SEC + HOLD_SEC;
@@ -37,8 +40,9 @@ function pct(v) {
   return (v > 0 ? '+' : '') + v.toFixed(2) + '%';
 }
 
-function seedRand(seed) {
-  return () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+function catmull(p0, p1, p2, p3, t) {
+  const t2 = t * t, t3 = t2 * t;
+  return 0.5 * ((2 * p1) + (-p0 + p2) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2 + (-p0 + 3 * p1 - 3 * p2 + p3) * t3);
 }
 
 // Build a playback model from a Rio trade (+ optional prices.points) or a what-if series.
@@ -67,6 +71,7 @@ export function modelFromTrade(t, points, mode = 'paper') {
     mode,
     symbol: String(t.symbol || '???').toUpperCase(),
     name: t.name || '',
+    address: t.address || '',
     id: t.id,
     usdIn,
     entry,
@@ -84,7 +89,7 @@ export function modelFromTrade(t, points, mode = 'paper') {
   };
 }
 
-export function modelFromWhatIf({ symbol, name, usdIn, entry, points, exitPrice, officialPct, officialUsd }) {
+export function modelFromWhatIf({ symbol, name, address, usdIn, entry, points, exitPrice, officialPct, officialUsd }) {
   const pts = (points || []).map(p => ({
     t: ts(p.t) ?? p.t, price: p.price, stop: p.stop ?? null, tp: p.tp ?? null, event: p.event || null,
   })).filter(p => isNum(p.t) && isNum(p.price));
@@ -92,6 +97,7 @@ export function modelFromWhatIf({ symbol, name, usdIn, entry, points, exitPrice,
     mode: 'whatif',
     symbol: String(symbol || 'TOKEN').toUpperCase(),
     name: name || '',
+    address: address || '',
     id: null,
     usdIn, entry, exitPrice: exitPrice ?? (pts.length ? pts[pts.length - 1].price : entry),
     exitType: 'WHAT-IF',
@@ -107,6 +113,12 @@ export function modelFromWhatIf({ symbol, name, usdIn, entry, points, exitPrice,
   };
 }
 
+function priceAt(pts, i) {
+  if (i < 0) return pts[0].price;
+  if (i >= pts.length) return pts[pts.length - 1].price;
+  return pts[i].price;
+}
+
 function sample(model, u) {
   // u in [0, 1] along the curve (0 = first tick, 1 = last tick)
   const pts = model.points;
@@ -120,16 +132,19 @@ function sample(model, u) {
   const a = pts[i], b = pts[i + 1];
   const span = Math.max(1, b.t - a.t);
   const f = Math.min(1, Math.max(0, (t - a.t) / span));
-  // smoothstep for cinematic motion between flat 3s polls
-  const s = f * f * (3 - 2 * f);
-  const lerp = (x, y) => isNum(x) && isNum(y) ? x + (y - x) * s : (isNum(y) ? y : x);
+  const p0 = priceAt(pts, i - 1), p1 = a.price, p2 = b.price, p3 = priceAt(pts, i + 2);
+  // Catmull-Rom for extra in-between frames, then clamp to the two real ticks so we never invent a high or low.
+  const raw = catmull(p0, p1, p2, p3, f);
+  const loP = Math.min(p1, p2), hiP = Math.max(p1, p2);
+  const price = isNum(raw) ? Math.min(hiP, Math.max(loP, raw)) : raw;
+  const lerp = (x, y) => isNum(x) && isNum(y) ? x + (y - x) * f : (isNum(y) ? y : x);
   let event = null;
   if (f < 0.02) event = a.event;
   if (f > 0.98) event = b.event;
   return {
     t, i, u,
-    price: lerp(a.price, b.price),
-    stop: f < 1 ? a.stop : b.stop, // step-after stop
+    price: isNum(price) ? price : lerp(a.price, b.price),
+    stop: f < 1 ? a.stop : b.stop,
     tp: lerp(a.tp, b.tp) ?? model.tp,
     event,
   };
@@ -148,9 +163,76 @@ function pnlAt(model, price, atEnd) {
 function beArmed(model, smp) {
   if (model.beArmedAt && smp.t >= model.beArmedAt) return true;
   if (smp.event === 'BREAKEVEN_ARMED') return true;
-  // stop has stepped up to ~entry * 1.02
   if (isNum(smp.stop) && isNum(model.entry) && smp.stop >= model.entry * 1.015) return true;
   return false;
+}
+
+// Tight y-window around recent prices (presentation only). Deterministic in u.
+function targetY(model, u) {
+  const pts = model.points;
+  if (!pts.length) return { lo: 0, hi: 1 };
+  const t0 = pts[0].t, t1 = pts[pts.length - 1].t;
+  const span = Math.max(1, t1 - t0);
+  const tNow = t0 + span * Math.min(1, Math.max(0, u));
+  const win = Math.max(span * 0.32, span * 0.18);
+  const tStart = Math.max(t0, tNow - win);
+  const prices = [];
+  for (const p of pts) {
+    if (p.t >= tStart - 1 && p.t <= tNow + 1 && isNum(p.price)) prices.push(p.price);
+  }
+  const head = sample(model, u);
+  if (head && isNum(head.price)) prices.push(head.price);
+  if (isNum(model.entry) && t0 >= tStart && t0 <= tNow) prices.push(model.entry);
+  if (!prices.length) prices.push(isNum(model.entry) ? model.entry : 1);
+  let lo = Math.min(...prices), hi = Math.max(...prices);
+  if (lo === hi) {
+    const pad = Math.abs(lo) * 0.06 || 1e-12;
+    return { lo: lo - pad, hi: hi + pad };
+  }
+  const pad = (hi - lo) * 0.07;
+  return { lo: lo - pad, hi: hi + pad };
+}
+
+function cameraY(model, u) {
+  // Exponential-style smooth over a short lookback so the camera eases, still a pure function of u.
+  let lo = 0, hi = 0, w = 0;
+  for (let k = 0; k < 8; k++) {
+    const uk = Math.max(0, u - k * 0.014);
+    const c = targetY(model, uk);
+    const wk = Math.exp(-k * 0.5);
+    lo += c.lo * wk; hi += c.hi * wk; w += wk;
+  }
+  return { lo: lo / w, hi: hi / w };
+}
+
+function cameraX(model, u) {
+  // Follow the head: keep it in the right third, with a trailing window of history.
+  const uR = Math.min(1, Math.max(u + 0.06, 0.28));
+  const minSpan = 0.42;
+  let uL = Math.max(0, uR - Math.max(minSpan, 0.62 - u * 0.12));
+  if (u < 0.22) { uL = 0; }
+  if (uR - uL < minSpan) uL = Math.max(0, uR - minSpan);
+  return { uL, uR };
+}
+
+function jumpAt(model, u) {
+  const a = sample(model, Math.max(0, u - 0.018));
+  const b = sample(model, u);
+  if (!a || !b || !isNum(a.price) || !isNum(b.price) || !a.price) return 0;
+  return Math.abs(b.price - a.price) / Math.abs(a.price);
+}
+
+function shakeAt(model, clock, u) {
+  // Peak jump over a short recent window, decaying — deterministic from clock/u.
+  let peak = 0, age = 1;
+  for (let k = 0; k < 10; k++) {
+    const uk = Math.max(0, u - k * 0.006);
+    const j = jumpAt(model, uk);
+    if (j > peak) { peak = j; age = k * 0.006 * CURVE_SEC; }
+  }
+  const mag = Math.min(9, Math.max(0, (peak - 0.012) * 160)) * Math.exp(-age * 4);
+  if (mag < 0.15) return { x: 0, y: 0, mag: 0 };
+  return { x: Math.sin(clock * 63.1) * mag, y: Math.cos(clock * 51.7) * mag, mag };
 }
 
 function ensureModal() {
@@ -225,7 +307,6 @@ function sizeCanvas() {
   stage.style.setProperty('--rp-h', h + 'px');
   const dpr = Math.min(2, window.devicePixelRatio || 1);
   const rw = vert ? 720 : 1280, rh = vert ? 1280 : 720;
-  // render at a crisp fixed design size, CSS scales it
   cv.width = rw * dpr;
   cv.height = rh * dpr;
   cv.style.width = w + 'px';
@@ -285,40 +366,20 @@ export function drawFrame(g, model, clock, W, H) {
   const atEnd = clock >= CURVE_SEC;
   const smp = sample(model, uCurve);
   const live = pnlAt(model, smp ? smp.price : model.entry, atEnd);
+  const prevLive = pnlAt(model, (sample(model, Math.max(0, uCurve - 0.02)) || smp || {}).price, false);
   const armed = smp ? beArmed(model, smp) : false;
   const win = live.pct > 0, loss = live.pct < 0;
   const col = win ? '#34d399' : loss ? '#f87171' : '#f4f6fb';
-  const badge = model.mode === 'whatif' ? 'WHAT-IF BACKTEST' : BADGE_PAPER;
-  const stamp = model.mode === 'whatif' ? BADGE_WHATIF : BADGE_PAPER;
+  const seed = seedFrom(model.symbol, model.address);
+  const sh = atEnd ? { x: 0, y: 0, mag: 0 } : shakeAt(model, clock, uCurve);
 
-  // background (do not reset the caller's DPR transform)
-  g.fillStyle = '#030407';
-  g.fillRect(0, 0, W, H);
-  // nebula
-  const ng = g.createRadialGradient(W * 0.72, H * 0.18, 0, W * 0.72, H * 0.18, W * 0.55);
-  ng.addColorStop(0, 'rgba(148,163,184,0.11)'); ng.addColorStop(1, 'rgba(0,0,0,0)');
-  g.fillStyle = ng; g.fillRect(0, 0, W, H);
-  const ng2 = g.createRadialGradient(W * 0.18, H * 0.85, 0, W * 0.18, H * 0.85, W * 0.5);
-  ng2.addColorStop(0, 'rgba(165,180,252,0.07)'); ng2.addColorStop(1, 'rgba(0,0,0,0)');
-  g.fillStyle = ng2; g.fillRect(0, 0, W, H);
-
-  // starfield
-  const R = seedRand(77);
-  for (let i = 0; i < 140; i++) {
-    const x = R() * W, y = R() * H, z = R() < 0.1 ? 1.6 : 0.8;
-    const tw = 0.35 + 0.65 * (0.5 + 0.5 * Math.sin(clock * 2 + i));
-    g.globalAlpha = tw * (0.25 + R() * 0.75);
-    g.fillStyle = '#fff';
-    g.fillRect(x, y, z, z);
-  }
-  g.globalAlpha = 1;
+  drawAnimeBackdrop(g, W, H, seed, { clock, artIm: model.artIm || null, artAlpha: 0.30 });
 
   const pad = vert ? 48 : 44;
   const SANS = 'Inter, "SF Pro Display", "Segoe UI", system-ui, sans-serif';
   const MONO = '"IBM Plex Mono", "JetBrains Mono", Menlo, Consolas, monospace';
 
   // ---- header ----
-  // orbit mark
   const ox = pad + 16, oy = vert ? 44 : 36;
   g.save();
   g.translate(ox, oy);
@@ -331,22 +392,24 @@ export function drawFrame(g, model, clock, W, H) {
   g.font = `800 ${vert ? 22 : 20}px ${SANS}`;
   g.textBaseline = 'middle'; g.textAlign = 'left';
   g.fillText(HANDLE, pad + 40, oy);
-  // badge
-  g.textAlign = 'right';
-  const bw = vert ? W - pad : W - pad;
-  g.font = `700 ${vert ? 11 : 12}px ${SANS}`;
-  const badgeTxt = badge;
-  const tw = g.measureText(badgeTxt).width;
-  const bh = vert ? 28 : 26;
-  const bx = W - pad - tw - 20;
-  const by = oy - bh / 2;
-  g.fillStyle = model.mode === 'whatif' ? 'rgba(251,191,36,0.12)' : 'rgba(255,255,255,0.05)';
-  g.strokeStyle = model.mode === 'whatif' ? 'rgba(251,191,36,0.55)' : 'rgba(255,255,255,0.28)';
-  g.lineWidth = 1;
-  round(g, bx, by, tw + 20, bh, 999); g.fill(); g.stroke();
-  g.fillStyle = model.mode === 'whatif' ? '#fde68a' : '#e2e8f0';
-  g.textAlign = 'center';
-  g.fillText(badgeTxt, bx + (tw + 20) / 2, oy + 1);
+
+  if (model.mode !== 'whatif') {
+    // Paper badge (top-right) — keep the honesty label on Rio replays
+    g.textAlign = 'right';
+    g.font = `700 ${vert ? 11 : 12}px ${SANS}`;
+    const badgeTxt = BADGE_PAPER;
+    const tw = g.measureText(badgeTxt).width;
+    const bh = vert ? 28 : 26;
+    const bx = W - pad - tw - 20;
+    const by = oy - bh / 2;
+    g.fillStyle = 'rgba(255,255,255,0.05)';
+    g.strokeStyle = 'rgba(255,255,255,0.28)';
+    g.lineWidth = 1;
+    round(g, bx, by, tw + 20, bh, 999); g.fill(); g.stroke();
+    g.fillStyle = '#e2e8f0';
+    g.textAlign = 'center';
+    g.fillText(badgeTxt, bx + (tw + 20) / 2, oy + 1);
+  }
 
   // ticker + meta
   const ty = vert ? 110 : 86;
@@ -370,14 +433,16 @@ export function drawFrame(g, model, clock, W, H) {
   const chartY = top;
   const chartW = vert ? (W - pad * 2) : Math.floor(W * 0.62) - pad;
   const chartH = H - top - bottomReserve - (vert ? 8 : 0);
-  // panel
+
+  g.save();
+  g.translate(sh.x, sh.y);
+
   g.fillStyle = 'rgba(8,10,16,0.72)';
   g.strokeStyle = 'rgba(255,255,255,0.10)';
   g.lineWidth = 1;
   round(g, chartX, chartY, chartW, chartH, 14); g.fill(); g.stroke();
 
   const iL = chartX + 16, iR = chartX + chartW - 64, iT = chartY + 36, iB = chartY + chartH - 28;
-  // grid
   g.strokeStyle = 'rgba(255,255,255,0.05)';
   g.lineWidth = 1;
   for (let i = 0; i <= 4; i++) {
@@ -385,26 +450,19 @@ export function drawFrame(g, model, clock, W, H) {
     g.beginPath(); g.moveTo(iL, y); g.lineTo(iR, y); g.stroke();
   }
 
-  // price scale from visible prefix of points
-  const prefix = [];
   const pts = model.points;
   const t0 = pts[0].t, t1 = pts[pts.length - 1].t;
-  const tNow = t0 + (t1 - t0) * uCurve;
-  for (const p of pts) { if (p.t <= tNow + 1) prefix.push(p); }
-  if (smp) prefix.push(smp);
-  const prices = prefix.map(p => p.price).filter(isNum);
-  if (isNum(model.entry)) prices.push(model.entry);
-  if (isNum(model.tp)) prices.push(model.tp);
-  if (isNum(model.initialStop)) prices.push(model.initialStop);
-  // include stop of prefix
-  prefix.forEach(p => { if (isNum(p.stop)) prices.push(p.stop); });
-  let lo = Math.min(...prices), hi = Math.max(...prices);
-  const padP = (hi - lo) * 0.16 || (lo * 0.08) || 1e-12;
-  lo -= padP; hi += padP;
-  const xOf = t => iL + (iR - iL) * ((t - t0) / Math.max(1, t1 - t0));
-  const yOf = p => iB - (iB - iT) * ((p - lo) / (hi - lo));
+  const spanT = Math.max(1, t1 - t0);
+  const tNow = t0 + spanT * uCurve;
+  const camX = cameraX(model, uCurve);
+  const tL = t0 + spanT * camX.uL;
+  const tR = t0 + spanT * camX.uR;
+  const cam = cameraY(model, uCurve);
+  let lo = cam.lo, hi = cam.hi;
+  const xOf = t => iL + (iR - iL) * ((t - tL) / Math.max(1, tR - tL));
+  const yOf = p => iB - (iB - iT) * ((p - lo) / (hi - lo || 1));
 
-  // level lines
+  // level lines (only if they fall in the tight camera)
   const levels = [];
   if (isNum(model.entry)) levels.push({ y: model.entry, c: 'rgba(255,255,255,0.7)', dash: [6, 5], label: 'ENTRY  ' + px(model.entry) });
   if (isNum(model.tp)) levels.push({ y: model.tp, c: 'rgba(52,211,153,0.7)', dash: [6, 5], label: (model.refLevels ? 'REF TP +20%  ' : 'TP  ') + px(model.tp) });
@@ -430,52 +488,130 @@ export function drawFrame(g, model, clock, W, H) {
     g.restore();
   }
 
+  // Densified path (catmull-rom between real ticks) up to now, clipped to the camera x-window
+  const path = [];
+  const steps = Math.max(80, Math.min(220, pts.length * 8));
+  let lastHi = -Infinity;
+  const highs = [];
+  for (let s = 0; s <= steps; s++) {
+    const u = (s / steps) * uCurve;
+    const sm = sample(model, u);
+    if (!sm) continue;
+    if (sm.t < tL - spanT * 0.02) continue;
+    if (sm.t > tNow + 1) break;
+    const pt = { u, t: sm.t, price: sm.price, x: xOf(Math.min(sm.t, tNow)), y: yOf(sm.price) };
+    path.push(pt);
+    if (isNum(sm.price) && sm.price > lastHi * 1.0015) {
+      if (lastHi > -Infinity) highs.push(pt);
+      lastHi = Math.max(lastHi, sm.price);
+    } else if (isNum(sm.price) && sm.price > lastHi) {
+      lastHi = sm.price;
+    }
+  }
+  if (smp) {
+    const head = { u: uCurve, t: tNow, price: live.price ?? smp.price, x: xOf(tNow), y: yOf(live.price ?? smp.price) };
+    if (!path.length || Math.abs(path[path.length - 1].x - head.x) > 0.5) path.push(head);
+  }
+
   // stop step line (up to now)
-  if (prefix.length) {
+  if (pts.length) {
     g.save();
     g.strokeStyle = armed ? 'rgba(148,163,184,0.9)' : 'rgba(248,113,113,0.75)';
     g.lineWidth = 1.4;
     g.beginPath();
     let started = false, lastX = 0, lastY = 0;
-    for (let i = 0; i < prefix.length; i++) {
-      const p = prefix[i];
-      if (!isNum(p.stop)) continue;
-      const x = xOf(Math.min(p.t, tNow)), y = yOf(p.stop);
+    for (let i = 0; i < pts.length; i++) {
+      const p = pts[i];
+      if (!isNum(p.stop) || p.t > tNow + 1) continue;
+      if (p.t < tL - 1 && !(pts[i + 1] && pts[i + 1].t >= tL)) continue;
+      const x = xOf(Math.min(Math.max(p.t, tL), tNow)), y = yOf(p.stop);
+      if (y < iT - 8 || y > iB + 8) { lastX = x; lastY = y; continue; }
       if (!started) { g.moveTo(x, y); started = true; }
-      else { g.lineTo(x, lastY); g.lineTo(x, y); } // step
+      else { g.lineTo(x, lastY); g.lineTo(x, y); }
       lastX = x; lastY = y;
     }
     if (started) { g.lineTo(xOf(tNow), lastY); g.stroke(); }
     g.restore();
   }
 
-  // price path
-  if (prefix.length) {
-    const path = [];
-    // densify with sample for smoothness at head
-    for (let i = 0; i < pts.length; i++) {
-      if (pts[i].t > tNow) break;
-      path.push([xOf(pts[i].t), yOf(pts[i].price)]);
-    }
-    const head = [xOf(tNow), yOf(live.price ?? smp.price)];
-    if (!path.length || path[path.length - 1][0] !== head[0]) path.push(head);
-
-    // glow
+  if (path.length) {
+    // Clip the line to the panel
     g.save();
-    g.strokeStyle = col; g.globalAlpha = 0.22; g.lineWidth = 8; g.lineJoin = 'round'; g.lineCap = 'round';
-    g.beginPath(); path.forEach((p, i) => i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1])); g.stroke();
-    g.globalAlpha = 1; g.lineWidth = 2.2; g.shadowColor = col; g.shadowBlur = 12;
-    g.beginPath(); path.forEach((p, i) => i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1])); g.stroke();
-    g.restore();
+    round(g, chartX, chartY, chartW, chartH, 14); g.clip();
+
+    // Wide outer glow
+    g.strokeStyle = col; g.globalAlpha = 0.16; g.lineWidth = 16; g.lineJoin = 'round'; g.lineCap = 'round';
+    g.beginPath(); path.forEach((p, i) => i ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y)); g.stroke();
+    // Mid glow
+    g.globalAlpha = 0.32; g.lineWidth = 8;
+    g.beginPath(); path.forEach((p, i) => i ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y)); g.stroke();
+    // Sharp line with bloom
+    g.globalAlpha = 1; g.lineWidth = 2.4; g.shadowColor = col; g.shadowBlur = 16;
+    g.beginPath(); path.forEach((p, i) => i ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y)); g.stroke();
+    g.shadowBlur = 0;
+
+    // Comet trail near the head (last ~12% of the visible path)
+    const nTail = Math.max(8, Math.floor(path.length * 0.14));
+    const tail = path.slice(-nTail);
+    if (tail.length > 1) {
+      g.lineCap = 'round';
+      for (let i = 1; i < tail.length; i++) {
+        const a = i / tail.length;
+        g.strokeStyle = col;
+        g.globalAlpha = 0.15 + a * 0.55;
+        g.lineWidth = 2 + a * 5;
+        g.beginPath(); g.moveTo(tail[i - 1].x, tail[i - 1].y); g.lineTo(tail[i].x, tail[i].y); g.stroke();
+      }
+      g.globalAlpha = 1;
+    }
+
+    const head = path[path.length - 1];
+    const hx = head.x, hy = head.y;
+
+    // Sparkle / particle bursts at new highs (still alive)
+    for (const h of highs) {
+      const age = (uCurve - h.u) * CURVE_SEC;
+      if (age < 0 || age > 0.85) continue;
+      const life = 1 - age / 0.85;
+      const burstSeed = (Math.round(h.t) ^ seed ^ 0x45d9f3b) >>> 0;
+      let rs = burstSeed;
+      const rnd = () => { rs = (rs * 1664525 + 1013904223) >>> 0; return rs / 4294967296; };
+      const n = 8 + Math.floor(rnd() * 6);
+      for (let k = 0; k < n; k++) {
+        const ang = rnd() * Math.PI * 2;
+        const dist = (8 + rnd() * 26) * (1 - life * 0.25) * (0.35 + (1 - life));
+        const x = h.x + Math.cos(ang) * dist;
+        const y = h.y + Math.sin(ang) * dist - age * 10;
+        g.globalAlpha = life * (0.5 + rnd() * 0.5);
+        g.fillStyle = k % 3 === 0 ? '#fff' : col;
+        g.beginPath(); g.arc(x, y, 1.2 + rnd() * 1.8 * life, 0, Math.PI * 2); g.fill();
+        if (k % 4 === 0) {
+          const L = 3 + life * 5;
+          g.strokeStyle = '#fff'; g.lineWidth = 1;
+          g.beginPath(); g.moveTo(x - L, y); g.lineTo(x + L, y); g.stroke();
+          g.beginPath(); g.moveTo(x, y - L * 0.7); g.lineTo(x, y + L * 0.7); g.stroke();
+        }
+      }
+      // flash ring
+      g.globalAlpha = life * 0.55;
+      g.strokeStyle = '#fff';
+      g.lineWidth = 1.5;
+      g.beginPath(); g.arc(h.x, h.y, 6 + (1 - life) * 18, 0, Math.PI * 2); g.stroke();
+      g.globalAlpha = 1;
+    }
 
     // head dot
-    const [hx, hy] = head;
     g.save();
-    g.fillStyle = '#fff'; g.shadowColor = col; g.shadowBlur = 16;
-    g.beginPath(); g.arc(hx, hy, 5, 0, Math.PI * 2); g.fill();
+    g.fillStyle = '#fff'; g.shadowColor = col; g.shadowBlur = 22;
+    g.beginPath(); g.arc(hx, hy, 6, 0, Math.PI * 2); g.fill();
     g.restore();
-    g.strokeStyle = col; g.lineWidth = 2;
-    g.beginPath(); g.arc(hx, hy, 8, 0, Math.PI * 2); g.stroke();
+    g.strokeStyle = col; g.lineWidth = 2.2;
+    g.beginPath(); g.arc(hx, hy, 10, 0, Math.PI * 2); g.stroke();
+    g.globalAlpha = 0.35;
+    g.beginPath(); g.arc(hx, hy, 16, 0, Math.PI * 2); g.stroke();
+    g.globalAlpha = 1;
+
+    g.restore(); // clip
   }
 
   // ENTRY flash
@@ -497,23 +633,32 @@ export function drawFrame(g, model, clock, W, H) {
     g.restore();
   }
 
-  // ---- PnL readout ----
+  g.restore(); // shake
+
+  // ---- PnL readout (pops on jumps) ----
   const pnlX = vert ? pad : (chartX + chartW + 28);
   const pnlY = vert ? (chartY + chartH + 28) : top;
-  const pnlW = vert ? (W - pad * 2) : (W - pad - pnlX);
-  g.textAlign = 'left'; g.textBaseline = 'alphabetic';
+  const dUsd = isNum(live.usd) && isNum(prevLive.usd) ? Math.abs(live.usd - prevLive.usd) : 0;
+  const pop = 1 + Math.min(0.22, dUsd / Math.max(18, Math.abs(model.usdIn || 1000) * 0.025));
+  g.save();
+  g.translate(pnlX, pnlY);
   g.fillStyle = 'rgba(148,163,184,0.85)';
   g.font = `700 11px ${SANS}`;
-  g.fillText(model.mode === 'whatif' ? 'HYPOTHETICAL P&L' : 'LIVE P&L', pnlX, pnlY + 4);
+  g.textAlign = 'left'; g.textBaseline = 'alphabetic';
+  g.fillText(model.mode === 'whatif' ? 'LIVE P&L' : 'LIVE P&L', 0, 4);
+  g.translate(0, vert ? 68 : 62);
+  g.scale(pop, pop);
   g.fillStyle = col;
-  g.shadowColor = col; g.shadowBlur = 18;
+  g.shadowColor = col; g.shadowBlur = 18 + (pop - 1) * 40;
   g.font = `800 ${vert ? 64 : 58}px ${SANS}`;
-  g.fillText(money(live.usd), pnlX, pnlY + (vert ? 68 : 62));
+  g.fillText(money(live.usd), 0, 0);
   g.font = `800 ${vert ? 40 : 36}px ${SANS}`;
-  g.fillText(pct(live.pct), pnlX, pnlY + (vert ? 118 : 108));
-  g.shadowBlur = 0;
+  g.fillText(pct(live.pct), 0, vert ? 50 : 46);
+  g.restore();
+
   g.fillStyle = 'rgba(203,213,225,0.75)';
   g.font = `600 ${vert ? 15 : 14}px ${MONO}`;
+  g.textAlign = 'left'; g.textBaseline = 'alphabetic';
   const pxNow = px(live.price ?? (smp && smp.price));
   g.fillText('PX  ' + pxNow, pnlX, pnlY + (vert ? 148 : 140));
   if (isNum(model.entry)) {
@@ -525,13 +670,31 @@ export function drawFrame(g, model, clock, W, H) {
     g.fillText('BE +2% ARMED', pnlX, pnlY + (vert ? 196 : 188));
   }
 
-  // persistent honesty stamp (always visible, including during the move)
-  g.fillStyle = model.mode === 'whatif' ? 'rgba(253,230,138,0.92)' : 'rgba(203,213,225,0.62)';
-  g.font = `700 ${vert ? 11 : 11}px ${SANS}`;
-  g.textAlign = 'center';
-  g.fillText(stamp, W / 2, atEnd ? (vert ? H - 22 : H - 18) : (vert ? H - 28 : H - 22));
+  // Honesty stamps
+  if (model.mode === 'whatif') {
+    // Small, legible, theme-matched corner tag — not a large banner, never "DEMO"
+    g.save();
+    g.font = `700 ${vert ? 11 : 10}px ${SANS}`;
+    const tag = TAG_HYPOTHETICAL;
+    const tw = g.measureText(tag).width;
+    const tagW = tw + 16, tagH = vert ? 20 : 18;
+    const tx = W - pad - tagW;
+    const ty2 = H - (vert ? 36 : 28) - tagH;
+    g.fillStyle = 'rgba(226,232,240,0.08)';
+    g.strokeStyle = 'rgba(226,232,240,0.38)';
+    g.lineWidth = 1;
+    round(g, tx, ty2, tagW, tagH, 999); g.fill(); g.stroke();
+    g.fillStyle = 'rgba(226,232,240,0.86)';
+    g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText(tag, tx + tagW / 2, ty2 + tagH / 2 + 0.5);
+    g.restore();
+  } else {
+    g.fillStyle = 'rgba(203,213,225,0.62)';
+    g.font = `700 11px ${SANS}`;
+    g.textAlign = 'center';
+    g.fillText(BADGE_PAPER, W / 2, atEnd ? (vert ? H - 22 : H - 18) : (vert ? H - 28 : H - 22));
+  }
 
-  // reconstructed note
   if (model.reconstructed) {
     g.fillStyle = 'rgba(203,213,225,0.55)';
     g.font = `600 11px ${SANS}`;
@@ -542,14 +705,11 @@ export function drawFrame(g, model, clock, W, H) {
   // exit banner (held at end)
   if (atEnd) {
     const holdT = Math.min(1, (clock - CURVE_SEC) / 0.35);
-    const kind = model.mode === 'whatif' ? 'WHAT-IF CLOSE' : String(model.exitType || 'EXIT').replace(/_/g, ' ');
-    const label = model.mode === 'whatif'
-      ? `${kind}  ·  ${pct(live.pct)}  ·  ${money(live.usd)}`
-      : `${kind} HIT  ·  ${pct(live.pct)}  ·  ${money(live.usd)}`;
-    // For paper, "OPEN" shouldn't say HIT
-    const label2 = model.open ? `STILL OPEN  ·  ${pct(live.pct)}  ·  ${money(live.usd)}  ·  UNREALIZED`
+    const kind = String(model.exitType || 'EXIT').replace(/_/g, ' ');
+    const label2 = model.open
+      ? `STILL OPEN  ·  ${pct(live.pct)}  ·  ${money(live.usd)}  ·  UNREALIZED`
       : (model.mode === 'whatif'
-        ? `WHAT-IF CLOSE  ·  ${pct(live.pct)}  ·  ${money(live.usd)}`
+        ? `${pct(live.pct)}  ·  ${money(live.usd)}`
         : `${(kind === 'TP' || kind === 'STOP') ? kind + ' HIT' : kind}  ·  ${pct(live.pct)}  ·  ${money(live.usd)}`);
     const txt = label2;
     g.save();
@@ -587,9 +747,9 @@ function round(g, x, y, w, h, r) {
 
 export function openReplay(modelOrOpts) {
   ensureModal();
-  // A real model has a symbol/entry of its own. An opts bag has {trade, points, mode, ar}.
   const isModel = !!(modelOrOpts && modelOrOpts.mode && Array.isArray(modelOrOpts.points) && (modelOrOpts.symbol || modelOrOpts.entry));
   const model = isModel ? modelOrOpts : modelFromTrade(modelOrOpts.trade, modelOrOpts.points, modelOrOpts.mode || 'paper');
+  if (modelOrOpts && modelOrOpts.trade && !model.address) model.address = modelOrOpts.trade.address || '';
   state = { model, ar: modelOrOpts.ar || '16:9', speed: 1, clock: 0, playing: false, lastTs: 0, rw: 1280, rh: 720, onEnded: null };
   modal.classList.add('on');
   modal.setAttribute('aria-hidden', 'false');
@@ -599,12 +759,16 @@ export function openReplay(modelOrOpts) {
   $('rp-speed').querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.spd === '1'));
   const note = [];
   if (model.reconstructed) note.push('No 3-second tick series was logged for this trade, so the path is reconstructed from the entry and exit prices.');
-  if (model.mode === 'whatif') note.push('WHAT-IF BACKTEST · HYPOTHETICAL · NOT AN ACTUAL TRADE · this does not affect Rio’s live book or stats.');
+  if (model.mode === 'whatif') note.push('Hypothetical backtest of real price data · not an actual trade · does not affect Rio’s live book or stats.');
   else note.push('PAPER TRADING · SIMULATED · no real money.');
   $('rp-note').textContent = note.join('  ');
   sizeCanvas();
   restart();
   play();
+  const opened = state;
+  preloadArtLayer(seedFrom(model.symbol, model.address)).then(im => {
+    if (im && state === opened) { model.artIm = im; if (!state.playing) paint(); }
+  });
 }
 
 export function closeReplay() {
@@ -631,8 +795,11 @@ async function exportWebm() {
   btn.dataset.busy = '1';
   const prev = btn.textContent;
   btn.textContent = '● RECORDING…';
-  const wasAr = state.ar, wasSpd = state.speed, wasClock = state.clock;
-  // record at 1x from the start
+  const wasSpd = state.speed;
+  // Wait briefly for the per-coin art layer so the export matches the live preview
+  if (!state.model.artIm) {
+    try { state.model.artIm = await Promise.race([preloadArtLayer(seedFrom(state.model.symbol, state.model.address)), new Promise(r => setTimeout(() => r(null), 600))]); } catch (e) {}
+  }
   state.speed = 1;
   restart();
   sizeCanvas();
@@ -644,7 +811,6 @@ async function exportWebm() {
   rec.start(200);
   state.onEnded = () => { try { if (rec && rec.state === 'recording') rec.stop(); } catch (e) {} };
   play();
-  // safety timeout (TOTAL + 3s)
   const safety = setTimeout(() => { try { if (rec && rec.state === 'recording') rec.stop(); } catch (e) {} }, (TOTAL_SEC + 3) * 1000);
   await done;
   clearTimeout(safety);
@@ -664,5 +830,5 @@ async function exportWebm() {
   a.download = `whatscoinbase-${slug}-${tag}-${ar}.webm`;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-  $('rp-note').textContent = 'Saved ' + a.download + '  ·  ' + (state.model.mode === 'whatif' ? BADGE_WHATIF : BADGE_PAPER);
+  $('rp-note').textContent = 'Saved ' + a.download + '  ·  ' + (state.model.mode === 'whatif' ? 'HYPOTHETICAL backtest of real prices' : BADGE_PAPER);
 }

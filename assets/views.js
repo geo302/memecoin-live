@@ -121,7 +121,7 @@ function wireTradeTable(root, prefix, tableEl, getRows, ctx, fileName) {
 
 // ---------------- TRADES ----------------
 export function initTrades(el, ctx) {
-  el.innerHTML = `<div class="hdr">CLOSED TRADES · RUN <span id="t-run">2</span><span class="sp"></span><span class="dim">click a row to expand</span></div>
+  el.innerHTML = `<div class="hdr">CLOSED TRADES · <span id="t-run-lab">RUN 2</span><span class="sp"></span><span class="dim">click a row to expand</span></div>
     ${tradeFilters('t')}<div id="t-table"></div>
     <div class="hdr blue">EXIT-TYPE BREAKDOWN · EXIT TRIAL <span id="t-trial" style="font-weight:400"></span></div>
     <div class="bd"><div><div id="t-bd2"></div><div class="hdr sub">RUN 1 COMPARISON (older rules: trail, +25% TP, $5 sizes)</div><div id="t-bd1"><div class="empty">loading run 1…</div></div></div>
@@ -206,10 +206,10 @@ export function initTrades(el, ctx) {
   return {
     update(d) {
       render();
-      $('#t-run').textContent = ctx.run ?? 2;
+      $('#t-run-lab').textContent = ctx.demo ? 'DEMO' : ('RUN ' + (ctx.run ?? 2));
       const s = d.status || {};
       let b = s.exit_type_breakdown && Object.keys(s.exit_type_breakdown).length ? s.exit_type_breakdown : computeBreakdown(rows());
-      $('#t-bd2').innerHTML = bdTable(b, 'RUN ' + (ctx.run ?? 2));
+      $('#t-bd2').innerHTML = bdTable(b, ctx.demo ? 'DEMO' : ('RUN ' + (ctx.run ?? 2)));
       $('#t-trial').textContent = s.exit_trial ? `${s.exit_trial.id || ''} · ${s.exit_trial.note || ''}` : '';
       renderNM(); if (vis) renderSW();
       $('#t-gap').innerHTML = `avg stop gap (STOP/BREAKEVEN prints below trigger): <b class="${cls(s.avg_stop_gap_pct)}">${pct(s.avg_stop_gap_pct)}</b>`;

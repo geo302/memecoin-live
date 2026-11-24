@@ -67,7 +67,7 @@ function renderHeader() {
   const tsub = t => t ? `<span class="${cls(t.pnl_usd)}">${usdSigned(t.pnl_usd)} ${pct(t.pnl_pct)}</span>` : '';
   const xl = fileUrl('journal.xlsx');
   $('kpis').innerHTML = [
-    kpi('Equity · run ' + (s.run_number ?? m.run_number ?? '?'), usd(s.equity_usd), 'start ' + usd(start, 0), cls((s.equity_usd ?? start) - start), true),
+    kpi('Equity · ' + (DEMO ? 'DEMO' : ('run ' + (s.run_number ?? m.run_number ?? '?'))), usd(s.equity_usd), 'start ' + usd(start, 0), cls((s.equity_usd ?? start) - start), true),
     kpi('Total P&L', usdSigned(s.total_pnl_usd), pct(s.total_return_pct, 2), cls(s.total_pnl_usd), true),
     kpi('Cash', usd(s.cash_usd), 'open value ' + usd(s.open_positions_value_usd)),
     kpi('Realized · unreal.', usdSigned(s.realized_pnl_usd), 'unrealized ' + usdSigned(s.unrealized_pnl_usd), cls(s.realized_pnl_usd)),

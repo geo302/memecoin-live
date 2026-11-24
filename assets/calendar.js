@@ -3,9 +3,10 @@
 // Trophy cards are drawn on a <canvas> (what you see is exactly what downloads). Spec: CLAUDE_PROMPT.md "CALENDAR".
 import { usd, usdSigned, pct, cls, esc, isNum, dur, tm, TZ } from './fmt.js';
 import { openTradeReplay } from './replay.js';
+import { seedFrom, preloadArtLayer, drawAnimeBackdrop } from './backdrop.js';
 
 const BACKDROPS = [
-  { id: 'auto', name: 'Auto' },
+  { id: 'auto', name: 'Auto · coin' },
   { id: 'win-emerald', name: 'Emerald', src: 'assets/trophy/win-emerald.webp' },
   { id: 'trophy-gold', name: 'Gold', src: 'assets/trophy/trophy-gold.webp' },
   { id: 'galaxy-void', name: 'Void', src: 'assets/trophy/galaxy-void.webp' },
@@ -295,12 +296,14 @@ export function initCalendar(el, ctx) {
       const dep = d.inv ? d.pnl / d.inv * 100 : null, acct = d.base ? d.pnl / d.base * 100 : null;
       return { kind: 'day', title: shortDay(key), sub: `DAY TROPHY · ${d.trades.length} TRADE${d.trades.length === 1 ? '' : 'S'}`, pnl: d.pnl,
         rows: [['PNL', pct(dep, 2), cls(dep)], ['Account', pct(acct, 2), cls(acct)], ['Invested', usd(d.inv)], ['Position', usd(d.pos)], ['Record', `${d.w}W · ${d.l}L`]],
-        foot: longDay(key), slug: key, win: d.pnl > 0, demo: d.trades.some(t => t._demo) };
+        foot: longDay(key), slug: key, win: d.pnl > 0, demo: d.trades.some(t => t._demo),
+        symbol: (d.trades[0] && d.trades[0].symbol) || key, address: 'DAY-' + key };
     }
     const t = d.trades.find(x => cardKey(x) === st.card) || d.trades[0];
     return { kind: 'trade', title: String(t.symbol || '?').toUpperCase(), sub: `TRADE #${t.id}${t.run === 1 ? ' · RUN 1' : ''} · ${t.exit_type || 'EXIT'} · ${dur(t.hold_seconds)}`, pnl: t.pnl_usd,
       rows: [['PNL', pct(t.pnl_pct, 2), cls(t.pnl_pct)], ['Invested', usd(t.usd_in)], ['Position', usd(t.usd_out)]],
-      foot: `${shortDay(key)} · ${tm(t.entry_time)} → ${tm(t.exit_time)} ET`, slug: String(t.symbol || 'trade').toLowerCase().replace(/[^a-z0-9]+/g, '') || 'trade', win: t.pnl_usd > 0, demo: !!t._demo };
+      foot: `${shortDay(key)} · ${tm(t.entry_time)} → ${tm(t.exit_time)} ET`, slug: String(t.symbol || 'trade').toLowerCase().replace(/[^a-z0-9]+/g, '') || 'trade', win: t.pnl_usd > 0, demo: !!t._demo,
+      symbol: t.symbol, address: t.address || '' };
   }
   let drawSeq = 0;
   async function drawCard(d, key) {
@@ -308,36 +311,47 @@ export function initCalendar(el, ctx) {
     const seq = ++drawSeq;
     const c = cardData(d, key);
     let id = st.bg;
-    if (id === 'auto') id = !c.win ? 'battle-crimson' : c.kind === 'day' ? 'trophy-gold' : 'win-emerald';
-    let bg = null;
-    try { bg = await getBg(id); } catch (e) { if (id === 'custom') msg('Could not load that image. Try another link, or save it and use Upload.', true); }
+    let bg = null, artIm = null;
+    if (id === 'auto') {
+      // Per-coin (or per-day) procedural anime galaxy, optionally blended with one of the 4 webps.
+      try { artIm = await preloadArtLayer(seedFrom(c.symbol, c.address)); } catch (e) { artIm = null; }
+    } else {
+      try { bg = await getBg(id); } catch (e) { if (id === 'custom') msg('Could not load that image. Try another link, or save it and use Upload.', true); }
+    }
     if (seq !== drawSeq) return;
     st.tainted = !!(bg && bg.tainted);
     if (st.tainted) msg('Image shown, but that site blocks downloads. Save the picture to your device and use Upload to download this card.', true);
-    paint(cv.getContext('2d'), c, bg && bg.im);
+    paint(cv.getContext('2d'), c, bg && bg.im, { auto: id === 'auto', artIm });
   }
 
   function rrect(g, x, y, w, h, r) { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); }
-  function paint(g, c, im) {
+  function paint(g, c, im, opt = {}) {
     const SANS = 'Inter, "SF Pro Display", "Segoe UI", system-ui, -apple-system, sans-serif';
     g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, W, H);
     g.fillStyle = '#030407'; g.fillRect(0, 0, W, H);
-    if (im) { // cover-fit, anchored right (art keeps the character on the right)
+    if (opt.auto) {
+      // Unique, stable per-coin (or per-day) anime galaxy; optional webp art as a right-side layer.
+      drawAnimeBackdrop(g, W, H, seedFrom(c.symbol, c.address), { artIm: opt.artIm || null, artAlpha: 0.38 });
+    } else if (im) { // cover-fit, anchored right (art keeps the character on the right)
       const s = Math.max(W / im.width, H / im.height), iw = im.width * s, ih = im.height * s;
       g.drawImage(im, W - iw, (H - ih) / 2, iw, ih);
-    } else { // procedural starfield
+      const lg0 = g.createLinearGradient(0, 0, W * 0.72, 0);
+      lg0.addColorStop(0, 'rgba(3,4,7,.9)'); lg0.addColorStop(0.55, 'rgba(3,4,7,.55)'); lg0.addColorStop(1, 'rgba(3,4,7,0)');
+      g.fillStyle = lg0; g.fillRect(0, 0, W, H);
+      const vg0 = g.createLinearGradient(0, H * 0.6, 0, H); vg0.addColorStop(0, 'rgba(0,0,0,0)'); vg0.addColorStop(1, 'rgba(0,0,0,.55)');
+      g.fillStyle = vg0; g.fillRect(0, 0, W, H);
+    } else { // procedural starfield (Stars preset)
       const R = rng(11); const ng = g.createRadialGradient(W * 0.75, H * 0.4, 0, W * 0.75, H * 0.4, W * 0.6);
       ng.addColorStop(0, 'rgba(180,190,220,.22)'); ng.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = ng; g.fillRect(0, 0, W, H);
       for (let i = 0; i < 420; i++) { g.globalAlpha = 0.2 + R() * 0.8; g.fillStyle = '#fff'; const z = R() < 0.08 ? 2 : 1; g.fillRect(R() * W, R() * H, z, z); }
       g.globalAlpha = 1; g.strokeStyle = 'rgba(255,255,255,.12)'; g.lineWidth = 1.5;
       for (let k = 1; k < 6; k++) { g.beginPath(); g.ellipse(W * 0.76, H * 0.5, 70 * k, 26 * k, -0.25, 0, Math.PI * 2); g.stroke(); }
+      const lg = g.createLinearGradient(0, 0, W * 0.72, 0);
+      lg.addColorStop(0, 'rgba(3,4,7,.9)'); lg.addColorStop(0.55, 'rgba(3,4,7,.55)'); lg.addColorStop(1, 'rgba(3,4,7,0)');
+      g.fillStyle = lg; g.fillRect(0, 0, W, H);
+      const vg = g.createLinearGradient(0, H * 0.6, 0, H); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.55)');
+      g.fillStyle = vg; g.fillRect(0, 0, W, H);
     }
-    // readability veil (left) + vignette
-    const lg = g.createLinearGradient(0, 0, W * 0.72, 0);
-    lg.addColorStop(0, 'rgba(3,4,7,.9)'); lg.addColorStop(0.55, 'rgba(3,4,7,.55)'); lg.addColorStop(1, 'rgba(3,4,7,0)');
-    g.fillStyle = lg; g.fillRect(0, 0, W, H);
-    const vg = g.createLinearGradient(0, H * 0.6, 0, H); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.55)');
-    g.fillStyle = vg; g.fillRect(0, 0, W, H);
     const X = 64;
     // logo: orbit mark
     g.save(); g.translate(X + 22, 70);

@@ -238,20 +238,40 @@ async function lookupAddress(addr) {
 
 async function fetchOhlcv(row) {
   if (row.series && row.series.length) return row.series;
-  const pool = row.pair;
-  if (!pool || !/^0x[0-9a-fA-F]{40}$/.test(pool)) return null;
-  // minute candles first, then 5m
-  for (const [tf, agg] of [['minute', 1], ['minute', 5], ['hour', 1]]) {
-    try {
-      const j = await getJSON(`${GT}/networks/base/pools/${pool}/ohlcv/${tf}?aggregate=${agg}&limit=1000&currency=usd`);
-      const list = (((j.data || {}).attributes) || {}).ohlcv_list || [];
-      if (!list.length) continue;
-      // [ts, open, high, low, close, volume] — ts is seconds
-      const series = list.map(c => ({ t: (c[0] < 1e12 ? c[0] * 1000 : c[0]), price: +c[4] }))
-        .filter(p => isNum(p.t) && isNum(p.price))
-        .sort((a, b) => a.t - b.t);
-      if (series.length >= 4) return series;
-    } catch (e) { /* next tf */ }
+  const isAddr = a => typeof a === 'string' && /^0x[0-9a-fA-F]{40}$/.test(a);
+  const candidates = [];
+  const add = a => { if (isAddr(a) && !candidates.includes(a.toLowerCase())) candidates.push(a.toLowerCase()); };
+  add(row.pair);
+  // Some listings store a token address in `pair`, or only have a token address — resolve pools.
+  if (isAddr(row.address) || candidates.length === 0) {
+    const tok = isAddr(row.address) ? row.address : row.pair;
+    if (isAddr(tok)) {
+      try {
+        const j = await getJSON(`${GT}/networks/base/tokens/${tok}/pools?page=1`);
+        for (const p of (j.data || []).slice(0, 4)) {
+          add((p.attributes || {}).address || (p.id || '').split('_').pop());
+        }
+      } catch (e) { /* keep whatever candidates we have */ }
+    }
+  }
+  if (!candidates.length) return null;
+  async function ohlcv(pool) {
+    for (const [tf, agg] of [['minute', 1], ['minute', 5], ['hour', 1]]) {
+      try {
+        const j = await getJSON(`${GT}/networks/base/pools/${pool}/ohlcv/${tf}?aggregate=${agg}&limit=1000&currency=usd`);
+        const list = (((j.data || {}).attributes) || {}).ohlcv_list || [];
+        if (!list.length) continue;
+        const series = list.map(c => ({ t: (c[0] < 1e12 ? c[0] * 1000 : c[0]), price: +c[4] }))
+          .filter(p => isNum(p.t) && isNum(p.price))
+          .sort((a, b) => a.t - b.t);
+        if (series.length >= 4) return series;
+      } catch (e) { /* next tf */ }
+    }
+    return null;
+  }
+  for (const pool of candidates) {
+    const s = await ohlcv(pool);
+    if (s) { row.pair = pool; return s; }
   }
   return null;
 }
@@ -346,15 +366,17 @@ export function initWhatIf(el) {
     const entryPx = series[entryIdx] ? series[entryIdx].price : r.price;
     const lastPx = series.length ? series[series.length - 1].price : r.price;
     const size = sizeVal();
-    const hypPct = isNum(entryPx) && entryPx && isNum(lastPx) ? (lastPx / entryPx - 1) * 100 : (r.change ?? 0);
+    const hypPct = series.length && isNum(entryPx) && entryPx && isNum(lastPx)
+      ? (lastPx / entryPx - 1) * 100
+      : (isNum(r.change) ? r.change : 0);
     const hypUsd = size * hypPct / 100;
     box.innerHTML = `
       <div class="tr-h"><span>${esc(r.symbol)} · WHAT-IF</span><span class="dim">${esc(r.source)}</span></div>
       <div class="wi-meta">
         <div class="cs"><div class="l">Token</div><div class="v">${esc(r.symbol)}</div><div class="s">${esc(r.name || '')}</div></div>
         <div class="cs"><div class="l">Observed move</div><div class="v ${cls(r.change)}">${isNum(r.change) ? pct(r.change, 1) : '—'}</div><div class="s">${esc(r.changeLabel || '')}</div></div>
-        <div class="cs"><div class="l">What-if size</div><div class="v">${usd(size, 0)}</div><div class="s">hypothetical</div></div>
-        <div class="cs"><div class="l">What-if P&amp;L</div><div class="v ${cls(hypUsd)}">${usdSigned(hypUsd)}</div><div class="s">${pct(hypPct, 2)} if held to last tick</div></div>
+        <div class="cs"><div class="l">What-if size</div><div class="v" id="wi-size-v">${usd(size, 0)}</div><div class="s">hypothetical</div></div>
+        <div class="cs"><div class="l">What-if P&amp;L</div><div class="v ${cls(hypUsd)}" id="wi-pnl-v">${usdSigned(hypUsd)}</div><div class="s" id="wi-pnl-s">${pct(hypPct, 2)} if held to last tick</div></div>
       </div>
       <div class="wi-stamp tight">${esc(STAMP)}</div>
       <div class="toolbar">
@@ -366,6 +388,7 @@ export function initWhatIf(el) {
         <span class="dim">hypothetical entry</span>
         <input type="range" id="wi-entry" min="0" max="${Math.max(0, series.length - 2)}" value="${entryIdx}" ${series.length ? '' : 'disabled'}>
         <span id="wi-entry-lab" class="yel">${series.length ? 'tick ' + (entryIdx + 1) + ' / ' + series.length + '  @  ' + (isNum(entryPx) ? entryPx.toPrecision(6) : '—') : 'no series yet'}</span>
+        <span class="dim">default = start of the run · drag the chart or the slider</span>
       </div>
       ${st.loadingSeries ? '<div class="empty">Loading real candle history…</div>' : ''}
       ${!st.loadingSeries && !series.length ? '<div class="empty">No candle history for this pair. You can still estimate P&amp;L from the reported move, but a replay needs price ticks.</div>' : ''}
@@ -384,23 +407,45 @@ export function initWhatIf(el) {
       st.size = +b.dataset.sz; st.customSize = '';
       renderRight();
     });
-    box.querySelector('#wi-custom').addEventListener('change', e => {
-      st.customSize = e.target.value.trim();
-      renderRight();
-    });
+    const onCustom = e => { st.customSize = e.target.value.trim(); renderRight(); };
+    box.querySelector('#wi-custom').addEventListener('change', onCustom);
+    box.querySelector('#wi-custom').addEventListener('keydown', e => { if (e.key === 'Enter') onCustom(e); });
     const rng = box.querySelector('#wi-entry');
-    rng.addEventListener('input', () => {
-      st.entryIdx = +rng.value;
+    const applyEntry = (idx, rerender) => {
+      st.entryIdx = Math.max(0, Math.min(Math.max(0, series.length - 2), idx));
       const lab = box.querySelector('#wi-entry-lab');
       const px = series[st.entryIdx] && series[st.entryIdx].price;
-      lab.textContent = 'tick ' + (st.entryIdx + 1) + ' / ' + series.length + '  @  ' + (isNum(px) ? px.toPrecision(6) : '—');
+      const lastPx = series.length ? series[series.length - 1].price : null;
+      const sizeNow = sizeVal();
+      const hypPct = isNum(px) && px && isNum(lastPx) ? (lastPx / px - 1) * 100 : 0;
+      const hypUsd = sizeNow * hypPct / 100;
+      if (lab) lab.textContent = 'tick ' + (st.entryIdx + 1) + ' / ' + series.length + '  @  ' + (isNum(px) ? px.toPrecision(6) : '—');
+      const pv = box.querySelector('#wi-pnl-v'), ps = box.querySelector('#wi-pnl-s');
+      if (pv) { pv.textContent = usdSigned(hypUsd); pv.className = 'v ' + cls(hypUsd); }
+      if (ps) ps.textContent = pct(hypPct, 2) + ' if held to last tick';
+      if (rng) rng.value = st.entryIdx;
       if (mini) paintMini(mini, series, st.entryIdx);
-      // live update the what-if pnl tiles without full rerender: skip for simplicity
-    });
-    rng.addEventListener('change', () => { st.entryIdx = +rng.value; renderRight(); });
-    const play = ar => startReplay(r, series, st.entryIdx, size, ar);
+      if (rerender) renderRight();
+    };
+    rng.addEventListener('input', () => applyEntry(+rng.value, false));
+    rng.addEventListener('change', () => applyEntry(+rng.value, true));
+    const play = ar => startReplay(r, series, st.entryIdx, sizeVal(), ar);
     box.querySelector('#wi-play16').addEventListener('click', () => play('16:9'));
     box.querySelector('#wi-play9').addEventListener('click', () => play('9:16'));
+    if (mini && series.length) {
+      const idxFromEvent = ev => {
+        const rect = mini.getBoundingClientRect();
+        const x = ((ev.touches && ev.touches[0] ? ev.touches[0].clientX : ev.clientX) - rect.left) / rect.width;
+        return Math.round(Math.max(0, Math.min(1, x)) * Math.max(0, series.length - 2));
+      };
+      let drag = false;
+      mini.style.cursor = 'crosshair';
+      mini.addEventListener('pointerdown', ev => { drag = true; try { mini.setPointerCapture(ev.pointerId); } catch (e) {} applyEntry(idxFromEvent(ev), false); ev.preventDefault(); });
+      mini.addEventListener('pointermove', ev => { if (drag) applyEntry(idxFromEvent(ev), false); });
+      const end = ev => { if (!drag) return; drag = false; applyEntry(idxFromEvent(ev), true); };
+      mini.addEventListener('pointerup', end);
+      mini.addEventListener('pointercancel', () => { drag = false; });
+    }
   }
 
   function paintMini(cv, series, entryIdx) {
@@ -442,7 +487,8 @@ export function initWhatIf(el) {
     const officialPct = (exit / entry - 1) * 100;
     const officialUsd = size * officialPct / 100;
     const model = modelFromWhatIf({
-      symbol: r.symbol, name: r.name, usdIn: size, entry, points: slice,
+      symbol: r.symbol, name: r.name, address: r.address || r.pair || '',
+      usdIn: size, entry, points: slice,
       exitPrice: exit, officialPct, officialUsd,
     });
     openReplay(Object.assign(model, { ar }));

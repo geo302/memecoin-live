@@ -306,7 +306,7 @@ body.rp-open{overflow:hidden}
 .wi-left,.wi-right{min-width:0}
 .wi-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px;padding:10px 14px 0}
 .wi-preview{padding:8px 14px}
-.wi-preview canvas{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--edge);background:#05060a}
+.wi-preview canvas{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--edge);background:#05060a;cursor:crosshair;touch-action:none}
 table.t tbody tr.on td{background:rgba(255,255,255,.07)}
 #wi-entry{accent-color:#e2e8f0;min-width:140px}
 
