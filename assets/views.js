@@ -1,8 +1,8 @@
 // TRADES (+ exit-type breakdown), FEED, RULES and RUN 1 views.
-import { price, priceFull, usd, usdSigned, pct, cls, esc, ts, tm, dt, dur, isNum, num, big, md } from './fmt.js';
-import { makeTable, toCSV, download } from './table.js';
-import { f7tag } from './board.js';
-import { loadExtra } from './data.js';
+import { price, priceFull, usd, usdSigned, pct, cls, esc, ts, tm, dt, dur, isNum, num, big, md } from './fmt.js?v=d681b70b';
+import { makeTable, toCSV, download } from './table.js?v=d681b70b';
+import { f7tag } from './board.js?v=d681b70b';
+import { loadExtra } from './data.js?v=d681b70b';
 
 const EXIT_ORDER = ['TP', 'BREAKEVEN', 'F6_TIME', 'STOP', 'LIQUIDITY', 'TRAIL', 'DISCRETIONARY', 'RESET', 'OTHER'];
 const EXIT_COL = { TP: '#22c55e', BREAKEVEN: '#f4f6fb', F6_TIME: '#9aa3b5', STOP: '#ef4444', LIQUIDITY: '#a5b4fc', TRAIL: '#8b5cf6', DISCRETIONARY: '#6b7590', RESET: '#444c5e', OTHER: '#333' };

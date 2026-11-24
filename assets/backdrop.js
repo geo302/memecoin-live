@@ -4,10 +4,10 @@
 // Optionally blends one of the four trophy webp art pieces as a right-side layer.
 
 export const ART_LAYERS = [
-  'assets/trophy/win-emerald.webp',
-  'assets/trophy/trophy-gold.webp',
-  'assets/trophy/galaxy-void.webp',
-  'assets/trophy/battle-crimson.webp',
+  'assets/trophy/win-emerald.webp?v=d681b70b',
+  'assets/trophy/trophy-gold.webp?v=d681b70b',
+  'assets/trophy/galaxy-void.webp?v=d681b70b',
+  'assets/trophy/battle-crimson.webp?v=d681b70b',
 ];
 
 export function seedFrom(symbol, address) {

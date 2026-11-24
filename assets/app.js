@@ -1,13 +1,13 @@
-import { loadAll, nextDelay, fileUrl, loadArchive, apiInfo, STALE_MS, SOURCES } from './data.js';
-import { makeDemo } from './demo.js';
-import { usd, usdSigned, pct, cls, ts, ago, tm, esc, isNum } from './fmt.js';
-import { initMap } from './map.js';
-import { initBoard } from './board.js';
-import { initCharts } from './charts.js';
-import { initTrades, initFeed, initRules, initRun1 } from './views.js';
-import { openTrade, closePanel } from './detail.js';
-import { initCalendar } from './calendar.js';
-import { initWhatIf } from './whatif.js';
+import { loadAll, nextDelay, fileUrl, loadArchive, apiInfo, STALE_MS, SOURCES } from './data.js?v=d681b70b';
+import { makeDemo } from './demo.js?v=d681b70b';
+import { usd, usdSigned, pct, cls, ts, ago, tm, esc, isNum } from './fmt.js?v=d681b70b';
+import { initMap } from './map.js?v=d681b70b';
+import { initBoard } from './board.js?v=d681b70b';
+import { initCharts } from './charts.js?v=d681b70b';
+import { initTrades, initFeed, initRules, initRun1 } from './views.js?v=d681b70b';
+import { openTrade, closePanel } from './detail.js?v=d681b70b';
+import { initCalendar } from './calendar.js?v=d681b70b';
+import { initWhatIf } from './whatif.js?v=d681b70b';
 
 const qs = new URLSearchParams(location.search);
 const DEMO = qs.get('demo') === '1';

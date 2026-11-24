@@ -1,5 +1,5 @@
 // CHARTS: Bloomberg-style live multi-panel charts per coin, equity curve, P&L per trade, small multiples.
-import { price, priceFull, usd, usdSigned, pct, cls, esc, ts, tm, dt, isNum, dur } from './fmt.js';
+import { price, priceFull, usd, usdSigned, pct, cls, esc, ts, tm, dt, isNum, dur } from './fmt.js?v=d681b70b';
 
 const ET = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hour12: false });
 const ETs = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });

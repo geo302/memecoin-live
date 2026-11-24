@@ -1,18 +1,18 @@
 // CALENDAR: black P&L calendar (green / red days) + Day Breakdown + @whatscoinbase Trophy Room flex-card generator.
 // Days are bucketed by the ET date of each closed trade's exit_time. Reads ctx data only; never writes anything.
 // Trophy cards are drawn on a <canvas> (what you see is exactly what downloads). Spec: CLAUDE_PROMPT.md "CALENDAR".
-import { usd, usdSigned, pct, cls, esc, isNum, dur, tm, TZ } from './fmt.js';
-import { openTradeReplay } from './replay.js';
-import { seedFrom, preloadArtLayer, drawAnimeBackdrop } from './backdrop.js';
-import { preloadPfp, drawPfp } from './pfp.js';
+import { usd, usdSigned, pct, cls, esc, isNum, dur, tm, TZ } from './fmt.js?v=d681b70b';
+import { openTradeReplay } from './replay.js?v=d681b70b';
+import { seedFrom, preloadArtLayer, drawAnimeBackdrop } from './backdrop.js?v=d681b70b';
+import { preloadPfp, drawPfp } from './pfp.js?v=d681b70b';
 preloadPfp();
 
 const BACKDROPS = [
   { id: 'auto', name: 'Auto · coin' },
-  { id: 'win-emerald', name: 'Emerald', src: 'assets/trophy/win-emerald.webp' },
-  { id: 'trophy-gold', name: 'Gold', src: 'assets/trophy/trophy-gold.webp' },
-  { id: 'galaxy-void', name: 'Void', src: 'assets/trophy/galaxy-void.webp' },
-  { id: 'battle-crimson', name: 'Crimson', src: 'assets/trophy/battle-crimson.webp' },
+  { id: 'win-emerald', name: 'Emerald', src: 'assets/trophy/win-emerald.webp?v=d681b70b' },
+  { id: 'trophy-gold', name: 'Gold', src: 'assets/trophy/trophy-gold.webp?v=d681b70b' },
+  { id: 'galaxy-void', name: 'Void', src: 'assets/trophy/galaxy-void.webp?v=d681b70b' },
+  { id: 'battle-crimson', name: 'Crimson', src: 'assets/trophy/battle-crimson.webp?v=d681b70b' },
   { id: 'none', name: 'Stars' },
 ];
 const LS = 'whatscoinbase.trophy.v1';

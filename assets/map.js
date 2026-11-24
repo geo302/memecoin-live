@@ -2,7 +2,7 @@
 // A glowing RIO core sits at the centre; each trade is a star on a slowly rotating (Keplerian) orbit.
 // Run-2 trades fill the inner orbits (oldest innermost), archived run-1 trades fill the outer orbits.
 // Green / red halos = won / lost, pulsing white = live/open. Rendered on canvas; positions are stable across polls.
-import { tradeState, ago, usdSigned, pct } from './fmt.js';
+import { tradeState, ago, usdSigned, pct } from './fmt.js?v=d681b70b';
 
 const COL = { win: '#22c55e', loss: '#ef4444', open: '#f4f6fb' };
 const RGB = { win: '34,197,94', loss: '239,68,68', open: '244,246,251' };

@@ -1,6 +1,6 @@
 // BOARD: Bloomberg-terminal price board (open positions, recent exits, scanner, ticker tape).
-import { price, priceFull, usd, usdSigned, pct, big, num, cls, esc, dur, ts, tm, dt, isNum, ago } from './fmt.js';
-import { makeTable } from './table.js';
+import { price, priceFull, usd, usdSigned, pct, big, num, cls, esc, dur, ts, tm, dt, isNum, ago } from './fmt.js?v=d681b70b';
+import { makeTable } from './table.js?v=d681b70b';
 
 const sqs = checks => ['F1', 'F2', 'F3', 'F4', 'F5', 'F6'].map(f => {
   const c = checks && checks[f];

@@ -1,6 +1,6 @@
 // Trade detail side panel (opened from map nodes, tables, board rows).
-import { price, priceFull, usd, usdSigned, pct, cls, dt, dur, esc, isNum, tradeState, dot, ts, num, big } from './fmt.js';
-import { openTradeReplay } from './replay.js';
+import { price, priceFull, usd, usdSigned, pct, cls, dt, dur, esc, isNum, tradeState, dot, ts, num, big } from './fmt.js?v=d681b70b';
+import { openTradeReplay } from './replay.js?v=d681b70b';
 
 let mini = null;
 const $ = id => document.getElementById(id);
