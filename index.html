@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#030407">
 <meta name="description" content="Rio paper (simulated) Base meme coin trading dashboard. No real money.">
 <title>RIO · memecoin-live · PAPER TRADING</title>
 <link rel="stylesheet" href="assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23000'/%3E%3Ccircle cx='8' cy='8' r='4' fill='%23ffd400'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23000'/%3E%3Ccircle cx='8' cy='8' r='4' fill='%23f4f6fb'/%3E%3C/svg%3E">
 </head>
 <body>
 <header id="top">
@@ -21,6 +21,7 @@
       <button data-tab="feed">5) FEED</button>
       <button data-tab="rules">6) RULES</button>
       <button data-tab="run1">7) RUN 1</button>
+      <button data-tab="calendar">8) CALENDAR</button>
       <button data-tab="all" title="All sections as one scrolling page">≡ ALL</button>
     </nav>
     <div class="clock"><span id="clock">--:--:--</span> ET</div>
@@ -38,11 +39,12 @@
   <section id="v-feed" class="view" data-view="feed"></section>
   <section id="v-rules" class="view" data-view="rules"></section>
   <section id="v-run1" class="view" data-view="run1"></section>
+  <section id="v-calendar" class="view" data-view="calendar"></section>
 </main>
 
 <aside id="panel" aria-hidden="true"><button class="x" id="panel-x" aria-label="Close">✕</button><div id="panel-body"></div></aside>
 
-<footer class="foot">PAPER TRADING ONLY · simulated Base meme coin trades by Rio · no wallet, no keys, no real money · not financial advice · data: <a href="https://github.com/geo302/memecoin-live/tree/live-data" target="_blank" rel="noopener">live-data</a></footer>
+<footer class="foot">@riogeo · RIO × GEO · PAPER TRADING ONLY · simulated Base meme coin trades by Rio · no wallet, no keys, no real money · not financial advice · data: <a href="https://github.com/geo302/memecoin-live/tree/live-data" target="_blank" rel="noopener">live-data</a></footer>
 
 <script defer src="assets/vendor/echarts-5.5.1.min.js"></script>
 <script type="module" src="assets/app.js"></script>

@@ -63,14 +63,14 @@ export function openTrade(t, ctx) {
     const P = pr.points.map(p => [ts(p.t), p.price]);
     const S = pr.points.map(p => [ts(p.t), p.stop]);
     mini.setOption({
-      animation: false, backgroundColor: '#000', grid: { left: 8, right: 60, top: 8, bottom: 20 },
-      xAxis: { type: 'time', axisLabel: { color: '#7d8799', fontSize: 9, formatter: v => new Date(v).toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour12: false, hour: '2-digit', minute: '2-digit' }) }, axisLine: { lineStyle: { color: '#26324a' } }, splitLine: { show: false } },
-      yAxis: { type: 'value', scale: true, position: 'right', axisLabel: { color: '#7d8799', fontSize: 9, formatter: v => price(v, 3) }, splitLine: { lineStyle: { color: '#1a2233' } } },
+      animation: false, backgroundColor: 'transparent', grid: { left: 8, right: 60, top: 8, bottom: 20 },
+      xAxis: { type: 'time', axisLabel: { color: '#7d8799', fontSize: 9, formatter: v => new Date(v).toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour12: false, hour: '2-digit', minute: '2-digit' }) }, axisLine: { lineStyle: { color: '#1e2430' } }, splitLine: { show: false } },
+      yAxis: { type: 'value', scale: true, position: 'right', axisLabel: { color: '#7d8799', fontSize: 9, formatter: v => price(v, 3) }, splitLine: { lineStyle: { color: '#11151d' } } },
       series: [
-        { type: 'line', data: P, showSymbol: false, lineStyle: { color: '#38d9f5', width: 1.3 }, markLine: { silent: true, symbol: 'none', precision: 14, data: [
+        { type: 'line', data: P, showSymbol: false, lineStyle: { color: '#a5b4fc', width: 1.3 }, markLine: { silent: true, symbol: 'none', precision: 14, data: [
           { yAxis: t.entry_price, lineStyle: { color: '#fff', type: 'dashed' }, label: { show: false } },
-          isNum(t.take_profit_price) ? { yAxis: t.take_profit_price, lineStyle: { color: '#00d26a' }, label: { show: false } } : null].filter(Boolean) } },
-        { type: 'line', step: 'end', data: S, showSymbol: false, lineStyle: { color: '#ff3b3b', width: 1 } },
+          isNum(t.take_profit_price) ? { yAxis: t.take_profit_price, lineStyle: { color: '#22c55e' }, label: { show: false } } : null].filter(Boolean) } },
+        { type: 'line', step: 'end', data: S, showSymbol: false, lineStyle: { color: '#ef4444', width: 1 } },
       ],
     });
   }

@@ -3,7 +3,7 @@ import { price, priceFull, usd, usdSigned, pct, cls, esc, ts, tm, dt, dur, isNum
 import { makeTable, toCSV, download } from './table.js';
 
 const EXIT_ORDER = ['TP', 'BREAKEVEN', 'F6_TIME', 'STOP', 'LIQUIDITY', 'TRAIL', 'DISCRETIONARY', 'RESET', 'OTHER'];
-const EXIT_COL = { TP: '#00d26a', BREAKEVEN: '#ffd400', F6_TIME: '#9aa3b5', STOP: '#ff3b3b', LIQUIDITY: '#38d9f5', TRAIL: '#8b5cf6', DISCRETIONARY: '#6b7590', RESET: '#444c5e', OTHER: '#333' };
+const EXIT_COL = { TP: '#22c55e', BREAKEVEN: '#f4f6fb', F6_TIME: '#9aa3b5', STOP: '#ef4444', LIQUIDITY: '#a5b4fc', TRAIL: '#8b5cf6', DISCRETIONARY: '#6b7590', RESET: '#444c5e', OTHER: '#333' };
 const EXIT_LABEL = { TP: 'TP +20% full sell', BREAKEVEN: 'breakeven (armed at +10%)', F6_TIME: 'F6 8-min time stop', STOP: '-10% stop' };
 
 const checksSq = checks => !checks ? '<span class="dim">—</span>' : ['F1', 'F2', 'F3', 'F4', 'F5', 'F6'].map(f => {
@@ -118,7 +118,7 @@ export function initTrades(el, ctx) {
   el.innerHTML = `<div class="hdr">CLOSED TRADES · RUN <span id="t-run">2</span><span class="sp"></span><span class="dim" style="color:#000">click a row to expand</span></div>
     ${tradeFilters('t')}<div id="t-table"></div>
     <div class="hdr blue">EXIT-TYPE BREAKDOWN · EXIT TRIAL <span id="t-trial" style="font-weight:400"></span></div>
-    <div class="bd"><div><div id="t-bd2"></div><div class="hdr" style="background:#333;color:#ffb000">RUN 1 COMPARISON (older rules: trail, +25% TP, $5 sizes)</div><div id="t-bd1"><div class="empty">loading run 1…</div></div></div>
+    <div class="bd"><div><div id="t-bd2"></div><div class="hdr sub">RUN 1 COMPARISON (older rules: trail, +25% TP, $5 sizes)</div><div id="t-bd1"><div class="empty">loading run 1…</div></div></div>
     <div><div class="donut" id="t-donut"></div><div class="pad dim" id="t-gap"></div></div></div>`;
   const $ = s => el.querySelector(s);
   let dn = null;
@@ -181,7 +181,7 @@ export function initRules(el, ctx) {
       const card = (t, body) => `<div class="card"><h4>${t}</h4>${body}</div>`;
       const row = (k, v) => `<div><span class="amb">${k}</span> ${v}</div>`;
       el.innerHTML = `<div class="hdr">ENTRY GATES · ALL SIX MUST PASS</div>
-        <div class="cards">${(r.entry_gates || []).map(g => card(`<span class="tag" style="background:#ffd400">${esc(g.id)}</span> ${esc(g.rule || '')}`,
+        <div class="cards">${(r.entry_gates || []).map(g => card(`<span class="tag" style="background:#f4f6fb">${esc(g.id)}</span> ${esc(g.rule || '')}`,
           Object.entries(g).filter(([k]) => !['id', 'rule'].includes(k)).map(([k, v]) => row(k, esc(typeof v === 'number' ? v.toLocaleString() : v))).join(''))).join('')}</div>
         <div class="hdr red">EXITS · ${esc(tr.id || '')}</div>
         <div class="cards">
@@ -215,7 +215,7 @@ export function initRun1(el, ctx) {
     try { a = await ctx.loadArchive(); } catch (e) { loaded = false; el.innerHTML = `<div class="empty"><b>Run 1 archive unavailable</b>${esc(e.message)}</div>`; return; }
     const s = a.summary || {}, trades = (a.trades.trades || []).map(t => ({ ...t, run: 1 }));
     const card = (l, v, c = '') => `<div class="card"><div class="amb" style="font-size:10px">${l}</div><div class="big ${c}">${v}</div></div>`;
-    el.innerHTML = `<div class="hdr" style="background:#555;color:#fff">RUN 1 · READ-ONLY ARCHIVE · ${dt(s.start)} → ${dt(s.end)} ET</div>
+    el.innerHTML = `<div class="hdr sub">RUN 1 · READ-ONLY ARCHIVE · ${dt(s.start)} → ${dt(s.end)} ET</div>
       <div class="cards">
         ${card('Final equity (active)', usd(s.final_equity_usd), cls((s.final_equity_usd || 0) - (s.starting_active_bankroll_usd || 100)))}
         ${card('Realized P&L', usdSigned(s.realized_pnl_usd, 2), cls(s.realized_pnl_usd))}
@@ -237,12 +237,12 @@ export function initRun1(el, ctx) {
     wireTradeTable(el, 'r1', el.querySelector('#r1-table'), () => trades, ctx, () => 'rio-run1-trades.csv')();
     const steps = (s.realized_steps || []).map(p => [ts(p.t), p.equity_realized, p]);
     chart = echarts.init(el.querySelector('#r1-eq'));
-    chart.setOption({ animation: false, backgroundColor: '#000', grid: { left: 8, right: 60, top: 14, bottom: 24 },
-      xAxis: { type: 'time', axisLabel: { color: '#7d8799', fontSize: 10, formatter: v => new Date(v).toLocaleDateString('en-US', { timeZone: 'America/New_York', month: 'short', day: '2-digit' }) }, axisLine: { lineStyle: { color: '#26324a' } } },
-      yAxis: { type: 'value', scale: true, position: 'right', axisLabel: { color: '#7d8799', fontSize: 10, formatter: v => '$' + v }, splitLine: { lineStyle: { color: '#1a2233' } } },
-      tooltip: { trigger: 'axis', backgroundColor: '#000', borderColor: '#fb8b1e', textStyle: { color: '#ddd', fontSize: 11 }, formatter: ps => { const p = steps[ps[0].dataIndex]; return p ? `${dt(p[0])} ET<br>${usd(p[1], 3)}${p[2].trade_id !== null && p[2].trade_id !== undefined ? `<br>#${p[2].trade_id} ${usdSigned(p[2].pnl_usd, 3)}` : ''}` : ''; } },
-      series: [{ type: 'line', step: 'end', data: steps.map(p => [p[0], p[1]]), showSymbol: false, lineStyle: { color: '#ffd400', width: 1.2 },
-        markLine: { silent: true, symbol: 'none', data: [{ yAxis: s.starting_active_bankroll_usd || 100, lineStyle: { color: '#fb8b1e', type: 'dashed' }, label: { color: '#fb8b1e', fontSize: 10 } }] } }] });
+    chart.setOption({ animation: false, backgroundColor: 'transparent', grid: { left: 8, right: 60, top: 14, bottom: 24 },
+      xAxis: { type: 'time', axisLabel: { color: '#7d8799', fontSize: 10, formatter: v => new Date(v).toLocaleDateString('en-US', { timeZone: 'America/New_York', month: 'short', day: '2-digit' }) }, axisLine: { lineStyle: { color: '#1e2430' } } },
+      yAxis: { type: 'value', scale: true, position: 'right', axisLabel: { color: '#7d8799', fontSize: 10, formatter: v => '$' + v }, splitLine: { lineStyle: { color: '#11151d' } } },
+      tooltip: { trigger: 'axis', backgroundColor: 'rgba(6,8,13,.94)', borderColor: '#94a3b8', textStyle: { color: '#ddd', fontSize: 11 }, formatter: ps => { const p = steps[ps[0].dataIndex]; return p ? `${dt(p[0])} ET<br>${usd(p[1], 3)}${p[2].trade_id !== null && p[2].trade_id !== undefined ? `<br>#${p[2].trade_id} ${usdSigned(p[2].pnl_usd, 3)}` : ''}` : ''; } },
+      series: [{ type: 'line', step: 'end', data: steps.map(p => [p[0], p[1]]), showSymbol: false, lineStyle: { color: '#f4f6fb', width: 1.2 },
+        markLine: { silent: true, symbol: 'none', data: [{ yAxis: s.starting_active_bankroll_usd || 100, lineStyle: { color: '#94a3b8', type: 'dashed' }, label: { color: '#94a3b8', fontSize: 10 } }] } }] });
     dn = donut(el.querySelector('#r1-dn'), Object.keys(b).length ? b : s.exit_type_breakdown, null);
   }
   return {

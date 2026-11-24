@@ -13,7 +13,7 @@ export function initBoard(el, ctx) {
     <div class="tape" id="tape"><div class="tape-in" id="tape-in">loading scan…</div></div>
     <div class="hdr">OPEN POSITIONS <span class="cnt" id="b-open-n"></span><span class="sp"></span><span id="b-upd" class="nowrap"></span></div>
     <div id="b-open"></div>
-    <div class="hdr red">RECENT EXITS <span class="dim" style="color:#ffd0d0">last 10 closed</span></div>
+    <div class="hdr red">RECENT EXITS <span class="dim" style="color:#fecaca">last 10 closed</span></div>
     <div id="b-exits"></div>
     <div class="hdr">SCANNER <span class="cnt" id="b-scan-n"></span><span class="sp"></span><span id="b-scan-t"></span></div>
     <div class="filters">

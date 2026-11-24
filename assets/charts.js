@@ -5,8 +5,8 @@ const ET = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour
 const ETs = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
 const ETd = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', month: 'short', day: '2-digit' });
 const axT = v => ET.format(v);
-const AX = { axisLine: { lineStyle: { color: '#26324a' } }, axisLabel: { color: '#7d8799', fontSize: 10 }, splitLine: { lineStyle: { color: '#1a2233' } } };
-const TT = { trigger: 'axis', backgroundColor: 'rgba(0,0,0,.9)', borderColor: '#fb8b1e', textStyle: { color: '#d7dde8', fontSize: 11, fontFamily: 'IBM Plex Mono, Menlo, monospace' }, axisPointer: { type: 'cross', lineStyle: { color: '#555' }, crossStyle: { color: '#555' }, label: { backgroundColor: '#fb8b1e', color: '#000' } } };
+const AX = { axisLine: { lineStyle: { color: '#1e2430' } }, axisLabel: { color: '#7d8799', fontSize: 10 }, splitLine: { lineStyle: { color: '#11151d' } } };
+const TT = { trigger: 'axis', backgroundColor: 'rgba(6,8,13,.94)', borderColor: '#94a3b8', textStyle: { color: '#d7dde8', fontSize: 11, fontFamily: 'IBM Plex Mono, Menlo, monospace' }, axisPointer: { type: 'cross', lineStyle: { color: '#555' }, crossStyle: { color: '#555' }, label: { backgroundColor: '#94a3b8', color: '#000' } } };
 
 function boll(vals, n = 20, k = 2) {
   const up = [], mid = [], lo = [];
@@ -79,41 +79,41 @@ export function initCharts(el, ctx) {
     series.push({ name: 'price', type: 'line', xAxisIndex: 0, yAxisIndex: 0, data: data(px), showSymbol: false, lineStyle: { color: '#e8f6ff', width: 1.4 }, z: 5,
       markLine: { silent: true, symbol: 'none', animation: false, precision: 14, data: [
         { yAxis: pr.entry_price, lineStyle: { color: '#ffffff', type: 'dashed', width: 1 }, label: { formatter: 'ENTRY ' + price(pr.entry_price), color: '#fff', position: 'insideStartTop', fontSize: 10 } },
-        isNum(pr.take_profit_price) ? { yAxis: pr.take_profit_price, lineStyle: { color: '#00d26a', width: 1 }, label: { formatter: 'TP ' + price(pr.take_profit_price), color: '#00d26a', position: 'insideStartTop', fontSize: 10 } } : null,
-        isNum(pr.breakeven_arm_price) ? { yAxis: pr.breakeven_arm_price, lineStyle: { color: '#ffd400', type: 'dotted', width: 1 }, label: { formatter: 'BE ARM +10%', color: '#ffd400', position: 'insideStartTop', fontSize: 10 } } : null,
+        isNum(pr.take_profit_price) ? { yAxis: pr.take_profit_price, lineStyle: { color: '#22c55e', width: 1 }, label: { formatter: 'TP ' + price(pr.take_profit_price), color: '#22c55e', position: 'insideStartTop', fontSize: 10 } } : null,
+        isNum(pr.breakeven_arm_price) ? { yAxis: pr.breakeven_arm_price, lineStyle: { color: '#f4f6fb', type: 'dotted', width: 1 }, label: { formatter: 'BE ARM +10%', color: '#f4f6fb', position: 'insideStartTop', fontSize: 10 } } : null,
       ].filter(Boolean) },
       markPoint: { animation: false, data: [
-        ts(pr.entry_time) ? { coord: [ts(pr.entry_time), pr.entry_price], symbol: 'triangle', symbolSize: 12, itemStyle: { color: '#00d26a' }, label: { show: false } } : null,
-        pr.exit_time ? { coord: [ts(pr.exit_time), pr.exit_price], symbol: 'triangle', symbolRotate: 180, symbolSize: 13, itemStyle: { color: pr.pnl_usd > 0 ? '#00d26a' : '#ff3b3b' },
+        ts(pr.entry_time) ? { coord: [ts(pr.entry_time), pr.entry_price], symbol: 'triangle', symbolSize: 12, itemStyle: { color: '#22c55e' }, label: { show: false } } : null,
+        pr.exit_time ? { coord: [ts(pr.exit_time), pr.exit_price], symbol: 'triangle', symbolRotate: 180, symbolSize: 13, itemStyle: { color: pr.pnl_usd > 0 ? '#22c55e' : '#ef4444' },
           label: { show: true, position: 'top', color: '#fff', fontSize: 10, backgroundColor: '#000', padding: [1, 3], formatter: `${pr.exit_type || 'EXIT'} ${usdSigned(pr.pnl_usd)}` } } : null,
-        ts(pr.breakeven_armed_at) ? { coord: [ts(pr.breakeven_armed_at), stopAt(P, ts(pr.breakeven_armed_at)) ?? pr.stop_loss_price], symbol: 'roundRect', symbolSize: [22, 14], itemStyle: { color: '#ffd400' }, label: { show: true, formatter: 'BE', color: '#000', fontSize: 9, fontWeight: 700 } } : null,
+        ts(pr.breakeven_armed_at) ? { coord: [ts(pr.breakeven_armed_at), stopAt(P, ts(pr.breakeven_armed_at)) ?? pr.stop_loss_price], symbol: 'roundRect', symbolSize: [22, 14], itemStyle: { color: '#f4f6fb' }, label: { show: true, formatter: 'BE', color: '#000', fontSize: 9, fontWeight: 700 } } : null,
       ].filter(Boolean) } });
-    series.push({ name: 'stop', type: 'line', step: 'end', xAxisIndex: 0, yAxisIndex: 0, data: P.map((p, i) => [T[i], p.stop]), showSymbol: false, lineStyle: { color: '#ff3b3b', width: 1.6 }, z: 7,
+    series.push({ name: 'stop', type: 'line', step: 'end', xAxisIndex: 0, yAxisIndex: 0, data: P.map((p, i) => [T[i], p.stop]), showSymbol: false, lineStyle: { color: '#ef4444', width: 1.6 }, z: 7,
       markLine: ts(pr.f6_deadline) ? { silent: true, symbol: 'none', animation: false, data: [{ xAxis: ts(pr.f6_deadline), lineStyle: { color: '#888', width: 1 }, label: { formatter: 'F6 8m', color: '#aaa', fontSize: 10, position: 'end' } }] } : undefined });
-    series.push({ name: 'TP', type: 'line', step: 'end', xAxisIndex: 0, yAxisIndex: 0, data: P.map((p, i) => [T[i], isNum(p.tp) ? p.tp : pr.take_profit_price]), showSymbol: false, lineStyle: { color: '#00d26a', width: 1 }, z: 3 });
+    series.push({ name: 'TP', type: 'line', step: 'end', xAxisIndex: 0, yAxisIndex: 0, data: P.map((p, i) => [T[i], isNum(p.tp) ? p.tp : pr.take_profit_price]), showSymbol: false, lineStyle: { color: '#22c55e', width: 1 }, z: 3 });
     if (bb) {
-      series.push({ name: 'BB up', type: 'line', data: data(bb.up), showSymbol: false, lineStyle: { color: '#d946ef', width: 0.8 }, z: 2 });
+      series.push({ name: 'BB up', type: 'line', data: data(bb.up), showSymbol: false, lineStyle: { color: '#c4b5fd', width: 0.8 }, z: 2 });
       series.push({ name: 'BB mid', type: 'line', data: data(bb.mid), showSymbol: false, lineStyle: { color: '#777', width: 0.8 }, z: 2 });
       series.push({ name: 'BB low', type: 'line', data: data(bb.lo), showSymbol: false, lineStyle: { color: '#22c55e', width: 0.8 }, z: 2 });
     }
     const pos = P.map((p, i) => [T[i], isNum(p.pnl_pct) ? Math.max(0, p.pnl_pct) : null]);
     const neg = P.map((p, i) => [T[i], isNum(p.pnl_pct) ? Math.min(0, p.pnl_pct) : null]);
-    series.push({ name: 'P&L % +', type: 'line', xAxisIndex: 1, yAxisIndex: 1, data: pos, showSymbol: false, lineStyle: { width: 1, color: '#00d26a' }, areaStyle: { color: 'rgba(0,210,106,.25)' },
+    series.push({ name: 'P&L % +', type: 'line', xAxisIndex: 1, yAxisIndex: 1, data: pos, showSymbol: false, lineStyle: { width: 1, color: '#22c55e' }, areaStyle: { color: 'rgba(34,197,94,.25)' },
       markLine: { silent: true, symbol: 'none', data: [{ yAxis: 0, lineStyle: { color: '#444' }, label: { show: false } }] } });
-    series.push({ name: 'P&L % -', type: 'line', xAxisIndex: 1, yAxisIndex: 1, data: neg, showSymbol: false, lineStyle: { width: 1, color: '#ff3b3b' }, areaStyle: { color: 'rgba(255,59,59,.25)' } });
-    series.push({ name: 'liq', type: 'line', xAxisIndex: 2, yAxisIndex: 2, data: P.map((p, i) => [T[i], p.liq]), showSymbol: false, lineStyle: { color: '#ffb000', width: 1 } });
+    series.push({ name: 'P&L % -', type: 'line', xAxisIndex: 1, yAxisIndex: 1, data: neg, showSymbol: false, lineStyle: { width: 1, color: '#ef4444' }, areaStyle: { color: 'rgba(239,68,68,.25)' } });
+    series.push({ name: 'liq', type: 'line', xAxisIndex: 2, yAxisIndex: 2, data: P.map((p, i) => [T[i], p.liq]), showSymbol: false, lineStyle: { color: '#cbd5e1', width: 1 } });
     const g = (top, height) => ({ left: 8, right: 72, top, height });
     const xa = (i, show) => ({ type: 'time', gridIndex: i, ...AX, splitLine: { show: false }, axisLabel: { ...AX.axisLabel, show, formatter: axT }, axisPointer: { label: { formatter: o => ETs.format(o.value) } } });
-    const ya = (i, fmt, name) => ({ type: 'value', gridIndex: i, scale: true, position: 'right', ...AX, name, nameTextStyle: { color: '#ffb000', fontSize: 10, align: 'right' }, axisLabel: { ...AX.axisLabel, formatter: fmt }, axisPointer: { label: { formatter: o => fmt(o.value) } } });
+    const ya = (i, fmt, name) => ({ type: 'value', gridIndex: i, scale: true, position: 'right', ...AX, name, nameTextStyle: { color: '#cbd5e1', fontSize: 10, align: 'right' }, axisLabel: { ...AX.axisLabel, formatter: fmt }, axisPointer: { label: { formatter: o => fmt(o.value) } } });
     return {
-      animation: false, backgroundColor: '#000',
+      animation: false, backgroundColor: 'transparent',
       grid: [g('4%', '56%'), g('66%', '13%'), g('83%', '9%')],
       xAxis: [xa(0, false), xa(1, false), xa(2, true)],
       yAxis: [ya(0, v => price(v, 4), ''), ya(1, v => v.toFixed(0) + '%', 'P&L%'), ya(2, v => '$' + (v / 1000).toFixed(0) + 'k', 'LIQ')],
       axisPointer: { link: [{ xAxisIndex: 'all' }] },
       tooltip: { ...TT, formatter: ps => {
         const i = ps[0] && ps[0].dataIndex, p = P[i]; if (!p) return '';
-        return `${dt(p.t)} ET<br>price <b>${priceFull(p.price)}</b><br>stop <span style="color:#ff3b3b">${price(p.stop)}</span> · tp <span style="color:#00d26a">${price(p.tp)}</span><br>P&L ${usdSigned(p.pnl_usd)} ${pct(p.pnl_pct)}<br>liq ${usd(p.liq, 0)}${p.event ? `<br><b style="color:#ffd400">${p.event}</b>` : ''}`;
+        return `${dt(p.t)} ET<br>price <b>${priceFull(p.price)}</b><br>stop <span style="color:#ef4444">${price(p.stop)}</span> · tp <span style="color:#22c55e">${price(p.tp)}</span><br>P&L ${usdSigned(p.pnl_usd)} ${pct(p.pnl_pct)}<br>liq ${usd(p.liq, 0)}${p.event ? `<br><b style="color:#f4f6fb">${p.event}</b>` : ''}`;
       } },
       dataZoom: [{ type: 'inside', xAxisIndex: [0, 1, 2], filterMode: 'none' }],
       series,
@@ -163,12 +163,12 @@ export function initCharts(el, ctx) {
       const p = L.find(x => x.id === +div.dataset.id);
       div.addEventListener('click', () => ctx.selectChart(p.id));
       const c = echarts.init(div.querySelector('.sc'), null, { renderer: 'canvas' });
-      const col = p.status === 'open' ? '#ffd400' : p.result === 'Win' ? '#00d26a' : '#ff3b3b';
+      const col = p.status === 'open' ? '#f4f6fb' : p.result === 'Win' ? '#22c55e' : '#ef4444';
       c.setOption({ animation: false, grid: { left: 2, right: 2, top: 4, bottom: 4 }, xAxis: { type: 'time', show: false }, yAxis: { type: 'value', scale: true, show: false },
         series: [{ type: 'line', data: (p.points || []).map(q => [ts(q.t), q.price]), showSymbol: false, lineStyle: { color: col, width: 1.2 },
           markLine: { silent: true, symbol: 'none', precision: 14, data: [{ yAxis: p.entry_price, lineStyle: { color: '#fff', type: 'dashed', width: 0.6 }, label: { show: false } },
-            isNum(p.take_profit_price) ? { yAxis: p.take_profit_price, lineStyle: { color: '#00d26a', width: 0.6 }, label: { show: false } } : null].filter(Boolean) } },
-        { type: 'line', step: 'end', data: (p.points || []).map(q => [ts(q.t), q.stop]), showSymbol: false, lineStyle: { color: '#ff3b3b', width: 0.6 } }] });
+            isNum(p.take_profit_price) ? { yAxis: p.take_profit_price, lineStyle: { color: '#22c55e', width: 0.6 }, label: { show: false } } : null].filter(Boolean) } },
+        { type: 'line', step: 'end', data: (p.points || []).map(q => [ts(q.t), q.stop]), showSymbol: false, lineStyle: { color: '#ef4444', width: 0.6 } }] });
       S.smalls.push(c);
     });
   }
@@ -181,27 +181,27 @@ export function initCharts(el, ctx) {
     if (steps.length && pts.length) steps.push([pts[pts.length - 1][0], steps[steps.length - 1][1], null]);
     const ch = inst('eq', $('#c-eq'));
     ch.setOption({
-      animation: false, backgroundColor: '#000', legend: { top: 2, right: 70, textStyle: { color: '#7d8799', fontSize: 10 }, itemHeight: 6 },
+      animation: false, backgroundColor: 'transparent', legend: { top: 2, right: 70, textStyle: { color: '#7d8799', fontSize: 10 }, itemHeight: 6 },
       grid: { left: 8, right: 72, top: 26, bottom: 34 },
       xAxis: { type: 'time', ...AX, splitLine: { show: false }, axisLabel: { ...AX.axisLabel, formatter: v => ET.format(v) + '\n' + ETd.format(v) } },
       yAxis: { type: 'value', scale: true, position: 'right', ...AX, axisLabel: { ...AX.axisLabel, formatter: v => '$' + v.toFixed(0) } },
       tooltip: { ...TT, valueFormatter: v => usd(v) },
       series: [
-        { name: 'equity (MTM)', type: 'line', data: pts, showSymbol: false, lineStyle: { color: '#38d9f5', width: 1.3 }, areaStyle: { color: 'rgba(56,217,245,.06)' },
-          markLine: { silent: true, symbol: 'none', data: [{ yAxis: start, lineStyle: { color: '#fb8b1e', type: 'dashed' }, label: { formatter: usd(start, 0), color: '#fb8b1e', fontSize: 10 } }] } },
-        { name: 'realized', type: 'line', step: 'end', data: steps.map(s => [s[0], s[1]]), showSymbol: false, lineStyle: { color: '#ffd400', width: 1.2 } },
-        { name: 'closes', type: 'scatter', data: steps.filter(s => s[2] && s[2].trade_id !== null && s[2].trade_id !== undefined).map(s => ({ value: [s[0], s[1]], itemStyle: { color: (s[2].pnl_usd || 0) > 0 ? '#00d26a' : '#ff3b3b' }, name: '#' + s[2].trade_id })), symbolSize: 6,
+        { name: 'equity (MTM)', type: 'line', data: pts, showSymbol: false, lineStyle: { color: '#a5b4fc', width: 1.3 }, areaStyle: { color: 'rgba(165,180,252,.06)' },
+          markLine: { silent: true, symbol: 'none', data: [{ yAxis: start, lineStyle: { color: '#94a3b8', type: 'dashed' }, label: { formatter: usd(start, 0), color: '#94a3b8', fontSize: 10 } }] } },
+        { name: 'realized', type: 'line', step: 'end', data: steps.map(s => [s[0], s[1]]), showSymbol: false, lineStyle: { color: '#f4f6fb', width: 1.2 } },
+        { name: 'closes', type: 'scatter', data: steps.filter(s => s[2] && s[2].trade_id !== null && s[2].trade_id !== undefined).map(s => ({ value: [s[0], s[1]], itemStyle: { color: (s[2].pnl_usd || 0) > 0 ? '#22c55e' : '#ef4444' }, name: '#' + s[2].trade_id })), symbolSize: 6,
           tooltip: { trigger: 'item', formatter: o => `${o.name} · ${usd(o.value[1])}` } },
       ],
     }, { notMerge: true });
     const closed = ((d.trades && d.trades.trades) || []).slice().sort((a, b) => a.id - b.id);
     const bar = inst('bar', $('#c-bar'));
     bar.setOption({
-      animation: false, backgroundColor: '#000', grid: { left: 8, right: 72, top: 10, bottom: 22 },
+      animation: false, backgroundColor: 'transparent', grid: { left: 8, right: 72, top: 10, bottom: 22 },
       xAxis: { type: 'category', data: closed.map(t => '#' + t.id), ...AX, axisLabel: { ...AX.axisLabel, fontSize: 9 } },
       yAxis: { type: 'value', position: 'right', ...AX, axisLabel: { ...AX.axisLabel, formatter: v => '$' + v } },
       tooltip: { ...TT, axisPointer: { type: 'shadow' }, formatter: ps => { const t = closed[ps[0].dataIndex]; return t ? `#${t.id} ${esc(t.symbol)} · ${esc(t.exit_type || '')}<br>${usdSigned(t.pnl_usd)} ${pct(t.pnl_pct)}` : ''; } },
-      series: [{ type: 'bar', data: closed.map(t => ({ value: t.pnl_usd, itemStyle: { color: t.pnl_usd > 0 ? '#00d26a' : '#ff3b3b' } })), barMaxWidth: 14 }],
+      series: [{ type: 'bar', data: closed.map(t => ({ value: t.pnl_usd, itemStyle: { color: t.pnl_usd > 0 ? '#22c55e' : '#ef4444' } })), barMaxWidth: 14 }],
       graphic: closed.length ? [] : [{ type: 'text', left: 'center', top: 'middle', style: { text: 'no closed trades yet', fill: '#7d8799', font: '12px monospace' } }],
     }, { notMerge: true });
     bar.off('click'); bar.on('click', p => { const t = closed[p.dataIndex]; if (t) ctx.openTrade(t); });
