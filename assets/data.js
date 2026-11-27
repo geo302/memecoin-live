@@ -5,7 +5,7 @@
 const REPO = 'geo302/memecoin-live';
 const API_SHA = `https://api.github.com/repos/${REPO}/commits/live-data`;
 const RAW = `https://raw.githubusercontent.com/${REPO}`;
-export const FILES = ['meta', 'status', 'positions', 'trades', 'equity', 'scout', 'prices', 'feed', 'rules', 'near_misses'];
+export const FILES = ['meta', 'status', 'positions', 'trades', 'equity', 'scout', 'prices', 'feed', 'rules', 'near_misses', 'rio2'];
 // Large, log-only files fetched on demand (see loadExtra) instead of on every poll.
 export const LAZY_FILES = ['smart_wallets'];
 

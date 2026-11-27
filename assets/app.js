@@ -1,13 +1,13 @@
-import { loadAll, nextDelay, fileUrl, loadArchive, apiInfo, STALE_MS, SOURCES } from './data.js?v=d681b70b';
-import { makeDemo } from './demo.js?v=d681b70b';
-import { usd, usdSigned, pct, cls, ts, ago, tm, esc, isNum } from './fmt.js?v=d681b70b';
-import { initMap } from './map.js?v=d681b70b';
-import { initBoard } from './board.js?v=d681b70b';
-import { initCharts } from './charts.js?v=d681b70b';
-import { initTrades, initFeed, initRules, initRun1 } from './views.js?v=d681b70b';
-import { openTrade, closePanel } from './detail.js?v=d681b70b';
-import { initCalendar } from './calendar.js?v=d681b70b';
-import { initWhatIf } from './whatif.js?v=d681b70b';
+import { loadAll, nextDelay, fileUrl, loadArchive, apiInfo, STALE_MS, SOURCES } from './data.js?v=a27rio2';
+import { makeDemo } from './demo.js?v=a27rio2';
+import { usd, usdSigned, pct, cls, ts, ago, tm, esc, isNum } from './fmt.js?v=a27rio2';
+import { initMap } from './map.js?v=a27rio2';
+import { initBoard } from './board.js?v=a27rio2';
+import { initCharts } from './charts.js?v=a27rio2';
+import { initTrades, initFeed, initRules, initRio2 } from './views.js?v=a27rio2';
+import { openTrade, closePanel } from './detail.js?v=a27rio2';
+import { initCalendar } from './calendar.js?v=a27rio2';
+import { initWhatIf } from './whatif.js?v=a27rio2';
 
 const qs = new URLSearchParams(location.search);
 const DEMO = qs.get('demo') === '1';
@@ -32,10 +32,11 @@ export const ctx = {
 
 const $ = id => document.getElementById(id);
 const views = {};
-const TABS = ['map', 'board', 'charts', 'trades', 'feed', 'rules', 'run1', 'calendar', 'whatif', 'all'];
+const TABS = ['map', 'board', 'charts', 'trades', 'feed', 'rules', 'rio2', 'calendar', 'whatif', 'all'];
 let tab = null;
 
 function showTab(t) {
+  if (t === 'run1') t = 'rio2';
   if (!TABS.includes(t)) t = 'map';
   tab = t;
   document.body.classList.toggle('all', t === 'all');
@@ -67,7 +68,8 @@ function renderHeader() {
   const tsub = t => t ? `<span class="${cls(t.pnl_usd)}">${usdSigned(t.pnl_usd)} ${pct(t.pnl_pct)}</span>` : '';
   const xl = fileUrl('journal.xlsx');
   $('kpis').innerHTML = [
-    kpi('Equity · ' + (DEMO ? 'DEMO' : ('run ' + (s.run_number ?? m.run_number ?? '?'))), usd(s.equity_usd), 'start ' + usd(start, 0), cls((s.equity_usd ?? start) - start), true),
+    kpi('Equity · ' + (DEMO ? 'DEMO' : (s.book_label || m.book_label || s.display_run_name || 'Rio 1')), usd(s.equity_usd), 'start ' + usd(start, 0), cls((s.equity_usd ?? start) - start), true),
+    kpi('Rio 2 · no 25s wait', usd((d.rio2 || s.rio2_summary || {}).equity_usd), (() => { const r = d.rio2 || s.rio2_summary || {}; return `${r.closed_trades ?? 0} closed · ${r.open_trades ?? 0} open` + (isNum(r.win_rate_pct) ? ` · ${r.win_rate_pct.toFixed(1)}%` : ''); })(), cls(((d.rio2 || s.rio2_summary || {}).equity_usd ?? 10000) - 10000), true),
     kpi('Total P&L', usdSigned(s.total_pnl_usd), pct(s.total_return_pct, 2), cls(s.total_pnl_usd), true),
     kpi('Cash', usd(s.cash_usd), 'open value ' + usd(s.open_positions_value_usd)),
     kpi('Realized · unreal.', usdSigned(s.realized_pnl_usd), 'unrealized ' + usdSigned(s.unrealized_pnl_usd), cls(s.realized_pnl_usd)),
@@ -190,7 +192,7 @@ views.charts = initCharts($('v-charts'), ctx);
 views.trades = initTrades($('v-trades'), ctx);
 views.feed = initFeed($('v-feed'), ctx);
 views.rules = initRules($('v-rules'), ctx);
-views.run1 = initRun1($('v-run1'), ctx);
+views.rio2 = initRio2($('v-rio2'), ctx);
 views.calendar = initCalendar($('v-calendar'), ctx);
 views.whatif = initWhatIf($('v-whatif'), ctx);
 showTab(location.hash.slice(1) || 'map');

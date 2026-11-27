@@ -1,8 +1,8 @@
-// TRADES (+ exit-type breakdown), FEED, RULES and RUN 1 views.
-import { price, priceFull, usd, usdSigned, pct, cls, esc, ts, tm, dt, dur, isNum, num, big, md } from './fmt.js?v=d681b70b';
-import { makeTable, toCSV, download } from './table.js?v=d681b70b';
-import { f7tag } from './board.js?v=d681b70b';
-import { loadExtra } from './data.js?v=d681b70b';
+// TRADES (+ exit-type breakdown), FEED, RULES and RIO 2 (no 25s wait) views.
+import { price, priceFull, usd, usdSigned, pct, cls, esc, ts, tm, dt, dur, isNum, num, big, md } from './fmt.js?v=a27rio2';
+import { makeTable, toCSV, download } from './table.js?v=a27rio2';
+import { f7tag } from './board.js?v=a27rio2';
+import { loadExtra } from './data.js?v=a27rio2';
 
 const EXIT_ORDER = ['TP', 'BREAKEVEN', 'F6_TIME', 'STOP', 'LIQUIDITY', 'TRAIL', 'DISCRETIONARY', 'RESET', 'OTHER'];
 const EXIT_COL = { TP: '#22c55e', BREAKEVEN: '#f4f6fb', F6_TIME: '#9aa3b5', STOP: '#ef4444', LIQUIDITY: '#a5b4fc', TRAIL: '#8b5cf6', DISCRETIONARY: '#6b7590', RESET: '#444c5e', OTHER: '#333' };
@@ -121,10 +121,10 @@ function wireTradeTable(root, prefix, tableEl, getRows, ctx, fileName) {
 
 // ---------------- TRADES ----------------
 export function initTrades(el, ctx) {
-  el.innerHTML = `<div class="hdr">CLOSED TRADES · <span id="t-run-lab">RUN 2</span><span class="sp"></span><span class="dim">click a row to expand</span></div>
+  el.innerHTML = `<div class="hdr">CLOSED TRADES · <span id="t-run-lab">RIO 1</span><span class="sp"></span><span class="dim">click a row to expand · PAPER / SIMULATED</span></div>
     ${tradeFilters('t')}<div id="t-table"></div>
     <div class="hdr blue">EXIT-TYPE BREAKDOWN · EXIT TRIAL <span id="t-trial" style="font-weight:400"></span></div>
-    <div class="bd"><div><div id="t-bd2"></div><div class="hdr sub">RUN 1 COMPARISON (older rules: trail, +25% TP, $5 sizes)</div><div id="t-bd1"><div class="empty">loading run 1…</div></div></div>
+    <div class="bd"><div><div id="t-bd2"></div><div class="hdr sub">RIO 2 COMPARISON (same rules, no 25s F8 wait)</div><div id="t-bd1"><div class="empty">waiting for Rio 2 trades…</div></div></div>
     <div><div class="donut" id="t-donut"></div><div class="pad dim" id="t-gap"></div></div></div>
     <div class="hdr">NEAR MISSES · failed exactly one check · never traded · hypothetical outcomes <span class="sp"></span><span id="nm-sum" style="font-weight:400"></span></div>
     <div id="nm-stats"></div>
@@ -195,21 +195,25 @@ export function initTrades(el, ctx) {
     } catch (e) { $('#sw').innerHTML = `<div class="empty">smart_wallets.json unavailable (${esc(e.message)})</div>`; }
     finally { swBusy = false; }
   }
-  async function run1() {
-    try {
-      const a = await ctx.loadArchive();
-      const b = computeBreakdown(a.trades.trades);
-      $('#t-bd1').innerHTML = bdTable(Object.keys(b).length ? b : a.summary.exit_type_breakdown, 'RUN 1');
-    } catch (e) { $('#t-bd1').innerHTML = `<div class="empty">run 1 archive unavailable (${esc(e.message)})</div>`; }
+  function rio2cmp(d) {
+    const r = (d && d.rio2) || {};
+    const trades = r.trades || [];
+    const b = (r.exit_type_breakdown && Object.keys(r.exit_type_breakdown).length) ? r.exit_type_breakdown : computeBreakdown(trades);
+    if (!trades.length && !Object.keys(b).length) {
+      $('#t-bd1').innerHTML = `<div class="empty">Rio 2 has no closed trades yet · equity ${usd(r.equity_usd ?? 10000, 2)} · 0s F8 wait</div>`;
+      return;
+    }
+    $('#t-bd1').innerHTML = bdTable(b, 'RIO 2');
   }
-  let r1 = false, vis = false;
+  let vis = false;
   return {
     update(d) {
       render();
-      $('#t-run-lab').textContent = ctx.demo ? 'DEMO' : ('RUN ' + (ctx.run ?? 2));
+      $('#t-run-lab').textContent = ctx.demo ? 'DEMO' : ((d.meta && (d.meta.book_label || d.meta.display_run_name)) || 'RIO 1');
       const s = d.status || {};
       let b = s.exit_type_breakdown && Object.keys(s.exit_type_breakdown).length ? s.exit_type_breakdown : computeBreakdown(rows());
-      $('#t-bd2').innerHTML = bdTable(b, ctx.demo ? 'DEMO' : ('RUN ' + (ctx.run ?? 2)));
+      $('#t-bd2').innerHTML = bdTable(b, ctx.demo ? 'DEMO' : ((d.meta && (d.meta.book_label || d.meta.display_run_name)) || 'RIO 1'));
+      rio2cmp(d);
       $('#t-trial').textContent = s.exit_trial ? `${s.exit_trial.id || ''} · ${s.exit_trial.note || ''}` : '';
       renderNM(); if (vis) renderSW();
       $('#t-gap').innerHTML = `avg stop gap (STOP/BREAKEVEN prints below trigger): <b class="${cls(s.avg_stop_gap_pct)}">${pct(s.avg_stop_gap_pct)}</b>`;
@@ -217,7 +221,7 @@ export function initTrades(el, ctx) {
     },
     visible(v) {
       vis = v;
-      if (v) { renderSW(); if (!r1) { r1 = true; run1(); } requestAnimationFrame(() => { dn = donut($('#t-donut'), this._b || computeBreakdown(rows()), dn); dn && dn.resize(); }); }
+      if (v) { renderSW(); rio2cmp(ctx.d); requestAnimationFrame(() => { dn = donut($('#t-donut'), this._b || computeBreakdown(rows()), dn); dn && dn.resize(); }); }
     },
   };
 }
@@ -280,48 +284,51 @@ export function initRules(el, ctx) {
   };
 }
 
-// ---------------- RUN 1 ----------------
-export function initRun1(el, ctx) {
-  el.innerHTML = '<div class="empty"><b>Run 1 archive</b>loading…</div>';
-  let loaded = false, chart = null, dn = null;
-  async function load() {
-    loaded = true;
-    let a;
-    try { a = await ctx.loadArchive(); } catch (e) { loaded = false; el.innerHTML = `<div class="empty"><b>Run 1 archive unavailable</b>${esc(e.message)}</div>`; return; }
-    const s = a.summary || {}, trades = (a.trades.trades || []).map(t => ({ ...t, run: 1 }));
+// ---------------- RIO 2 (no 25s wait, live comparison book) ----------------
+export function initRio2(el, ctx) {
+  let chart = null, dn = null, wired = false;
+  const $ = s => el.querySelector(s);
+  function render(d) {
+    const r = (d && d.rio2) || {};
+    const trades = (r.trades || []).map(t => ({ ...t, run: t.run ?? 2, book: 'Rio 2' }));
+    const open = r.positions || [];
     const card = (l, v, c = '') => `<div class="card"><div class="amb" style="font-size:10px">${l}</div><div class="big ${c}">${v}</div></div>`;
-    el.innerHTML = `<div class="hdr sub">RUN 1 · READ-ONLY ARCHIVE · ${dt(s.start)} → ${dt(s.end)} ET</div>
+    const start = r.starting_capital_usd ?? 10000;
+    el.innerHTML = `<div class="hdr sub">RIO 2 · NO 25s WAIT · PAPER TRADING / SIMULATED · same F1–F7, sizing, and exits as Rio 1</div>
+      <div class="pad dim">${esc(r.difference || 'Enters immediately at the scout price +1% slippage (F8 25s recheck skipped).')} · started ${dt(r.run_start)} ET</div>
       <div class="cards">
-        ${card('Final equity (active)', usd(s.final_equity_usd), cls((s.final_equity_usd || 0) - (s.starting_active_bankroll_usd || 100)))}
-        ${card('Realized P&L', usdSigned(s.realized_pnl_usd, 2), cls(s.realized_pnl_usd))}
-        ${card('Closed trades', s.closed_trades ?? trades.length)}
-        ${card('Win rate', `${isNum(s.win_rate_pct) ? s.win_rate_pct.toFixed(1) + '%' : '—'} <span class="dim" style="font-size:12px">${s.wins ?? '?'}W/${s.losses ?? '?'}L</span>`)}
-        ${card('Bankroll', `${usd(s.starting_active_bankroll_usd, 0)} <span class="dim" style="font-size:12px">+ ${usd(s.reserve_usd, 0)} reserve</span>`)}
-        ${card('winner_pattern', s.winner_pattern ? `${s.winner_pattern.trades} tr · ${s.winner_pattern.wins}W · <span class="${cls(s.winner_pattern.pnl_usd)}">${usdSigned(s.winner_pattern.pnl_usd, 2)}</span>` : '—')}
-        ${card('Best', s.best_trade ? `#${s.best_trade.id} ${esc(s.best_trade.symbol)} <span class="up">${pct(s.best_trade.pnl_pct)}</span>` : '—')}
-        ${card('Worst', s.worst_trade ? `#${s.worst_trade.id} ${esc(s.worst_trade.symbol)} <span class="dn">${pct(s.worst_trade.pnl_pct)}</span>` : '—')}
+        ${card('Equity', usd(r.equity_usd ?? start), cls((r.equity_usd ?? start) - start))}
+        ${card('P&L', usdSigned(r.total_pnl_usd), cls(r.total_pnl_usd))}
+        ${card('Cash', usd(r.cash_usd ?? start))}
+        ${card('Closed · open', `${r.closed_trades ?? trades.length} · <span class="yel">${r.open_trades ?? open.length}</span>`)}
+        ${card('Win rate', `${isNum(r.win_rate_pct) ? r.win_rate_pct.toFixed(1) + '%' : '—'} <span class="dim" style="font-size:12px">${r.wins ?? 0}W/${r.losses ?? 0}L</span>`)}
+        ${card('Best', r.best_trade ? `#${r.best_trade.id} ${esc(r.best_trade.symbol)} <span class="up">${pct(r.best_trade.pnl_pct)}</span>` : '—')}
+        ${card('Worst', r.worst_trade ? `#${r.worst_trade.id} ${esc(r.worst_trade.symbol)} <span class="dn">${pct(r.worst_trade.pnl_pct)}</span>` : '—')}
+        ${card('Watcher', r.watcher_last_update ? dt(r.watcher_last_update) : 'starting…')}
       </div>
-      ${s.note ? `<div class="pad dim">${esc(s.note)}</div>` : ''}
-      <div class="chartgrid"><div class="cpanel"><div class="ttl">REALIZED EQUITY (active bankroll)</div><div class="ch-eq" id="r1-eq"></div></div>
-      <div class="cpanel"><div class="ttl">EXIT TYPES</div><div class="donut" id="r1-dn"></div></div></div>
-      <div id="r1-bd"></div>
-      <div class="hdr">RUN 1 TRADES · ${trades.length}</div>${tradeFilters('r1')}<div id="r1-table"></div>
-      <div class="hdr">RUN 1 README</div><div class="mdx">${md(s.readme_markdown)}</div>`;
-    const b = computeBreakdown(trades);
-    el.querySelector('#r1-bd').innerHTML = bdTable(Object.keys(b).length ? b : s.exit_type_breakdown, 'RUN 1');
-    wireTradeTable(el, 'r1', el.querySelector('#r1-table'), () => trades, ctx, () => 'rio-run1-trades.csv')();
-    const steps = (s.realized_steps || []).map(p => [ts(p.t), p.equity_realized, p]);
-    chart = echarts.init(el.querySelector('#r1-eq'));
-    chart.setOption({ animation: false, backgroundColor: 'transparent', grid: { left: 8, right: 60, top: 14, bottom: 24 },
-      xAxis: { type: 'time', axisLabel: { color: '#7d8799', fontSize: 10, formatter: v => new Date(v).toLocaleDateString('en-US', { timeZone: 'America/New_York', month: 'short', day: '2-digit' }) }, axisLine: { lineStyle: { color: '#1e2430' } } },
-      yAxis: { type: 'value', scale: true, position: 'right', axisLabel: { color: '#7d8799', fontSize: 10, formatter: v => '$' + v }, splitLine: { lineStyle: { color: '#11151d' } } },
-      tooltip: { trigger: 'axis', backgroundColor: 'rgba(6,8,13,.94)', borderColor: '#94a3b8', textStyle: { color: '#ddd', fontSize: 11 }, formatter: ps => { const p = steps[ps[0].dataIndex]; return p ? `${dt(p[0])} ET<br>${usd(p[1], 3)}${p[2].trade_id !== null && p[2].trade_id !== undefined ? `<br>#${p[2].trade_id} ${usdSigned(p[2].pnl_usd, 3)}` : ''}` : ''; } },
-      series: [{ type: 'line', step: 'end', data: steps.map(p => [p[0], p[1]]), showSymbol: false, lineStyle: { color: '#f4f6fb', width: 1.2 },
-        markLine: { silent: true, symbol: 'none', data: [{ yAxis: s.starting_active_bankroll_usd || 100, lineStyle: { color: '#94a3b8', type: 'dashed' }, label: { color: '#94a3b8', fontSize: 10 } }] } }] });
-    dn = donut(el.querySelector('#r1-dn'), Object.keys(b).length ? b : s.exit_type_breakdown, null);
+      <div class="hdr">OPEN POSITIONS · ${open.length}</div>
+      <div id="r2-open">${open.length ? '' : '<div class="empty">No open Rio 2 positions.</div>'}</div>
+      <div class="chartgrid"><div class="cpanel"><div class="ttl">EXIT TYPES</div><div class="donut" id="r2-dn"></div></div></div>
+      <div id="r2-bd"></div>
+      <div class="hdr">RIO 2 CLOSED TRADES · ${trades.length}</div>${tradeFilters('r2')}<div id="r2-table"></div>
+      <div class="hdr">RIO 2 FEED</div>
+      <div class="feed" id="r2-feed"></div>`;
+    if (open.length) {
+      $('#r2-open').innerHTML = `<div class="tw"><table class="t"><thead><tr><th>#</th><th>SYMBOL</th><th class="r">IN</th><th class="r">U P&L</th><th>ENTRY ET</th></tr></thead><tbody>${open.map(p => `<tr><td>${p.id}</td><td><b>${esc(p.symbol)}</b></td><td class="r">${usd(p.usd_in)}</td><td class="r ${cls(p.unrealized_pnl_usd)}">${usdSigned(p.unrealized_pnl_usd)} ${pct(p.unrealized_pnl_pct)}</td><td>${dt(p.entry_time)}</td></tr>`).join('')}</tbody></table></div>`;
+    }
+    const b = (r.exit_type_breakdown && Object.keys(r.exit_type_breakdown).length) ? r.exit_type_breakdown : computeBreakdown(trades);
+    $('#r2-bd').innerHTML = Object.keys(b).length ? bdTable(b, 'RIO 2') : '<div class="empty">No closed trades yet — Rio 2 will enter the next time Rio 1 finds a qualifying coin, without waiting 25s.</div>';
+    wireTradeTable(el, 'r2', $('#r2-table'), () => trades, ctx, () => 'rio2-trades.csv')();
+    const feed = r.feed || [];
+    $('#r2-feed').innerHTML = feed.length ? feed.slice().reverse().slice(0, 80).map(l => `<div class="fl ${esc(l.type || 'RAW')}"><span class="ft">${tm(l.t)}</span> <b>${esc(l.type || '')}</b> ${esc(l.text || '')}</div>`).join('') : '<div class="empty">No Rio 2 log lines yet.</div>';
+    if (Object.keys(b).length) {
+      dn = donut($('#r2-dn'), b, dn);
+    } else {
+      $('#r2-dn').innerHTML = '<div class="empty dim">n/a</div>';
+    }
   }
   return {
-    update() {},
-    visible(v) { if (v && !loaded) load(); if (v) requestAnimationFrame(() => { chart && chart.resize(); dn && dn.resize(); }); },
+    update(d) { render(d); },
+    visible(v) { if (v) requestAnimationFrame(() => { chart && chart.resize(); dn && dn.resize(); }); },
   };
 }

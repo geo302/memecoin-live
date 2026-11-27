@@ -129,7 +129,7 @@ export function initBoard(el, ctx) {
       openT.update(pos);
       if (!pos.length) {
         const s = d.status || {}, sc = d.scout || {};
-        $('#b-open').innerHTML = `<div class="empty"><b>No open positions${(d.trades && d.trades.trades || []).length ? '' : ` · no trades yet in run ${d.meta && d.meta.run_number || 2} - scanner is running`}</b>
+        $('#b-open').innerHTML = `<div class="empty"><b>No open positions${(d.trades && d.trades.trades || []).length ? '' : ` · no trades yet in ${ (d.meta && (d.meta.book_label || d.meta.display_run_name)) || 'Rio 1' } — scanner is running`}</b>
           latest scan ${tm(sc.scan_time)} ET · ${sc.count ?? (sc.rows || []).length} coins · ${sc.buys ?? 0} buys · ${s.scanner_rounds_last_10min ?? '—'} scans in last 10 min</div>`;
       }
       $('#b-open-n').textContent = pos.length || '';
