@@ -5,8 +5,8 @@
 // Reads only; never writes to Rio's ledger, vault, or counts.
 // Price data is the real series; interpolation, camera, glow and particles are presentation only.
 
-import { seedFrom, preloadArtLayer, drawAnimeBackdrop } from './backdrop.js?v=d681b70b';
-import { preloadPfp, drawPfp } from './pfp.js?v=d681b70b';
+import { seedFrom, preloadArtLayer, drawAnimeBackdrop } from './backdrop.js?v=b27rio2';
+import { preloadPfp, drawPfp } from './pfp.js?v=b27rio2';
 preloadPfp();
 
 const HANDLE = '@whatscoinbase';

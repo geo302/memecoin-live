@@ -13,6 +13,6 @@ Rio 1 is the live $10,000 paper book (started 2026-11-22 23:23 ET as run 2). Rio
 
 Live at https://geo302.github.io/memecoin-live/ (GitHub Pages, `main` / root). Plain static files: `index.html` + `assets/` (vanilla JS modules, ECharts 5.5.1 vendored in `assets/vendor/`). No build step, no trackers, no secrets.
 
-- Tabs: MAP · BOARD · CHARTS · TRADES · FEED · RULES · RIO 2 · CALENDAR · WHAT-IF · ALL. Keys `1`-`9` / `0` switch tabs, `Esc` closes the detail panel.
+- Use the **RIO 1 / RIO 2** switch in the top bar (or click the equity KPI cards) to flip the whole dashboard between the two paper books. Tabs: MAP · BOARD · CHARTS · TRADES · FEED · RULES · COMPARE · CALENDAR · WHAT-IF · ALL. Keys `1`-`9` / `0` switch tabs, `Esc` closes the detail panel.
 - Data source chain (see `assets/data.js`): `meta.live_url` → latest `live-data` commit by SHA (API polled every 75 s with ETag) → `live-data` branch raw. The active source and SHA are shown under the header.
 - `?demo=1` replays run-1 coins as synthetic run-2 data so every panel can be checked while run 2 has no trades. It is labeled DEMO in the UI.

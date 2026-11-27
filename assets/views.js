@@ -1,8 +1,8 @@
 // TRADES (+ exit-type breakdown), FEED, RULES and RIO 2 (no 25s wait) views.
-import { price, priceFull, usd, usdSigned, pct, cls, esc, ts, tm, dt, dur, isNum, num, big, md } from './fmt.js?v=a27rio2';
-import { makeTable, toCSV, download } from './table.js?v=a27rio2';
-import { f7tag } from './board.js?v=a27rio2';
-import { loadExtra } from './data.js?v=a27rio2';
+import { price, priceFull, usd, usdSigned, pct, cls, esc, ts, tm, dt, dur, isNum, num, big, md } from './fmt.js?v=b27rio2';
+import { makeTable, toCSV, download } from './table.js?v=b27rio2';
+import { f7tag } from './board.js?v=b27rio2';
+import { loadExtra } from './data.js?v=b27rio2';
 
 const EXIT_ORDER = ['TP', 'BREAKEVEN', 'F6_TIME', 'STOP', 'LIQUIDITY', 'TRAIL', 'DISCRETIONARY', 'RESET', 'OTHER'];
 const EXIT_COL = { TP: '#22c55e', BREAKEVEN: '#f4f6fb', F6_TIME: '#9aa3b5', STOP: '#ef4444', LIQUIDITY: '#a5b4fc', TRAIL: '#8b5cf6', DISCRETIONARY: '#6b7590', RESET: '#444c5e', OTHER: '#333' };
@@ -124,7 +124,7 @@ export function initTrades(el, ctx) {
   el.innerHTML = `<div class="hdr">CLOSED TRADES · <span id="t-run-lab">RIO 1</span><span class="sp"></span><span class="dim">click a row to expand · PAPER / SIMULATED</span></div>
     ${tradeFilters('t')}<div id="t-table"></div>
     <div class="hdr blue">EXIT-TYPE BREAKDOWN · EXIT TRIAL <span id="t-trial" style="font-weight:400"></span></div>
-    <div class="bd"><div><div id="t-bd2"></div><div class="hdr sub">RIO 2 COMPARISON (same rules, no 25s F8 wait)</div><div id="t-bd1"><div class="empty">waiting for Rio 2 trades…</div></div></div>
+    <div class="bd"><div><div id="t-bd2"></div><div class="hdr sub" id="t-cmp-lab">OTHER BOOK</div><div id="t-bd1"><div class="empty">waiting for the other book…</div></div></div>
     <div><div class="donut" id="t-donut"></div><div class="pad dim" id="t-gap"></div></div></div>
     <div class="hdr">NEAR MISSES · failed exactly one check · never traded · hypothetical outcomes <span class="sp"></span><span id="nm-sum" style="font-weight:400"></span></div>
     <div id="nm-stats"></div>
@@ -135,7 +135,7 @@ export function initTrades(el, ctx) {
   const $ = s => el.querySelector(s);
   let dn = null;
   const rows = () => ((ctx.d && ctx.d.trades && ctx.d.trades.trades) || []).map(t => ({ ...t, run: t.run ?? 2 }));
-  const render = wireTradeTable(el, 't', $('#t-table'), rows, ctx, () => `rio-run${ctx.run ?? 2}-trades.csv`);
+  const render = wireTradeTable(el, 't', $('#t-table'), rows, ctx, () => `${ctx.book === 'rio2' ? 'rio2' : 'rio1'}-trades.csv`);
   let nmFilter = '';
   const nmStatsT = makeTable($('#nm-stats'), { key: r => r.check, sort: 'count', desc: true, empty: 'No near misses recorded yet.', columns: [
     { k: 'check', label: 'CHECK', f: r => `<b>${esc(r.check)}</b> <span class="dim">${esc(r.name || '')}</span>` },
@@ -195,15 +195,24 @@ export function initTrades(el, ctx) {
     } catch (e) { $('#sw').innerHTML = `<div class="empty">smart_wallets.json unavailable (${esc(e.message)})</div>`; }
     finally { swBusy = false; }
   }
-  function rio2cmp(d) {
-    const r = (d && d.rio2) || {};
+  function otherCmp(d) {
+    const raw = ctx.raw || d || {};
+    const otherIs2 = ctx.book !== 'rio2';
+    const r = otherIs2 ? (raw.rio2 || {}) : {
+      trades: (raw.trades && raw.trades.trades) || [],
+      equity_usd: raw.status && raw.status.equity_usd,
+      exit_type_breakdown: raw.status && raw.status.exit_type_breakdown,
+    };
+    const label = otherIs2 ? 'RIO 2' : 'RIO 1';
+    const lab = $('#t-cmp-lab');
+    if (lab) lab.textContent = `${label} COMPARISON` + (otherIs2 ? ' (same rules, no 25s F8 wait)' : ' (25s F8 recheck)');
     const trades = r.trades || [];
     const b = (r.exit_type_breakdown && Object.keys(r.exit_type_breakdown).length) ? r.exit_type_breakdown : computeBreakdown(trades);
     if (!trades.length && !Object.keys(b).length) {
-      $('#t-bd1').innerHTML = `<div class="empty">Rio 2 has no closed trades yet · equity ${usd(r.equity_usd ?? 10000, 2)} · 0s F8 wait</div>`;
+      $('#t-bd1').innerHTML = `<div class="empty">${label} has no closed trades yet · equity ${usd(r.equity_usd ?? 10000, 2)}</div>`;
       return;
     }
-    $('#t-bd1').innerHTML = bdTable(b, 'RIO 2');
+    $('#t-bd1').innerHTML = bdTable(b, label);
   }
   let vis = false;
   return {
@@ -213,7 +222,7 @@ export function initTrades(el, ctx) {
       const s = d.status || {};
       let b = s.exit_type_breakdown && Object.keys(s.exit_type_breakdown).length ? s.exit_type_breakdown : computeBreakdown(rows());
       $('#t-bd2').innerHTML = bdTable(b, ctx.demo ? 'DEMO' : ((d.meta && (d.meta.book_label || d.meta.display_run_name)) || 'RIO 1'));
-      rio2cmp(d);
+      otherCmp(d);
       $('#t-trial').textContent = s.exit_trial ? `${s.exit_trial.id || ''} · ${s.exit_trial.note || ''}` : '';
       renderNM(); if (vis) renderSW();
       $('#t-gap').innerHTML = `avg stop gap (STOP/BREAKEVEN prints below trigger): <b class="${cls(s.avg_stop_gap_pct)}">${pct(s.avg_stop_gap_pct)}</b>`;
@@ -221,7 +230,7 @@ export function initTrades(el, ctx) {
     },
     visible(v) {
       vis = v;
-      if (v) { renderSW(); rio2cmp(ctx.d); requestAnimationFrame(() => { dn = donut($('#t-donut'), this._b || computeBreakdown(rows()), dn); dn && dn.resize(); }); }
+      if (v) { renderSW(); otherCmp(ctx.d); requestAnimationFrame(() => { dn = donut($('#t-donut'), this._b || computeBreakdown(rows()), dn); dn && dn.resize(); }); }
     },
   };
 }
@@ -284,51 +293,71 @@ export function initRules(el, ctx) {
   };
 }
 
-// ---------------- RIO 2 (no 25s wait, live comparison book) ----------------
+// ---------------- COMPARE (Rio 1 vs Rio 2 head-to-head) ----------------
 export function initRio2(el, ctx) {
-  let chart = null, dn = null, wired = false;
+  let dn1 = null, dn2 = null;
   const $ = s => el.querySelector(s);
+  const card = (l, v, c = '') => `<div class="card"><div class="amb" style="font-size:10px">${l}</div><div class="big ${c}">${v}</div></div>`;
   function render(d) {
-    const r = (d && d.rio2) || {};
-    const trades = (r.trades || []).map(t => ({ ...t, run: t.run ?? 2, book: 'Rio 2' }));
-    const open = r.positions || [];
-    const card = (l, v, c = '') => `<div class="card"><div class="amb" style="font-size:10px">${l}</div><div class="big ${c}">${v}</div></div>`;
-    const start = r.starting_capital_usd ?? 10000;
-    el.innerHTML = `<div class="hdr sub">RIO 2 · NO 25s WAIT · PAPER TRADING / SIMULATED · same F1–F7, sizing, and exits as Rio 1</div>
-      <div class="pad dim">${esc(r.difference || 'Enters immediately at the scout price +1% slippage (F8 25s recheck skipped).')} · started ${dt(r.run_start)} ET</div>
+    const raw = ctx.raw || d || {};
+    const s1 = raw.status || {};
+    const r2 = raw.rio2 || {};
+    const a = {
+      label: 'RIO 1', start: s1.starting_capital_usd ?? 10000,
+      equity: s1.equity_usd, pnl: s1.total_pnl_usd, cash: s1.cash_usd,
+      closed: s1.closed_trades ?? 0, open: s1.open_trades ?? 0,
+      wins: s1.wins ?? 0, losses: s1.losses ?? 0, wr: s1.win_rate_pct,
+      best: s1.best_trade, worst: s1.worst_trade,
+      brk: s1.exit_type_breakdown || {},
+      trades: (raw.trades && raw.trades.trades) || [],
+      positions: (raw.positions && raw.positions.positions) || [],
+      note: '25s F8 recheck + 10% spike cap',
+    };
+    const b = {
+      label: 'RIO 2', start: r2.starting_capital_usd ?? 10000,
+      equity: r2.equity_usd, pnl: r2.total_pnl_usd, cash: r2.cash_usd,
+      closed: r2.closed_trades ?? 0, open: r2.open_trades ?? 0,
+      wins: r2.wins ?? 0, losses: r2.losses ?? 0, wr: r2.win_rate_pct,
+      best: r2.best_trade, worst: r2.worst_trade,
+      brk: r2.exit_type_breakdown || {},
+      trades: r2.trades || [],
+      positions: r2.positions || [],
+      note: '0s F8 wait · instant entry at scout +1%',
+    };
+    const block = (x) => `<div>
+      <div class="hdr sub">${x.label} · ${esc(x.note)}</div>
       <div class="cards">
-        ${card('Equity', usd(r.equity_usd ?? start), cls((r.equity_usd ?? start) - start))}
-        ${card('P&L', usdSigned(r.total_pnl_usd), cls(r.total_pnl_usd))}
-        ${card('Cash', usd(r.cash_usd ?? start))}
-        ${card('Closed · open', `${r.closed_trades ?? trades.length} · <span class="yel">${r.open_trades ?? open.length}</span>`)}
-        ${card('Win rate', `${isNum(r.win_rate_pct) ? r.win_rate_pct.toFixed(1) + '%' : '—'} <span class="dim" style="font-size:12px">${r.wins ?? 0}W/${r.losses ?? 0}L</span>`)}
-        ${card('Best', r.best_trade ? `#${r.best_trade.id} ${esc(r.best_trade.symbol)} <span class="up">${pct(r.best_trade.pnl_pct)}</span>` : '—')}
-        ${card('Worst', r.worst_trade ? `#${r.worst_trade.id} ${esc(r.worst_trade.symbol)} <span class="dn">${pct(r.worst_trade.pnl_pct)}</span>` : '—')}
-        ${card('Watcher', r.watcher_last_update ? dt(r.watcher_last_update) : 'starting…')}
+        ${card('Equity', usd(x.equity ?? x.start), cls((x.equity ?? x.start) - x.start))}
+        ${card('P&L', usdSigned(x.pnl), cls(x.pnl))}
+        ${card('Cash', usd(x.cash ?? x.start))}
+        ${card('Closed · open', `${x.closed} · <span class="yel">${x.open}</span>`)}
+        ${card('Win rate', `${isNum(x.wr) ? x.wr.toFixed(1) + '%' : '—'} <span class="dim" style="font-size:12px">${x.wins}W/${x.losses}L</span>`)}
+        ${card('Best', x.best ? `#${x.best.id} ${esc(x.best.symbol)} <span class="up">${pct(x.best.pnl_pct)}</span>` : '—')}
+        ${card('Worst', x.worst ? `#${x.worst.id} ${esc(x.worst.symbol)} <span class="dn">${pct(x.worst.pnl_pct)}</span>` : '—')}
       </div>
-      <div class="hdr">OPEN POSITIONS · ${open.length}</div>
-      <div id="r2-open">${open.length ? '' : '<div class="empty">No open Rio 2 positions.</div>'}</div>
-      <div class="chartgrid"><div class="cpanel"><div class="ttl">EXIT TYPES</div><div class="donut" id="r2-dn"></div></div></div>
-      <div id="r2-bd"></div>
-      <div class="hdr">RIO 2 CLOSED TRADES · ${trades.length}</div>${tradeFilters('r2')}<div id="r2-table"></div>
-      <div class="hdr">RIO 2 FEED</div>
-      <div class="feed" id="r2-feed"></div>`;
-    if (open.length) {
-      $('#r2-open').innerHTML = `<div class="tw"><table class="t"><thead><tr><th>#</th><th>SYMBOL</th><th class="r">IN</th><th class="r">U P&L</th><th>ENTRY ET</th></tr></thead><tbody>${open.map(p => `<tr><td>${p.id}</td><td><b>${esc(p.symbol)}</b></td><td class="r">${usd(p.usd_in)}</td><td class="r ${cls(p.unrealized_pnl_usd)}">${usdSigned(p.unrealized_pnl_usd)} ${pct(p.unrealized_pnl_pct)}</td><td>${dt(p.entry_time)}</td></tr>`).join('')}</tbody></table></div>`;
-    }
-    const b = (r.exit_type_breakdown && Object.keys(r.exit_type_breakdown).length) ? r.exit_type_breakdown : computeBreakdown(trades);
-    $('#r2-bd').innerHTML = Object.keys(b).length ? bdTable(b, 'RIO 2') : '<div class="empty">No closed trades yet — Rio 2 will enter the next time Rio 1 finds a qualifying coin, without waiting 25s.</div>';
-    wireTradeTable(el, 'r2', $('#r2-table'), () => trades, ctx, () => 'rio2-trades.csv')();
-    const feed = r.feed || [];
-    $('#r2-feed').innerHTML = feed.length ? feed.slice().reverse().slice(0, 80).map(l => `<div class="fl ${esc(l.type || 'RAW')}"><span class="ft">${tm(l.t)}</span> <b>${esc(l.type || '')}</b> ${esc(l.text || '')}</div>`).join('') : '<div class="empty">No Rio 2 log lines yet.</div>';
-    if (Object.keys(b).length) {
-      dn = donut($('#r2-dn'), b, dn);
-    } else {
-      $('#r2-dn').innerHTML = '<div class="empty dim">n/a</div>';
-    }
+    </div>`;
+    el.innerHTML = `<div class="hdr">RIO 1 vs RIO 2 · PAPER TRADING / SIMULATED<span class="sp"></span><span class="dim">use the RIO 1 / RIO 2 switch in the top bar to flip Map, Charts, Trades, Feed, Rules, and Calendar</span></div>
+      <div class="pad dim">Same F1–F7, sizing, and exits. Only difference: Rio 2 skips the 25-second F8 wait and enters at the scout price +1%.</div>
+      <div class="bd">${block(a)}${block(b)}</div>
+      <div class="chartgrid">
+        <div class="cpanel"><div class="ttl">RIO 1 EXIT TYPES</div><div class="donut" id="vs-dn1"></div><div id="vs-bd1"></div></div>
+        <div class="cpanel"><div class="ttl">RIO 2 EXIT TYPES</div><div class="donut" id="vs-dn2"></div><div id="vs-bd2"></div></div>
+      </div>
+      <div class="hdr">RIO 1 CLOSED TRADES · ${a.trades.length}</div>${tradeFilters('vs1')}<div id="vs1-table"></div>
+      <div class="hdr">RIO 2 CLOSED TRADES · ${b.trades.length}</div>${tradeFilters('vs2')}<div id="vs2-table"></div>`;
+    const brk1 = Object.keys(a.brk).length ? a.brk : computeBreakdown(a.trades);
+    const brk2 = Object.keys(b.brk).length ? b.brk : computeBreakdown(b.trades);
+    $('#vs-bd1').innerHTML = Object.keys(brk1).length ? bdTable(brk1, 'RIO 1') : '<div class="empty">No closed Rio 1 trades in this breakdown yet.</div>';
+    $('#vs-bd2').innerHTML = Object.keys(brk2).length ? bdTable(brk2, 'RIO 2') : '<div class="empty">No closed Rio 2 trades yet — it will enter the next time a coin passes F1–F7, without waiting 25s.</div>';
+    if (Object.keys(brk1).length) dn1 = donut($('#vs-dn1'), brk1, dn1); else $('#vs-dn1').innerHTML = '<div class="empty dim">n/a</div>';
+    if (Object.keys(brk2).length) dn2 = donut($('#vs-dn2'), brk2, dn2); else $('#vs-dn2').innerHTML = '<div class="empty dim">n/a</div>';
+    const t1 = a.trades.map(t => ({ ...t, book: 'rio1' }));
+    const t2 = b.trades.map(t => ({ ...t, book: 'rio2' }));
+    wireTradeTable(el, 'vs1', $('#vs1-table'), () => t1, ctx, () => 'rio1-trades.csv')();
+    wireTradeTable(el, 'vs2', $('#vs2-table'), () => t2, ctx, () => 'rio2-trades.csv')();
   }
   return {
     update(d) { render(d); },
-    visible(v) { if (v) requestAnimationFrame(() => { chart && chart.resize(); dn && dn.resize(); }); },
+    visible(v) { if (v) requestAnimationFrame(() => { dn1 && dn1.resize(); dn2 && dn2.resize(); }); },
   };
 }

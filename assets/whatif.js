@@ -3,8 +3,8 @@
 // labelled WHAT-IF BACKTEST · HYPOTHETICAL · NOT AN ACTUAL TRADE replay.
 // Read-only. On CORS / rate-limit errors, falls back to built-in sample series.
 
-import { openReplay, modelFromWhatIf } from './replay.js?v=d681b70b';
-import { usd, usdSigned, pct, cls, esc, isNum } from './fmt.js?v=d681b70b';
+import { openReplay, modelFromWhatIf } from './replay.js?v=b27rio2';
+import { usd, usdSigned, pct, cls, esc, isNum } from './fmt.js?v=b27rio2';
 
 const BANNER = 'SEPARATE WHAT-IF LAB · DOES NOT AFFECT RIO\'S LIVE BOOK OR STATS';
 const STAMP = 'WHAT-IF BACKTEST · HYPOTHETICAL · NOT AN ACTUAL TRADE';

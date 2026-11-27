@@ -1,4 +1,4 @@
-// DEMO mode (?demo=1): synthesizes run-2-shaped data from the run-1 archive so every
+// DEMO mode (?demo=1): synthesizes live-book-shaped data from the archived book so every
 // panel can be exercised while the real run 2 has no trades. Clearly labeled in the UI.
 // Nothing here is real trading data.
 
@@ -8,7 +8,7 @@ const iso = t => { // ISO in ET-ish fixed -05:00 offset (display converts to ET 
   return d.toISOString().replace(/\.\d+Z$/, '-05:00');
 };
 
-// n = how many run-1 trades have "arrived" so far (starts at 1 and grows; the newest one is the live open position).
+// n = how many demo trades have "arrived" so far (starts at 1 and grows; the newest one is the live open position).
 export function makeDemo(real, archive, n = 34) {
   const R = rng(42);
   const now = Date.now();

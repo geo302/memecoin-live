@@ -1,6 +1,6 @@
 // BOARD: Bloomberg-terminal price board (open positions, recent exits, scanner, ticker tape).
-import { price, priceFull, usd, usdSigned, pct, big, num, cls, esc, dur, ts, tm, dt, isNum, ago } from './fmt.js?v=d681b70b';
-import { makeTable } from './table.js?v=d681b70b';
+import { price, priceFull, usd, usdSigned, pct, big, num, cls, esc, dur, ts, tm, dt, isNum, ago } from './fmt.js?v=b27rio2';
+import { makeTable } from './table.js?v=b27rio2';
 
 const sqs = checks => ['F1', 'F2', 'F3', 'F4', 'F5', 'F6'].map(f => {
   const c = checks && checks[f];
@@ -66,7 +66,7 @@ export function initBoard(el, ctx) {
 
   const exitT = makeTable($('#b-exits'), {
     sort: 'exit_time', desc: true, onRow: r => ctx.openTrade(r), key: r => r.id,
-    empty: 'No closed trades yet in this run.',
+    empty: 'No closed trades yet in this book.',
     columns: [
       { k: 'symbol', label: 'SYMBOL', f: r => `<span class="dot ${r.pnl_usd > 0 ? 'win' : 'loss'}"></span>${esc(r.symbol)}` },
       { k: 'id', label: '#', r: 1 },

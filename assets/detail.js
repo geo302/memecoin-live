@@ -1,6 +1,6 @@
 // Trade detail side panel (opened from map nodes, tables, board rows).
-import { price, priceFull, usd, usdSigned, pct, cls, dt, dur, esc, isNum, tradeState, dot, ts, num, big } from './fmt.js?v=d681b70b';
-import { openTradeReplay } from './replay.js?v=d681b70b';
+import { price, priceFull, usd, usdSigned, pct, cls, dt, dur, esc, isNum, tradeState, dot, ts, num, big } from './fmt.js?v=b27rio2';
+import { openTradeReplay } from './replay.js?v=b27rio2';
 
 let mini = null;
 const $ = id => document.getElementById(id);
@@ -20,10 +20,10 @@ export function openTrade(t, ctx) {
     const c = t.checks[f];
     if (!c) return `<div class="chk n"><b>${f}</b><span class="dim">n/a</span></div>`;
     return `<div class="chk ${c.pass ? 'p' : 'f'}"><b>${f}</b><span>${c.pass ? 'PASS' : 'FAIL'} · ${esc(c.detail || '')}</span></div>`;
-  }).join('') : '<div class="dim">No gate checks recorded (run 1 predates the six-factor gate).</div>';
+  }).join('') : '<div class="dim">No gate checks recorded for this trade.</div>';
   const pr = ctx.priceFor(t);
   $('panel-body').innerHTML = `<div class="pd">
-    <h2>${dot(st)}${esc(t.symbol || '?')} <span class="dim">#${t.id}${t.run === 1 ? ' · run 1' : ''}</span></h2>
+    <h2>${dot(st)}${esc(t.symbol || '?')} <span class="dim">#${t.id}${t.book === 'rio2' || t.book === 'Rio 2' ? ' · Rio 2' : t.book === 'rio1' || t.book === 'Rio 1' ? ' · Rio 1' : ''}</span></h2>
     <div class="dim">${esc(t.name || '')} · ${esc(t.setup || '')} · ${esc(t.source || '')}</div>
     <div style="margin:6px 0;font-size:16px" class="${cls(pnlU)}">${usdSigned(pnlU)} <span style="font-size:13px">${pct(pnlP)}</span> ${open ? '<span class="yel" style="font-size:11px">OPEN · unrealized</span>' : `<span class="tag ${esc(t.exit_type)}">${esc(t.exit_type || '')}</span>`}</div>
     <div style="margin:8px 0 10px"><button class="btn pri" id="pd-replay">▶ REPLAY</button> <span class="dim">PAPER TRADING · SIMULATED</span></div>

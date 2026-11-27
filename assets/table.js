@@ -1,5 +1,5 @@
 // Generic sortable table with sticky first column, optional row flash on change and expandable rows.
-import { esc } from './fmt.js?v=d681b70b';
+import { esc } from './fmt.js?v=b27rio2';
 
 export function makeTable(el, { columns, key = r => r.id, sort = null, desc = true, onRow = null, expand = null, rowClass = null, flash = false, empty = '' }) {
   const S = { sort, desc, rows: [], prev: new Map(), open: new Set() };

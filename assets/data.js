@@ -143,7 +143,7 @@ export function apiInfo() {
 }
 
 const archiveCache = {};
-/** Lazy-load the run-1 archive (summary + trades). */
+/** Lazy-load the archived book (summary + trades). */
 export async function loadArchive() {
   if (archiveCache.p) return archiveCache.p;
   const tryBases = [];

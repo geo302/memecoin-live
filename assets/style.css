@@ -39,6 +39,13 @@ input:focus,select:focus{border-color:rgba(255,255,255,.35);box-shadow:0 0 0 3px
 .brand b{font:700 15px/1 var(--sans);letter-spacing:4px;color:#fff;text-shadow:0 0 12px rgba(255,255,255,.45)}
 .go{color:var(--amb);padding:0 4px;margin-left:4px;border:1px solid var(--edge2);border-radius:4px;font-size:10px}
 .brand .paper{margin-left:10px;color:var(--amb);padding:2px 8px;font-weight:500;font-size:10.5px;border:1px solid var(--edge);border-radius:999px;background:rgba(255,255,255,.03)}
+.booksw{display:flex;align-items:center;gap:0;margin:4px 10px 4px 4px;padding:2px;border:1px solid var(--edge2);border-radius:999px;background:rgba(255,255,255,.05);flex-shrink:0;box-shadow:0 0 16px rgba(200,210,255,.08)}
+.booksw button{padding:6px 16px;border:0;border-radius:999px;background:transparent;color:var(--dim);font-weight:800;letter-spacing:1.2px;font-size:11.5px;cursor:pointer}
+.booksw button:hover{color:#fff}
+.booksw button.on{background:#f4f6fb;color:#05060a;box-shadow:0 0 16px rgba(255,255,255,.3)}
+.kpi[data-book]{cursor:pointer}
+.kpi[data-book]:hover{background:rgba(255,255,255,.05)}
+.kpi[data-book].on{box-shadow:inset 0 -2px 0 #f4f6fb;background:rgba(255,255,255,.04)}
 #tabs{display:flex;flex:1;overflow-x:auto;scrollbar-width:none;gap:2px;padding:4px 6px;align-items:center}#tabs::-webkit-scrollbar{display:none}
 #tabs button{padding:5px 11px;color:var(--dim);font-weight:600;white-space:nowrap;border-radius:999px;border:1px solid transparent;letter-spacing:.6px;transition:color .15s,background .15s,border-color .15s}
 #tabs button:hover{color:#fff;background:rgba(255,255,255,.04);border-color:var(--edge)}
@@ -185,7 +192,7 @@ ol.rules{margin:0;padding:6px 10px 10px 36px}ol.rules li{margin:3px 0}
   html,body{font-size:11.5px}
   #top{display:contents}.bar{position:sticky;top:0;z-index:20}
   .brand-pfp{width:24px;height:24px;margin-right:6px}.brand .paper{font-size:9.5px;margin-left:4px}.clock{display:none}
-  .bar{flex-wrap:wrap}#tabs{order:3;flex-basis:100%;border-top:1px solid var(--edge)}
+  .bar{flex-wrap:wrap}.booksw{order:2;margin:4px 8px}#tabs{order:3;flex-basis:100%;border-top:1px solid var(--edge)}
   .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .kpi.big{min-width:0}
   .kpi .v{font-size:12.5px}.kpi.big .v{font-size:16px;overflow:visible;text-overflow:clip}

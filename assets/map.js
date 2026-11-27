@@ -1,8 +1,9 @@
 // MAP: orbital galaxy of every coin entered (Obsidian-vault-as-a-galaxy look, see design/galaxy_vault_ref.png).
 // A glowing RIO core sits at the centre; each trade is a star on a slowly rotating (Keplerian) orbit.
-// Run-2 trades fill the inner orbits (oldest innermost), archived run-1 trades fill the outer orbits.
+// The active book (Rio 1 or Rio 2) fills the inner orbits (oldest innermost).
+// The other book can be overlaid on the outer orbits via the "rio-2 trades" / "rio-1 trades" toggle.
 // Green / red halos = won / lost, pulsing white = live/open. Rendered on canvas; positions are stable across polls.
-import { tradeState, ago, usdSigned, pct } from './fmt.js?v=d681b70b';
+import { tradeState, ago, usdSigned, pct } from './fmt.js?v=b27rio2';
 
 const COL = { win: '#22c55e', loss: '#ef4444', open: '#f4f6fb' };
 const RGB = { win: '34,197,94', loss: '239,68,68', open: '244,246,251' };
@@ -20,7 +21,7 @@ export function initMap(el, ctx) {
     <canvas id="mapcv"></canvas>
     <div class="mapui">
       <input type="search" id="mapq" placeholder="search symbol…" aria-label="Search symbol">
-      <label><input type="checkbox" id="mapr1"> run-1 trades</label>
+      <label><input type="checkbox" id="mapoverlay"> <span id="mapoverlay-lab">rio-2 trades</span></label>
       <label><input type="checkbox" id="maphub" checked> links</label>
       <button id="maptilt" title="Toggle tilted / top-down view">TILT</button>
       <button id="mapfit">FIT</button>
@@ -28,7 +29,7 @@ export function initMap(el, ctx) {
     </div>
     <div class="legend">
       <div><span class="dot win"></span>won <span class="dot loss" style="margin-left:8px"></span>lost <span class="dot open" style="margin-left:8px"></span>live/open</div>
-      <div><span class="hub"></span>RIO core <span class="hub g" style="margin-left:8px"></span>orbit · inner = run 2 · outer = run 1</div>
+      <div><span class="hub"></span>RIO core <span class="hub g" style="margin-left:8px"></span>orbit · inner = active book · outer = other book (overlay)</div>
       <div>star size = |P&L $| · links: same coin</div>
       <div class="dim">drag to pan · scroll/pinch zoom · click a star</div>
     </div>
@@ -38,7 +39,7 @@ export function initMap(el, ctx) {
   const wrap = el.querySelector('#mapwrap');
   const S = {
     nodes: new Map(), links: [], rings: 1, cam: { s: 1, x: 0, y: 0 }, w: 0, h: 0, dpr: 1, tilt: 0.46,
-    visible: false, q: '', hover: null, sel: null, run1: false, links_on: true, fitted: false, raf: 0, last: 0, force: true, t0: performance.now(),
+    visible: false, q: '', hover: null, sel: null, overlay: false, links_on: true, fitted: false, raf: 0, last: 0, force: true, t0: performance.now(),
   };
 
   // ---------- static galaxy dust (deterministic) ----------
@@ -53,39 +54,51 @@ export function initMap(el, ctx) {
   }
 
   // ---------- data -> orbital layout ----------
+  function overlayLabel() {
+    return ctx.book === 'rio2' ? 'rio-1 trades' : 'rio-2 trades';
+  }
+  function syncOverlayLabel() {
+    const lab = el.querySelector('#mapoverlay-lab');
+    if (lab) lab.textContent = overlayLabel();
+  }
   function trades() {
-    const r2 = ctx.allTrades().map(t => ({ ...t, run: t.run ?? 2 }));
-    const r1 = S.run1 && ctx.archive ? ctx.archive.trades.trades.map(t => ({ ...t, run: 1 })) : [];
-    return [...r2, ...r1];
+    const active = ctx.allTrades().map(t => ({ ...t, layer: 'active', book: t.book || ctx.book || 'rio1' }));
+    let other = [];
+    if (S.overlay && typeof ctx.bookTrades === 'function') {
+      const ob = ctx.book === 'rio2' ? 'rio1' : 'rio2';
+      other = ctx.bookTrades(ob).map(t => ({ ...t, layer: 'other', book: ob }));
+    }
+    return [...active, ...other];
   }
   function build() {
     const list = trades();
     const keep = new Set(), old = S.nodes;
-    const max1 = Math.max(1e-9, ...list.filter(t => t.run === 1).map(t => Math.abs(t.pnl_usd || 0)));
-    const max2 = Math.max(1e-9, ...list.filter(t => t.run !== 1).map(t => Math.abs((t.status === 'open' ? t.unrealized_pnl_usd : t.pnl_usd) || 0)));
+    const max1 = Math.max(1e-9, ...list.filter(t => t.layer === 'other').map(t => Math.abs((t.status === 'open' ? t.unrealized_pnl_usd : t.pnl_usd) || 0)));
+    const max2 = Math.max(1e-9, ...list.filter(t => t.layer !== 'other').map(t => Math.abs((t.status === 'open' ? t.unrealized_pnl_usd : t.pnl_usd) || 0)));
     const byTime = (a, b) => (Date.parse(a.entry_time) || 0) - (Date.parse(b.entry_time) || 0) || a.id - b.id;
-    const t2 = list.filter(t => t.run !== 1).sort(byTime), t1 = list.filter(t => t.run === 1).sort(byTime);
+    const t2 = list.filter(t => t.layer !== 'other').sort(byTime), t1 = list.filter(t => t.layer === 'other').sort(byTime);
     let ring = 0, inRing = 0;
     const place = arr => arr.forEach(t => {
       if (inRing >= ringCap(ring)) { ring++; inRing = 0; }
       const st = tradeState(t);
       const p = Math.abs((st === 'open' ? t.unrealized_pnl_usd : t.pnl_usd) || 0);
-      const r = 2.6 + 6.5 * Math.sqrt(p / (t.run === 1 ? max1 : max2));
-      const key = `t:${t.run}:${t.id}`; keep.add(key);
+      const r = 2.6 + 6.5 * Math.sqrt(p / (t.layer === 'other' ? max1 : max2));
+      const key = `t:${t.book || t.layer || 'active'}:${t.id}`; keep.add(key);
       const n = old.get(key) || { key };
-      Object.assign(n, { kind: 'trade', t, st, run: t.run, label: t.symbol || '?', r: st === 'open' ? Math.max(r, 5.5) : r,
+      Object.assign(n, { kind: 'trade', t, st, run: t.book || ctx.book, layer: t.layer, label: t.symbol || '?', r: st === 'open' ? Math.max(r, 5.5) : r,
         ring, R: ringR(ring), a0: inRing * GOLD + ring * 0.9 });
       old.set(key, n); inRing++;
     });
     place(t2);
-    if (t1.length) { if (inRing) { ring++; inRing = 0; } ring++; place(t1); } // one empty orbit separates the runs
+    if (t1.length) { if (inRing) { ring++; inRing = 0; } ring++; place(t1); } // one empty orbit separates the books
     for (const k of [...old.keys()]) if (!keep.has(k)) old.delete(k);
     S.rings = ring + 1;
     const links = [], by = {}, seen = new Set();
     for (const n of old.values()) {
       const a = (n.t.address || '').toLowerCase(), sy = (n.t.symbol || '').toUpperCase();
-      if (a) (by[n.run + 'a' + a] ||= []).push(n);
-      if (sy) (by[n.run + 's' + sy] ||= []).push(n);
+      const bk = n.t.book || n.layer || 'active';
+      if (a) (by[bk + 'a' + a] ||= []).push(n);
+      if (sy) (by[bk + 's' + sy] ||= []).push(n);
     }
     for (const grp of Object.values(by)) for (let i = 1; i < grp.length; i++) {
       const k = grp[i - 1].key + '|' + grp[i].key; if (!seen.has(k)) { seen.add(k); links.push([grp[i - 1], grp[i]]); }
@@ -96,9 +109,10 @@ export function initMap(el, ctx) {
     const empty = el.querySelector('#mapempty');
     if (!tradesN) {
       const s = ctx.d && ctx.d.scout, st = ctx.d && ctx.d.status;
-      empty.innerHTML = `<div class="empty"><b>No trades yet in run ${ctx.run ?? 2} - scanner is running</b>
+      const book = (ctx.book === 'rio2') ? 'Rio 2' : 'Rio 1';
+      empty.innerHTML = `<div class="empty"><b>No trades yet in ${book} — scanner is running</b>
         last scan ${s ? `${s.count ?? (s.rows || []).length} coins · ${s.buys ?? 0} buys` : '—'} · ${st ? `${st.scanner_rounds_last_10min ?? '—'} scans in 10 min · last ${ago(st.scanner_last_round)}` : ''}<br><br>
-        <span class="dim">tick "run-1 trades" to see the 101 archived run-1 coins</span></div>`;
+        <span class="dim">tick “${overlayLabel()}” to overlay the other book’s coins</span></div>`;
     } else empty.innerHTML = '';
     if (!S.fitted && S.w) { fit(); S.fitted = true; }
     kick();
@@ -191,7 +205,7 @@ export function initMap(el, ctx) {
     for (const n of N) {
       if (!coreDone && n.sy >= S.cam.y) { drawCore(); coreDone = true; }
       const m = matches(n), dim = (S.q && !m) || (focus && !nb.has(n));
-      const alpha = (dim ? 0.18 : n.run === 1 ? 0.6 : 1) * (n.back ? 0.72 : 1);
+      const alpha = (dim ? 0.18 : n.layer === 'other' ? 0.6 : 1) * (n.back ? 0.72 : 1);
       const rgb = RGB[n.st], pr = Math.max(n.r * s, 2.2);
       g.lineWidth = Math.max(1, pr * 0.55);
       for (let i = 0; i < 10; i++) {
@@ -216,7 +230,7 @@ export function initMap(el, ctx) {
         g.fillStyle = '#e8ecf4'; g.fillText(n.label, n.sx, ly);
         if (n === focus) {
           const open = n.st === 'open';
-          g.fillStyle = COL[n.st]; g.fillText(`${usdSigned(open ? n.t.unrealized_pnl_usd : n.t.pnl_usd)} ${pct(open ? n.t.unrealized_pnl_pct : n.t.pnl_pct)} · #${n.t.id}${n.run === 1 ? ' r1' : ''}`, n.sx, ly + 14);
+          g.fillStyle = COL[n.st]; g.fillText(`${usdSigned(open ? n.t.unrealized_pnl_usd : n.t.pnl_usd)} ${pct(open ? n.t.unrealized_pnl_pct : n.t.pnl_pct)} · #${n.t.id}${n.layer === 'other' ? ' · ' + (n.t.book === 'rio2' ? 'Rio 2' : 'Rio 1') : ''}`, n.sx, ly + 14);
         }
         g.globalAlpha = 1; g.globalCompositeOperation = 'lighter';
       }
@@ -276,9 +290,8 @@ export function initMap(el, ctx) {
     if (m && m.sx !== undefined) { S.cam.x += S.w / 2 - m.sx; S.cam.y += S.h / 2 - m.sy; }
     kick();
   });
-  el.querySelector('#mapr1').addEventListener('change', async e => {
-    S.run1 = e.target.checked;
-    if (S.run1) { try { await ctx.loadArchive(); } catch (err) { console.error(err); } }
+  el.querySelector('#mapoverlay').addEventListener('change', e => {
+    S.overlay = e.target.checked;
     S.fitted = false; build();
   });
   el.querySelector('#maphub').addEventListener('change', e => { S.links_on = e.target.checked; kick(); });
@@ -287,7 +300,7 @@ export function initMap(el, ctx) {
   new ResizeObserver(() => { resize(); if (!S.fitted && S.nodes.size) { fit(); S.fitted = true; } kick(); }).observe(wrap);
 
   return {
-    update() { build(); },
+    update() { syncOverlayLabel(); build(); },
     reset() { S.nodes.clear(); S.links = []; S.fitted = false; },
     visible(v) { S.visible = v; if (v) { resize(); if (!S.fitted) { fit(); S.fitted = !!S.nodes.size; } kick(); } },
   };

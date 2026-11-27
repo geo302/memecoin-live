@@ -1,9 +1,9 @@
 // Circular @whatscoinbase profile picture (sunset-head guitarist).
 // Pre-cropped assets: pfp-256.webp (UI / canvas) and pfp-64.png (favicon / header).
 
-import { V } from './v.js?v=d681b70b';
+import { V } from './v.js?v=b27rio2';
 
-export const PFP_SRC = new URL('./pfp-256.webp?v=d681b70b', import.meta.url).href;
+export const PFP_SRC = new URL('./pfp-256.webp?v=b27rio2', import.meta.url).href;
 
 let _img = null;
 let _p = null;

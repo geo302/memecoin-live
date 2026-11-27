@@ -1,18 +1,18 @@
 // CALENDAR: black P&L calendar (green / red days) + Day Breakdown + @whatscoinbase Trophy Room flex-card generator.
 // Days are bucketed by the ET date of each closed trade's exit_time. Reads ctx data only; never writes anything.
 // Trophy cards are drawn on a <canvas> (what you see is exactly what downloads). Spec: CLAUDE_PROMPT.md "CALENDAR".
-import { usd, usdSigned, pct, cls, esc, isNum, dur, tm, TZ } from './fmt.js?v=d681b70b';
-import { openTradeReplay } from './replay.js?v=d681b70b';
-import { seedFrom, preloadArtLayer, drawAnimeBackdrop } from './backdrop.js?v=d681b70b';
-import { preloadPfp, drawPfp } from './pfp.js?v=d681b70b';
+import { usd, usdSigned, pct, cls, esc, isNum, dur, tm, TZ } from './fmt.js?v=b27rio2';
+import { openTradeReplay } from './replay.js?v=b27rio2';
+import { seedFrom, preloadArtLayer, drawAnimeBackdrop } from './backdrop.js?v=b27rio2';
+import { preloadPfp, drawPfp } from './pfp.js?v=b27rio2';
 preloadPfp();
 
 const BACKDROPS = [
   { id: 'auto', name: 'Auto · coin' },
-  { id: 'win-emerald', name: 'Emerald', src: 'assets/trophy/win-emerald.webp?v=d681b70b' },
-  { id: 'trophy-gold', name: 'Gold', src: 'assets/trophy/trophy-gold.webp?v=d681b70b' },
-  { id: 'galaxy-void', name: 'Void', src: 'assets/trophy/galaxy-void.webp?v=d681b70b' },
-  { id: 'battle-crimson', name: 'Crimson', src: 'assets/trophy/battle-crimson.webp?v=d681b70b' },
+  { id: 'win-emerald', name: 'Emerald', src: 'assets/trophy/win-emerald.webp?v=b27rio2' },
+  { id: 'trophy-gold', name: 'Gold', src: 'assets/trophy/trophy-gold.webp?v=b27rio2' },
+  { id: 'galaxy-void', name: 'Void', src: 'assets/trophy/galaxy-void.webp?v=b27rio2' },
+  { id: 'battle-crimson', name: 'Crimson', src: 'assets/trophy/battle-crimson.webp?v=b27rio2' },
   { id: 'none', name: 'Stars' },
 ];
 const LS = 'whatscoinbase.trophy.v1';
@@ -84,13 +84,13 @@ function merge(a, b) {
 }
 
 export function initCalendar(el, ctx) {
-  const st = { run: 'r2', month: null, sel: null, card: 'day', bg: 'auto', custom: null, customName: '', sig: '', arch: null, archErr: null, loadingArch: false, tainted: false };
+  const st = { run: (ctx.book === 'rio2' ? 'rio2' : 'rio1'), month: null, sel: null, card: 'day', bg: 'auto', custom: null, customName: '', sig: '', arch: null, archErr: null, loadingArch: false, tainted: false };
   try { const s = JSON.parse(localStorage.getItem(LS) || '{}'); if (s.bg) st.bg = s.bg; if (s.custom) { st.custom = s.custom; st.customName = s.customName || 'custom'; } } catch (e) { /* ignore */ }
   const save = () => { try { localStorage.setItem(LS, JSON.stringify({ bg: st.bg, custom: st.custom && st.custom.length < 2.5e6 ? st.custom : null, customName: st.customName })); } catch (e) { /* quota */ } };
   const imgCache = {};
 
   el.innerHTML = `<div class="hdr"><span>CALENDAR · DAILY P&amp;L</span><span class="dim" style="font-weight:400">paper trading · days by exit time (ET)</span><span class="sp"></span>
-      <span class="seg" id="cal-run"><button data-run="r2">RUN 2 LIVE</button><button data-run="r1">RUN 1 ARCHIVE</button><button data-run="all">ALL</button></span></div>
+      <span class="seg" id="cal-run"><button data-run="rio1">RIO 1</button><button data-run="rio2">RIO 2</button><button data-run="both">BOTH BOOKS</button></span></div>
     <div class="cal-wrap">
       <div class="cal-left">
         <div class="cal-nav"><button id="cal-prev" aria-label="Previous month">‹</button><div id="cal-title" class="cal-title"></div><button id="cal-next" aria-label="Next month">›</button><button id="cal-today" class="ghost">LATEST</button></div>
@@ -103,32 +103,28 @@ export function initCalendar(el, ctx) {
   const $ = s => el.querySelector(s);
 
   function sources() {
-    const d = ctx.d || {};
-    let r2 = ((d.trades && d.trades.trades) || []).map(t => ({ ...t, run: t.run ?? 2 }));
-    if (ctx.demo) r2 = [...demoHistory(st.arch || ctx.archive, Date.now()), ...r2];
-    const base2 = (d.status && d.status.starting_capital_usd) ?? (d.meta && d.meta.starting_capital_usd) ?? (d.equity && d.equity.starting_capital_usd) ?? (ctx.demo ? 1000 : 10000);
-    const a = st.arch || ctx.archive;
-    const r1 = a ? ((a.trades && a.trades.trades) || []).map(t => ({ ...t, run: 1 })) : [];
-    const base1 = (a && a.summary && a.summary.starting_active_bankroll_usd) || 100;
-    return { r2, base2, r1, base1 };
+    const raw = ctx.raw || ctx.d || {};
+    const r1 = ((raw.trades && raw.trades.trades) || []).map(t => ({ ...t, book: 'rio1' }));
+    const r2src = raw.rio2 || {};
+    const r2 = (r2src.trades || []).map(t => ({ ...t, book: 'rio2' }));
+    if (ctx.demo) {
+      const demo = demoHistory(st.arch || ctx.archive, Date.now()).map(t => ({ ...t, book: 'rio1' }));
+      r1.unshift(...demo);
+    }
+    const base1 = (raw.status && raw.status.starting_capital_usd) ?? (raw.meta && raw.meta.starting_capital_usd) ?? 10000;
+    const base2 = r2src.starting_capital_usd ?? 10000;
+    return { rio1: r1, base1, rio2: r2, base2 };
   }
   function days() {
     const s = sources();
-    const d2 = bucket(s.r2, s.base2);
-    if (st.run === 'r2') return d2;
-    const d1 = bucket(s.r1, s.base1);
-    return st.run === 'r1' ? d1 : merge(d2, d1);
-  }
-  async function ensureArch() {
-    if (st.arch || st.loadingArch) return;
-    st.loadingArch = true;
-    try { st.arch = await ctx.loadArchive(); st.archErr = null; } catch (e) { st.archErr = e.message; }
-    st.loadingArch = false; render(true);
+    const d1 = bucket(s.rio1, s.base1);
+    if (st.run === 'rio1') return d1;
+    const d2 = bucket(s.rio2, s.base2);
+    return st.run === 'rio2' ? d2 : merge(d1, d2);
   }
 
   // ---------------- calendar ----------------
   function render(force = false) {
-    if ((st.run !== 'r2' || ctx.demo) && !st.arch && !st.loadingArch && !st.archErr) ensureArch();
     const D = days();
     const keys = [...D.keys()].sort();
     const latest = keys[keys.length - 1] || etDay(Date.now());
@@ -151,8 +147,7 @@ export function initCalendar(el, ctx) {
       sumItem('Green · red days', `<span class="up">${gw}</span> <span class="dim">·</span> <span class="dn">${rl}</span>`, '', `${md.length} trading day${md.length === 1 ? '' : 's'}`),
       sumItem('Win rate', tw + tl ? (tw / (tw + tl) * 100).toFixed(1) + '%' : '—', '', `<span class="up">${tw}W</span> / <span class="dn">${tl}L</span>`),
       sumItem('Best day', best ? money(best.pnl) : '—', best ? cls(best.pnl) : '', best ? shortDay(best.key) : ''),
-    ].join('') + (st.run !== 'r2' && !st.arch ? `<div class="cs wide dim">${st.archErr ? 'run 1 archive unavailable: ' + esc(st.archErr) : 'loading run 1 archive…'}</div>` : '')
-      + (ctx.demo ? '<div class="cs wide"><span class="tagd">DEMO</span> <span class="dim">earlier days are synthetic sample data</span></div>' : '');
+    ].join('') + (ctx.demo ? '<div class="cs wide"><span class="tagd">DEMO</span> <span class="dim">earlier days are synthetic sample data</span></div>' : '');
     // grid
     const first = new Date(Date.UTC(Y, M - 1, 1)).getUTCDay();
     const nDays = new Date(Date.UTC(Y, M, 0)).getUTCDate();
@@ -302,7 +297,7 @@ export function initCalendar(el, ctx) {
         symbol: (d.trades[0] && d.trades[0].symbol) || key, address: 'DAY-' + key };
     }
     const t = d.trades.find(x => cardKey(x) === st.card) || d.trades[0];
-    return { kind: 'trade', title: String(t.symbol || '?').toUpperCase(), sub: `TRADE #${t.id}${t.run === 1 ? ' · RUN 1' : ''} · ${t.exit_type || 'EXIT'} · ${dur(t.hold_seconds)}`, pnl: t.pnl_usd,
+    return { kind: 'trade', title: String(t.symbol || '?').toUpperCase(), sub: `TRADE #${t.id}${t.book === 'rio2' ? ' · RIO 2' : t.book === 'rio1' ? ' · RIO 1' : ''} · ${t.exit_type || 'EXIT'} · ${dur(t.hold_seconds)}`, pnl: t.pnl_usd,
       rows: [['PNL', pct(t.pnl_pct, 2), cls(t.pnl_pct)], ['Invested', usd(t.usd_in)], ['Position', usd(t.usd_out)]],
       foot: `${shortDay(key)} · ${tm(t.entry_time)} → ${tm(t.exit_time)} ET`, slug: String(t.symbol || 'trade').toLowerCase().replace(/[^a-z0-9]+/g, '') || 'trade', win: t.pnl_usd > 0, demo: !!t._demo,
       symbol: t.symbol, address: t.address || '' };
@@ -429,7 +424,7 @@ export function initCalendar(el, ctx) {
 
   let shown = false;
   return {
-    update() { if (shown) render(); },
+    update(d, opts) { if (opts && opts.bookChanged) st.run = ctx.book === 'rio2' ? 'rio2' : 'rio1'; if (shown) render(); },
     reset() { st.month = null; st.sel = null; st.sig = ''; },
     visible(v) { if (v) { shown = true; render(); } },
   };

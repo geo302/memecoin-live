@@ -1,5 +1,5 @@
 // CHARTS: Bloomberg-style live multi-panel charts per coin, equity curve, P&L per trade, small multiples.
-import { price, priceFull, usd, usdSigned, pct, cls, esc, ts, tm, dt, isNum, dur } from './fmt.js?v=d681b70b';
+import { price, priceFull, usd, usdSigned, pct, cls, esc, ts, tm, dt, isNum, dur } from './fmt.js?v=b27rio2';
 
 const ET = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hour12: false });
 const ETs = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
@@ -135,7 +135,8 @@ export function initCharts(el, ctx) {
     if (!pr) {
       if (S.main) { S.main.dispose(); S.main = null; }
       const s = ctx.d && ctx.d.status || {};
-      node.innerHTML = `<div class="empty"><b>No coins entered yet in run ${ctx.run ?? 2} - scanner is running</b>${s.scanner_rounds_last_10min ?? '—'} scans in the last 10 min · last scan ${tm(s.scanner_last_round)} ET<br><span class="dim">Charts appear here the moment Rio enters a coin. Run-1 trades have no tick history.</span></div>`;
+      const book = (ctx.book === 'rio2') ? 'Rio 2' : 'Rio 1';
+      node.innerHTML = `<div class="empty"><b>No coins entered yet in ${book} — scanner is running</b>${s.scanner_rounds_last_10min ?? '—'} scans in the last 10 min · last scan ${tm(s.scanner_last_round)} ET<br><span class="dim">Charts appear here the moment this book enters a coin.</span></div>`;
       $('#c-title').textContent = '—'; $('#c-sub').textContent = ''; readout(null); return;
     }
     if (!S.main) node.innerHTML = '';
