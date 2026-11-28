@@ -1,0 +1,133 @@
+{
+ "run": 2,
+ "updated": "2026-11-28T09:48:57-05:00",
+ "source_note": "Numbers parsed read-only from the bot's round.py at publish time; text rules from ledger.json live_rules.",
+ "entry_gates": [
+  {
+   "id": "F1",
+   "rule": "5m change between +50% and +150%",
+   "min": 50.0,
+   "max": 150.0
+  },
+  {
+   "id": "F2",
+   "rule": "1h volume / liquidity >= 0.82",
+   "min": 0.82
+  },
+  {
+   "id": "F3",
+   "rule": "liquidity >= $30,000",
+   "min": 30000.0
+  },
+  {
+   "id": "F4",
+   "rule": "1h buys/sells >= 2.3",
+   "min": 2.3
+  },
+  {
+   "id": "F5",
+   "rule": "no take-profit win on the same ticker or contract in the last 6h",
+   "hours": 6.0
+  },
+  {
+   "id": "F6",
+   "rule": "fast move: must touch +10% within 8 min or it is sold (exit rule)",
+   "minutes": 8.0,
+   "min_peak_pct": 10.0
+  },
+  {
+   "id": "F7",
+   "added": "2026-11-23",
+   "rule": "contract safety (GoPlus token_security chain 8453 + honeypot.is): block honeypot/cannot sell, buy or sell tax > 10%, owner can mint/pause/blacklist/change balances (unless renounced), hidden owner, self-destruct, top-10 holders excl. LP/pool/burn > 40%; API error or token not indexed = UNKNOWN = blocked (fail closed); cached 10 min. LP lock/burn % is info only, not a gate (dropped 2026-11-23 07:40 ET). Missing data does NOT block (F7 PASS NO_DATA); the strict NO_DATA block was moved 2026-11-24 to Experiments Lab shadow E10 (log only)",
+   "max_tax_pct": 10,
+   "max_top10_pct": 40,
+   "min_lp_locked_pct": null,
+   "lp_lock": "info only, not a gate",
+   "fail_closed": true,
+   "no_data_blocks": false,
+   "strict_no_data_shadow": "lab E10"
+  },
+  {
+   "id": "F8",
+   "added": "2026-11-24",
+   "rule": "recheck: wait ~25s after the scout quote, re-quote; skip if price < scout -5% (up-moves do not block; entry = re-quote +1%), liquidity < scout -5%, or the fresh 5m (F1) / buys-sells (F4) now fail",
+   "wait_s": 25.0,
+   "max_price_drop_pct": 5.0,
+   "max_liq_drop_pct": 5.0,
+   "fresh_quote": "since 2026-11-24 (SEAL #7): cache-busted re-quote of the exact pair; identical to the scout or fetch failure = stale = skip"
+  }
+ ],
+ "exits": {
+  "take_profit_pct": 20.0,
+  "take_profit_note": "full sell, no runners, no trailing stop",
+  "stop_loss_pct": -10.0,
+  "breakeven_arm_pct": 10.0,
+  "breakeven_stop_pct": 2.0,
+  "breakeven_note": "once price touches +arm%, stop moves to entry +stop% (covers fees)",
+  "f6_minutes": 8.0,
+  "f6_min_peak_pct": 10.0,
+  "liquidity_exit": "liquidity < $5k or down >50% from entry"
+ },
+ "extra_entry_filters": {
+  "min_score": 12.0,
+  "min_liquidity_usd": 20000.0,
+  "reentry_block_after_tp_h": 2.0,
+  "requote": "instant +-5% re-quote replaced 2026-11-24 by F8 (25s recheck; blocks price or liquidity down > 5%)"
+ },
+ "sizing": {
+  "rule": "1% of pool liquidity (cap 5% of equity); half size for pools under 1h old or of unknown age",
+  "young_pool_h": 1.0,
+  "young_pool_size_mult": 0.5,
+  "pct_of_pool_liquidity": 1.0,
+  "cap_pct_of_equity": 5.0,
+  "min_ticket_usd": 10.0,
+  "cash_cap": "95% of cash",
+  "bankroll_usd": 10000.0,
+  "max_new_per_round": null,
+  "max_open": 6.0,
+  "fees_model": "1% slippage+fees on each buy and each sell"
+ },
+ "halt": {
+  "halt_equity_usd": 5000.0,
+  "note": "no new positions at or below this equity"
+ },
+ "exit_trial": {
+  "id": "exit_trial_v1",
+  "start": "2026-11-22T23:23:52-05:00",
+  "note": "couple-of-days trial (USER 23:17 ET Nov 22): TP +20% full sell, breakeven entry+2% after +10%, F6 +10% within 8 min, -10% stop, no trail. Compare against run 1 (archive)."
+ },
+ "near_misses": {
+  "definition": "fails exactly ONE of F1-F5, F7, F8, (b), WP; never traded; tracked 30 min; hypothetical outcome under our exit rules",
+  "file": "data/near_misses.json"
+ },
+ "smart_wallets": {
+  "log_only": true,
+  "note": "never blocks or allows a trade",
+  "file": "data/smart_wallets.json"
+ },
+ "live_rules_text": [
+  "ENTRY setup: Only winner_pattern: fresh <6h, 1h >= +100%, vol1h/liq >= 0.6, buys >= 2x sells, buys >= 25, liq >= $10k, 5m > 0 (USER Nov 20 02:25)",
+  "ENTRY (a): No same symbol OR address entry for 2h after a take-profit win (lessons #93, #98)",
+  "ENTRY (b): winner_pattern score >= 12 (lesson #99)",
+  "ENTRY (c): winner_pattern liquidity >= $20,000 (lesson #99)",
+  "GATE F1: 5m change between +50% and +150% inclusive (Nov 22 winner study; max +185% -> +150% on 2026-11-24, USER, after SVAG #5 bought at 5m +170%)",
+  "GATE F2: vol1h/liq >= 0.82 (Nov 22 winner study)",
+  "GATE F3: liquidity >= $30,000 (Nov 22 winner study $26k; 2026-11-24 after SEAL #7 entered at $26,208: $40k briefly, then tuned to $30k; the $40k + F9 version is lab shadow E11)",
+  "GATE F4: 1h buys/sells >= 2.3 (Nov 22 winner study 2.0; raised to 2.3 on 2026-11-24, USER, after SVAG #5 entered at exactly 2.00)",
+  "GATE F5: No take-profit win on the same ticker OR address in the last 6h (Nov 22 winner study)",
+  "GATE F7 (added 2026-11-23 00:51 ET, user-approved; LP part dropped 2026-11-23 07:4x ET by USER): contract safety via GoPlus token_security (Base 8453) + honeypot.is. BLOCK if honeypot/cannot sell, buy or sell tax > 10%, owner can mint/pause/blacklist/change balances (unless ownership renounced), hidden owner, self-destruct, or top-10 holders excl. LP/pool/burn > 40%. GoPlus error/timeout/token not indexed = F7 UNKNOWN = BLOCK. MISSING FIELDS DO NOT BLOCK: shown as 'F7 PASS NO_DATA' (the strict NO_DATA block ran live 2026-11-24 10:53-12:0x ET after SVAG #5 and was moved by the USER to the Experiments Lab as shadow E10, log only). LP lock/burn % is info only. Cached 10 min per contract (NO_DATA and errors re-checked after 60s); max 20 GoPlus calls/min, 8 new per round.",
+  "GATE F8 (2026-11-24, USER, after SVAG #5 dumped -29% 19s after entry): recheck. A candidate that passes every other check waits until 25s after the scout quote, then is re-quoted (DexScreener). SKIP if price < scout price -5%, liquidity < scout liquidity -5%, or the fresh 5m change fails F1 (+50..+150%) or 1h buys/sells fails F4 (>= 2.3). Logged as F8 PASS/FAIL with values in the gate string; F8 FAIL is logged as a near miss. Up-moves do not block (entry = re-quote +1%). Runs inside round.py, so watcher.py keeps managing open positions while it waits; no ledger lock is held during the wait. | 2026-11-24 (SEAL #7) FIX: the re-quote is a cache-busted fetch of the exact scouted pair (DexScreener pairs endpoint + nonce + no-cache headers; tokens/v1 fallback). If price + liquidity + 5m/1h txns are byte-identical to the scout after one retry 6s later, or the fetch fails, F8 FAILS as stale. GeckoTerminal pool data is logged as a cross-check only.",
+  "EXIT F6: Time stop: sell at market if the price has not touched +10% within 8 min of entry",
+  "EXIT TP: Take-profit +20%, full sell, no runners, no trailing stop",
+  "EXIT breakeven: Once the price touches +10%, stop moves to entry +2% (fees)",
+  "EXIT stop: -10% stop-loss; liquidity collapse exits kept (< $5k or -50% from entry)",
+  "BUY re-quote: replaced 2026-11-24 by GATE F8 (25s recheck); entry = F8 re-quote +1%",
+  "SIZE (2026-11-23 23:4x ET, USER): 1% of pool liquidity per entry, capped at 5% of equity (and 95% of cash); skip if < $10 (e.g. $35k pool -> $350; $200k pool -> 5% cap ~$502 on $10k). Max 3 new per round, max 6 open winner_pattern positions | 2026-11-24 USER (SVAG #5 gap): pools younger than 1h (or unknown age) get HALF size = 0.5 * min(1% liq, 5% equity, 95% cash); skip if < $10 | 2026-11-24 ~20:2x ET: half size for pools < 1h or unknown age remains in force (it was replaced by gate F9 for a few minutes after SEAL #7, then restored when F9 was removed).",
+  "HALT: If equity <= $5,000 (half the $10,000 bankroll): no new positions; status.json halted=true with reason",
+  "OPS: Continuous scanning (next round 10s after the previous ends, so a full scan about every 12-15s; GeckoTerminal responses cached 20s to stay under ~30 req/min; 60s backoff after an HTTP 429); watcher checks every ~3s; supervisor restarts watcher if heartbeat > 20s stale; scout holds the ledger lock only for the booking write",
+  "SAFETY: Honeypot/high-tax block, one-sided flow rug filters, same-symbol-after-loss 2h block, same-contract-after-loss no re-entry (carried from run 1)",
+  "LOG near-misses (2026-11-23): coins failing exactly ONE of F1-F5, F7, F8, (b), WP (2026-11-24: F8 FAIL included; F7 NO_DATA is a PASS, not a failed check) are recorded in near_misses.json/csv with the failed check and margin, tracked 30 min by sidecar.py (max gain, max drawdown, 30m change, TP+20% vs -10% first touch, our exit rules simulated). NEVER traded.",
+  "LOG smart wallets (2026-11-23): buyer wallets of candidates/trades from GeckoTerminal pool trades, scored over time in smart_wallets.json (hit = coin later >= +50% above the wallet's buy; known-good = >= 2 hits and >= 40% hit rate). LOG ONLY: never blocks or allows a trade."
+ ],
+ "assumptions": "Paper trading only. Prices from DexScreener Base pairs. 1% slippage+fees charged on each buy and each sell."
+}

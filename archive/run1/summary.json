@@ -1,0 +1,674 @@
+{
+ "run": 1,
+ "paper_trading": true,
+ "read_only_archive": true,
+ "start": "2026-11-18T23:20:00-05:00",
+ "end": "2026-11-22T23:21:38-05:00",
+ "starting_active_bankroll_usd": 100.0,
+ "reserve_usd": 900.0,
+ "total_budget_usd": 1000.0,
+ "final_equity_usd": 74.11635829589872,
+ "realized_pnl_usd": -25.8836,
+ "closed_trades": 101,
+ "wins": 20,
+ "losses": 81,
+ "win_rate_pct": 19.8,
+ "winner_pattern": {
+  "trades": 12,
+  "wins": 4,
+  "pnl_usd": 0.6786
+ },
+ "best_trade": {
+  "id": 97,
+  "symbol": "VDINO",
+  "pnl_usd": 3.0046649800339162,
+  "pnl_pct": 79.27875936764951
+ },
+ "worst_trade": {
+  "id": 1,
+  "symbol": "CHUBBY",
+  "pnl_usd": -6.9999999204754095,
+  "pnl_pct": -99.99999886393442
+ },
+ "exit_type_breakdown": {
+  "STOP": {
+   "count": 23,
+   "pnl_usd": -34.6917
+  },
+  "DISCRETIONARY": {
+   "count": 51,
+   "pnl_usd": -1.6508
+  },
+  "TP": {
+   "count": 14,
+   "pnl_usd": 11.1039
+  },
+  "LIQUIDITY": {
+   "count": 3,
+   "pnl_usd": 0.1521
+  },
+  "TRAIL": {
+   "count": 9,
+   "pnl_usd": -0.7224
+  },
+  "RESET": {
+   "count": 1,
+   "pnl_usd": -0.0741
+  }
+ },
+ "realized_steps": [
+  {
+   "t": "2026-11-18T23:20:00-05:00",
+   "equity_realized": 100.0,
+   "trade_id": null
+  },
+  {
+   "t": "2026-11-18T23:33:59-05:00",
+   "equity_realized": 98.2769,
+   "trade_id": 3,
+   "pnl_usd": -1.723125884016973
+  },
+  {
+   "t": "2026-11-18T23:36:35-05:00",
+   "equity_realized": 91.2769,
+   "trade_id": 1,
+   "pnl_usd": -6.9999999204754095
+  },
+  {
+   "t": "2026-11-18T23:40:38-05:00",
+   "equity_realized": 84.2772,
+   "trade_id": 2,
+   "pnl_usd": -6.999626464412479
+  },
+  {
+   "t": "2026-11-18T23:54:46-05:00",
+   "equity_realized": 82.5972,
+   "trade_id": 7,
+   "pnl_usd": -1.6799999932094336
+  },
+  {
+   "t": "2026-11-19T00:04:15-05:00",
+   "equity_realized": 80.9173,
+   "trade_id": 8,
+   "pnl_usd": -1.6799277339362282
+  },
+  {
+   "t": "2026-11-19T00:12:27-05:00",
+   "equity_realized": 80.9614,
+   "trade_id": 12,
+   "pnl_usd": 0.044048192771084516
+  },
+  {
+   "t": "2026-11-19T00:29:51-05:00",
+   "equity_realized": 80.889,
+   "trade_id": 4,
+   "pnl_usd": -0.07240096817476172
+  },
+  {
+   "t": "2026-11-19T00:29:51-05:00",
+   "equity_realized": 80.8241,
+   "trade_id": 5,
+   "pnl_usd": -0.06487783455764973
+  },
+  {
+   "t": "2026-11-19T00:29:51-05:00",
+   "equity_realized": 80.7379,
+   "trade_id": 6,
+   "pnl_usd": -0.08620837083708288
+  },
+  {
+   "t": "2026-11-19T00:31:43-05:00",
+   "equity_realized": 81.7887,
+   "trade_id": 16,
+   "pnl_usd": 1.0508463679655664
+  },
+  {
+   "t": "2026-11-19T00:44:00-05:00",
+   "equity_realized": 80.7888,
+   "trade_id": 18,
+   "pnl_usd": -0.9999748135055693
+  },
+  {
+   "t": "2026-11-19T00:52:39-05:00",
+   "equity_realized": 80.6458,
+   "trade_id": 9,
+   "pnl_usd": -0.14294384208626854
+  },
+  {
+   "t": "2026-11-19T00:52:39-05:00",
+   "equity_realized": 80.5594,
+   "trade_id": 10,
+   "pnl_usd": -0.08645630396985382
+  },
+  {
+   "t": "2026-11-19T00:52:39-05:00",
+   "equity_realized": 80.4686,
+   "trade_id": 11,
+   "pnl_usd": -0.09073841233680824
+  },
+  {
+   "t": "2026-11-19T00:59:00-05:00",
+   "equity_realized": 80.3401,
+   "trade_id": 13,
+   "pnl_usd": -0.12850618455217244
+  },
+  {
+   "t": "2026-11-19T00:59:47-05:00",
+   "equity_realized": 79.3401,
+   "trade_id": 20,
+   "pnl_usd": -0.9999999950980413
+  },
+  {
+   "t": "2026-11-19T07:23:57-05:00",
+   "equity_realized": 78.2066,
+   "trade_id": 19,
+   "pnl_usd": -1.133473025169288
+  },
+  {
+   "t": "2026-11-19T07:25:43-05:00",
+   "equity_realized": 78.2601,
+   "trade_id": 14,
+   "pnl_usd": 0.053496883021635355
+  },
+  {
+   "t": "2026-11-19T07:25:43-05:00",
+   "equity_realized": 78.2542,
+   "trade_id": 15,
+   "pnl_usd": -0.005934567369780375
+  },
+  {
+   "t": "2026-11-19T07:25:43-05:00",
+   "equity_realized": 78.1734,
+   "trade_id": 17,
+   "pnl_usd": -0.08079207920792131
+  },
+  {
+   "t": "2026-11-19T07:33:32-05:00",
+   "equity_realized": 77.1734,
+   "trade_id": 21,
+   "pnl_usd": -0.9999999946217104
+  },
+  {
+   "t": "2026-11-19T07:57:03-05:00",
+   "equity_realized": 77.096,
+   "trade_id": 22,
+   "pnl_usd": -0.0774257425742575
+  },
+  {
+   "t": "2026-11-19T07:57:03-05:00",
+   "equity_realized": 77.0186,
+   "trade_id": 23,
+   "pnl_usd": -0.0774257425742566
+  },
+  {
+   "t": "2026-11-19T07:57:03-05:00",
+   "equity_realized": 76.9411,
+   "trade_id": 24,
+   "pnl_usd": -0.0774257425742575
+  },
+  {
+   "t": "2026-11-19T07:57:03-05:00",
+   "equity_realized": 76.9213,
+   "trade_id": 25,
+   "pnl_usd": -0.01980198019801971
+  },
+  {
+   "t": "2026-11-19T07:57:03-05:00",
+   "equity_realized": 76.9015,
+   "trade_id": 26,
+   "pnl_usd": -0.01980198019801982
+  },
+  {
+   "t": "2026-11-19T07:57:03-05:00",
+   "equity_realized": 76.8817,
+   "trade_id": 28,
+   "pnl_usd": -0.01980198019801993
+  },
+  {
+   "t": "2026-11-19T07:57:03-05:00",
+   "equity_realized": 76.8619,
+   "trade_id": 29,
+   "pnl_usd": -0.01980198019801982
+  },
+  {
+   "t": "2026-11-19T07:57:03-05:00",
+   "equity_realized": 76.8421,
+   "trade_id": 30,
+   "pnl_usd": -0.019801980198019598
+  },
+  {
+   "t": "2026-11-19T08:00:56-05:00",
+   "equity_realized": 75.8422,
+   "trade_id": 32,
+   "pnl_usd": -0.9999149053157743
+  },
+  {
+   "t": "2026-11-19T08:13:28-05:00",
+   "equity_realized": 75.8966,
+   "trade_id": 27,
+   "pnl_usd": 0.054368999181641176
+  },
+  {
+   "t": "2026-11-19T08:20:46-05:00",
+   "equity_realized": 74.8966,
+   "trade_id": 37,
+   "pnl_usd": -0.999999996937818
+  },
+  {
+   "t": "2026-11-19T08:28:54-05:00",
+   "equity_realized": 74.8768,
+   "trade_id": 33,
+   "pnl_usd": -0.01980198019801993
+  },
+  {
+   "t": "2026-11-19T08:28:54-05:00",
+   "equity_realized": 74.8531,
+   "trade_id": 36,
+   "pnl_usd": -0.02369938783142722
+  },
+  {
+   "t": "2026-11-19T08:28:54-05:00",
+   "equity_realized": 74.8333,
+   "trade_id": 39,
+   "pnl_usd": -0.01980198019801982
+  },
+  {
+   "t": "2026-11-19T08:28:54-05:00",
+   "equity_realized": 74.8129,
+   "trade_id": 41,
+   "pnl_usd": -0.02034322703391267
+  },
+  {
+   "t": "2026-11-19T08:34:30-05:00",
+   "equity_realized": 74.8052,
+   "trade_id": 43,
+   "pnl_usd": -0.007685811844472479
+  },
+  {
+   "t": "2026-11-19T08:47:08-05:00",
+   "equity_realized": 74.7912,
+   "trade_id": 31,
+   "pnl_usd": -0.014007589684049804
+  },
+  {
+   "t": "2026-11-19T08:48:08-05:00",
+   "equity_realized": 73.7912,
+   "trade_id": 42,
+   "pnl_usd": -0.999999992599505
+  },
+  {
+   "t": "2026-11-19T08:49:33-05:00",
+   "equity_realized": 73.7822,
+   "trade_id": 34,
+   "pnl_usd": -0.0090734446578985
+  },
+  {
+   "t": "2026-11-19T08:56:36-05:00",
+   "equity_realized": 73.7624,
+   "trade_id": 35,
+   "pnl_usd": -0.01980198019801993
+  },
+  {
+   "t": "2026-11-19T09:00:56-05:00",
+   "equity_realized": 73.7195,
+   "trade_id": 44,
+   "pnl_usd": -0.04287726623225285
+  },
+  {
+   "t": "2026-11-19T09:03:25-05:00",
+   "equity_realized": 73.6751,
+   "trade_id": 38,
+   "pnl_usd": -0.0443498465433233
+  },
+  {
+   "t": "2026-11-19T09:04:33-05:00",
+   "equity_realized": 73.6582,
+   "trade_id": 40,
+   "pnl_usd": -0.01693422706811354
+  },
+  {
+   "t": "2026-11-19T09:12:08-05:00",
+   "equity_realized": 74.0685,
+   "trade_id": 47,
+   "pnl_usd": 0.4103162931355897
+  },
+  {
+   "t": "2026-11-19T09:15:56-05:00",
+   "equity_realized": 73.9344,
+   "trade_id": 45,
+   "pnl_usd": -0.13410622212380996
+  },
+  {
+   "t": "2026-11-19T09:19:56-05:00",
+   "equity_realized": 72.8528,
+   "trade_id": 49,
+   "pnl_usd": -1.0816185966422731
+  },
+  {
+   "t": "2026-11-19T09:49:39-05:00",
+   "equity_realized": 72.8379,
+   "trade_id": 46,
+   "pnl_usd": -0.01489417370109758
+  },
+  {
+   "t": "2026-11-19T09:59:43-05:00",
+   "equity_realized": 72.8441,
+   "trade_id": 48,
+   "pnl_usd": 0.00616353026031069
+  },
+  {
+   "t": "2026-11-19T10:05:06-05:00",
+   "equity_realized": 72.8278,
+   "trade_id": 50,
+   "pnl_usd": -0.016213701907103806
+  },
+  {
+   "t": "2026-11-19T10:05:06-05:00",
+   "equity_realized": 72.7893,
+   "trade_id": 51,
+   "pnl_usd": -0.03855894634163659
+  },
+  {
+   "t": "2026-11-19T10:18:32-05:00",
+   "equity_realized": 72.7621,
+   "trade_id": 52,
+   "pnl_usd": -0.027147344209858315
+  },
+  {
+   "t": "2026-11-19T10:18:32-05:00",
+   "equity_realized": 72.735,
+   "trade_id": 53,
+   "pnl_usd": -0.02709495824651864
+  },
+  {
+   "t": "2026-11-19T10:18:32-05:00",
+   "equity_realized": 72.7072,
+   "trade_id": 54,
+   "pnl_usd": -0.027836390196396832
+  },
+  {
+   "t": "2026-11-19T10:55:07-05:00",
+   "equity_realized": 72.9248,
+   "trade_id": 57,
+   "pnl_usd": 0.21754865141686563
+  },
+  {
+   "t": "2026-11-19T11:03:38-05:00",
+   "equity_realized": 72.6519,
+   "trade_id": 58,
+   "pnl_usd": -0.27286916675010753
+  },
+  {
+   "t": "2026-11-19T11:07:37-05:00",
+   "equity_realized": 72.6314,
+   "trade_id": 55,
+   "pnl_usd": -0.020531294200848538
+  },
+  {
+   "t": "2026-11-19T11:19:50-05:00",
+   "equity_realized": 72.604,
+   "trade_id": 56,
+   "pnl_usd": -0.027373734564467678
+  },
+  {
+   "t": "2026-11-19T11:39:20-05:00",
+   "equity_realized": 73.2675,
+   "trade_id": 61,
+   "pnl_usd": 0.6635029468781304
+  },
+  {
+   "t": "2026-11-19T12:10:36-05:00",
+   "equity_realized": 73.2383,
+   "trade_id": 59,
+   "pnl_usd": -0.029184506288466805
+  },
+  {
+   "t": "2026-11-19T12:11:39-05:00",
+   "equity_realized": 73.693,
+   "trade_id": 63,
+   "pnl_usd": 0.45467964204370004
+  },
+  {
+   "t": "2026-11-19T12:22:20-05:00",
+   "equity_realized": 73.6643,
+   "trade_id": 60,
+   "pnl_usd": -0.02866809293994743
+  },
+  {
+   "t": "2026-11-19T12:23:27-05:00",
+   "equity_realized": 73.6226,
+   "trade_id": 64,
+   "pnl_usd": -0.04165980480336462
+  },
+  {
+   "t": "2026-11-19T12:27:50-05:00",
+   "equity_realized": 73.6058,
+   "trade_id": 62,
+   "pnl_usd": -0.016851057910607814
+  },
+  {
+   "t": "2026-11-19T12:41:46-05:00",
+   "equity_realized": 74.1285,
+   "trade_id": 65,
+   "pnl_usd": 0.5226596449037677
+  },
+  {
+   "t": "2026-11-19T12:59:26-05:00",
+   "equity_realized": 73.7366,
+   "trade_id": 66,
+   "pnl_usd": -0.39185945132510835
+  },
+  {
+   "t": "2026-11-19T13:35:34-05:00",
+   "equity_realized": 73.5942,
+   "trade_id": 67,
+   "pnl_usd": -0.14240572993469547
+  },
+  {
+   "t": "2026-11-19T14:10:57-05:00",
+   "equity_realized": 73.6976,
+   "trade_id": 68,
+   "pnl_usd": 0.10335932573438211
+  },
+  {
+   "t": "2026-11-19T14:34:07-05:00",
+   "equity_realized": 74.1271,
+   "trade_id": 69,
+   "pnl_usd": 0.429552456433292
+  },
+  {
+   "t": "2026-11-19T14:46:31-05:00",
+   "equity_realized": 74.4165,
+   "trade_id": 70,
+   "pnl_usd": 0.2893928363424578
+  },
+  {
+   "t": "2026-11-19T15:30:51-05:00",
+   "equity_realized": 74.3555,
+   "trade_id": 71,
+   "pnl_usd": -0.06094953334134767
+  },
+  {
+   "t": "2026-11-19T16:30:49-05:00",
+   "equity_realized": 74.2195,
+   "trade_id": 72,
+   "pnl_usd": -0.13601102378279073
+  },
+  {
+   "t": "2026-11-19T17:15:55-05:00",
+   "equity_realized": 74.1984,
+   "trade_id": 73,
+   "pnl_usd": -0.021143798158049898
+  },
+  {
+   "t": "2026-11-19T17:41:35-05:00",
+   "equity_realized": 74.1786,
+   "trade_id": 74,
+   "pnl_usd": -0.01980198019801982
+  },
+  {
+   "t": "2026-11-19T17:41:35-05:00",
+   "equity_realized": 74.1588,
+   "trade_id": 75,
+   "pnl_usd": -0.01980198019801982
+  },
+  {
+   "t": "2026-11-19T17:57:00-05:00",
+   "equity_realized": 74.139,
+   "trade_id": 76,
+   "pnl_usd": -0.01980198019801971
+  },
+  {
+   "t": "2026-11-19T18:07:26-05:00",
+   "equity_realized": 74.1192,
+   "trade_id": 77,
+   "pnl_usd": -0.01980198019801982
+  },
+  {
+   "t": "2026-11-19T18:28:59-05:00",
+   "equity_realized": 74.0066,
+   "trade_id": 78,
+   "pnl_usd": -0.11263492554907906
+  },
+  {
+   "t": "2026-11-19T20:00:18-05:00",
+   "equity_realized": 74.3216,
+   "trade_id": 80,
+   "pnl_usd": 0.31500426895942235
+  },
+  {
+   "t": "2026-11-19T20:20:15-05:00",
+   "equity_realized": 74.523,
+   "trade_id": 81,
+   "pnl_usd": 0.20146546505869045
+  },
+  {
+   "t": "2026-11-19T20:36:42-05:00",
+   "equity_realized": 74.5104,
+   "trade_id": 79,
+   "pnl_usd": -0.012640716126407159
+  },
+  {
+   "t": "2026-11-19T20:48:29-05:00",
+   "equity_realized": 74.4951,
+   "trade_id": 82,
+   "pnl_usd": -0.015231277763059992
+  },
+  {
+   "t": "2026-11-19T21:33:35-05:00",
+   "equity_realized": 74.3981,
+   "trade_id": 83,
+   "pnl_usd": -0.09702475041168146
+  },
+  {
+   "t": "2026-11-19T21:50:24-05:00",
+   "equity_realized": 73.5432,
+   "trade_id": 84,
+   "pnl_usd": -0.8549543326425666
+  },
+  {
+   "t": "2026-11-19T23:05:27-05:00",
+   "equity_realized": 73.5227,
+   "trade_id": 85,
+   "pnl_usd": -0.020466521228394097
+  },
+  {
+   "t": "2026-11-19T23:20:09-05:00",
+   "equity_realized": 73.4872,
+   "trade_id": 86,
+   "pnl_usd": -0.035467245354672605
+  },
+  {
+   "t": "2026-11-20T00:40:48-05:00",
+   "equity_realized": 73.4685,
+   "trade_id": 87,
+   "pnl_usd": -0.018691483952020693
+  },
+  {
+   "t": "2026-11-20T00:50:22-05:00",
+   "equity_realized": 73.624,
+   "trade_id": 88,
+   "pnl_usd": 0.1554634379100559
+  },
+  {
+   "t": "2026-11-20T01:25:29-05:00",
+   "equity_realized": 73.4378,
+   "trade_id": 89,
+   "pnl_usd": -0.18622956902637233
+  },
+  {
+   "t": "2026-11-20T05:18:20-05:00",
+   "equity_realized": 72.8839,
+   "trade_id": 90,
+   "pnl_usd": -0.5538332145471356
+  },
+  {
+   "t": "2026-11-20T06:37:22-05:00",
+   "equity_realized": 72.8113,
+   "trade_id": 91,
+   "pnl_usd": -0.0726732673267323
+  },
+  {
+   "t": "2026-11-20T07:47:36-05:00",
+   "equity_realized": 73.9382,
+   "trade_id": 92,
+   "pnl_usd": 1.1269537186276772
+  },
+  {
+   "t": "2026-11-20T08:11:38-05:00",
+   "equity_realized": 73.4239,
+   "trade_id": 93,
+   "pnl_usd": -0.514327572333205
+  },
+  {
+   "t": "2026-11-21T23:05:08-05:00",
+   "equity_realized": 74.8657,
+   "trade_id": 94,
+   "pnl_usd": 1.4418515069728866
+  },
+  {
+   "t": "2026-11-22T13:35:37-05:00",
+   "equity_realized": 75.887,
+   "trade_id": 96,
+   "pnl_usd": 1.021280136371348
+  },
+  {
+   "t": "2026-11-22T18:40:27-05:00",
+   "equity_realized": 78.8917,
+   "trade_id": 97,
+   "pnl_usd": 3.0046649800339162
+  },
+  {
+   "t": "2026-11-22T18:55:27-05:00",
+   "equity_realized": 77.4756,
+   "trade_id": 98,
+   "pnl_usd": -1.4161128441611281
+  },
+  {
+   "t": "2026-11-22T19:00:16-05:00",
+   "equity_realized": 75.1144,
+   "trade_id": 99,
+   "pnl_usd": -2.361142742189413
+  },
+  {
+   "t": "2026-11-22T22:48:39-05:00",
+   "equity_realized": 74.414,
+   "trade_id": 100,
+   "pnl_usd": -0.7004445141584292
+  },
+  {
+   "t": "2026-11-22T23:03:25-05:00",
+   "equity_realized": 74.1904,
+   "trade_id": 101,
+   "pnl_usd": -0.22357600465928984
+  },
+  {
+   "t": "2026-11-22T23:22:02-05:00",
+   "equity_realized": 74.1164,
+   "trade_id": 95,
+   "pnl_usd": -0.07405940594059413
+  }
+ ],
+ "readme_markdown": "# Run 1: Base meme coin PAPER trading, 2026-11-18 23:20 ET to 2026-11-22 23:21 ET\n\nPaper trading only. No wallet, no real money. Archived on 2026-11-22 at about 23:22 ET by user order: archive run 1 and restart fresh under the new rules.\n\n## Money\n- Start: $100 active bankroll (bankroll #1) plus a $900 untouched reserve, for a $1,000 total budget. Total deposited into the active book was $100, with no refills.\n- Final equity: **$74.1164** cash with 0 open positions after the reset close, plus the $900 reserve = $974.12 against the $1,000 budget (**-$25.88**, -25.9% on the active $100).\n- Realized P&L: -$25.8836 across 101 closed trades: **20 wins, 81 losses**.\n- Best trade: #97 VDINO, +$3.005 (+79.3%). Worst: #1 CHUBBY, -$7.00 (-100%, LP rug).\n\n## Reset close\n- #95 VVVCAT (Private Cat, contract 0xb200...8502) was entered 2026-11-22 13:24 ET at $3.74.\n- It was closed at about 23:22 ET as a RESET CLOSE at the last recorded price, 5.250e-05 minus 1% slip: **-$0.0741 (-1.98%)**, held 9h57m.\n- **FLAG:** the price had not changed since 13:25:16 ET, so it may be untradeable or frozen. A real exit may not have been possible.\n- `status.json` in this folder was written by the watcher at 23:21, before the reset close, so it still lists #95 as open. `ledger.json` is the final record.\n\n## winner_pattern (the only setup traded from Nov 20 02:25 ET)\n- 12 closed (#90-#101 plus the #95 reset close): **4 wins / 8 losses, +$0.6786**. Average win +44.21%, average loss -19.32%.\n- Excluding the #95 reset close: 11 trades, 4W/7L, +$0.7526.\n- Wins:\n  - #92 AX1 +30.96%\n  - #94 PI +39.29%\n  - #96 VVVCAT +27.31%\n  - #97 VDINO +79.28%\n- Losses:\n  - #90 AX1 -15.1%\n  - #91 XDP -2.0%\n  - #93 AX1 -13.9%\n  - #98 VDINO -35.9%\n  - #99 FAN -61.0%\n  - #100 AUTO -18.7%\n  - #101 VDINO -6.0%\n  - #95 VVVCAT -1.98% (reset close)\n- Before winner_pattern (Nov 18-20), the other setups went 6W/69L for -$29.14 (per the Nov 20 switch note).\n\n## Key lessons (full text per trade is in ledger.json `mistake`/`lesson` and the xlsx Mistakes & Lessons sheet)\n1. **Fresh launches under ~$25k liquidity rug.** An LP pull jumps past any stop (#1, #2, #21, #32, #37, #42, #43).\n2. **Stops gap on thin pools.** The real loss is the next printed price, not -10%: #90 -15%, #93 -14%, #98 -36%, #99 -61%, #100 -19%.\n3. **Same ticker does not mean the same coin.** AX1 (3 contracts), VDINO (3 contracts in 4h20m) and VVVCAT (2 contracts) were copycat relaunches. Re-entering a ticker right after a take-profit lost every time (#93, #98).\n4. **A logged lesson does nothing until it is coded.** The #93 re-entry lesson (Nov 20) was never coded, and #98 repeated it.\n5. **Operations matter.** The 10 MB xlsx was rewritten every watcher cycle, so checks happened about every 20s instead of 12s, with 21 stale-heartbeat watcher kills on Nov 22. The scout held the ledger lock for 261s on the 22:44 round, which left #100 unwatched for about 4.5 min.\n6. **Upside gaps happened too.** #97's +79% was a price jump past the target, not a repeatable edge.\n7. **Winner study (Nov 22, n=11, in-sample).** All 4 winners had 5m +50..+185%, vol1h/liq >= 0.82, liq >= $26k, buys/sells >= 2.0 and no recent take-profit on the same ticker. Score, 1h change, entry hour, source and honeypot status did not separate winners from losers.\n\n## Rule history (see trades.md for timestamps and full notes)\n- **Nov 18 23:20:** starting filters (sells exist, honeypot check, liq/FDV checks, momentum). Tight, mid and wide test plans.\n- **Nov 19:** many fresh_launch penalties (thin-liq rugs, static pools, one-sided flow). after_style setup (#16 After) added. Dead-pool and thin-flow passes. Re-entry only near the prior peak. 45-min flat time stop.\n- **Nov 20 02:25:** USER switched to trading ONLY winner_pattern (fresh <6h, 1h >= +100%, vol1h/liq >= 0.6, buys >= 2x sells, buys >= 25, liq >= $10k, 5m > 0). Plan: SL -10%, TP +25%, 8% trail arming at +15%. Size 10% of equity (5% if the token is not indexed on honeypot.is).\n- **Nov 21 18:57:** supervisor.py runs round.py every 5 min (the scout had silently stopped for about 9h). The 5m > 0 rule was coded.\n- **Nov 22 23:09:** filters coded. (a) No same symbol/address entry for 2h after a take-profit win. (b) winner_pattern score >= 12. (c) liq >= $20k. autolesson.py auto-fills a mistake and lesson for every close.\n- **Nov 22 23:16-23:20 (USER):** six-factor gate F1-F5, F6 time stop, TP +20% full sell, breakeven stop at +10%, pre-buy re-quote, continuous scanning, 3s watcher, 5% sizing, $500 equity halt. These are the run 2 rules, effective from the run 2 start.\n\n## Backtest of the run-2 rules on #90-#101 (in-sample, observed ~12-20s ticks; see code/backtest_v2.py)\n- The gate passes #90, #92, #94, #96 and #97. It blocks #91, #93, #98, #99, #100 and #101. No winner is blocked.\n- The new exits changed nothing on the observed ticks: winners still filled at the first price above +20%.\n- Results: actual +$0.7526. Gate plus new exits +$6.0409 (5 trades, 4W/1L). If wins fill exactly at +20% (more likely with 3s checks), **+$2.2361**.\n\n## Files\n- `ledger.json`: final run-1 ledger.\n- `paper_trading_journal.xlsx`: full journal including the 79k-row Scout Log sheet.\n- `scout_log_run1.csv`: Scout Log exported from the xlsx.\n- `trades.md`: run notes.\n- `live_feed.log` and `live_feed.log.1`: every TICK, BUY, EXIT and SCOUT line.\n- `status.json`, `scout_latest.json`, `scout_loop.log`, `watcher.err`.\n- `code/`: round.py, watcher.py, supervisor.py, autolesson.py as of the archive, plus the backtest script.\n- Note: one more old-code scout round (23:22:51-23:23:26 ET, 0 buys, from an outside keepalive restart) ran after this archive was copied. It is in the live /home/box/memecoin-paper/scout_loop.log, not in this folder's copy.\n",
+ "note": "Run 1 used a $100 active bankroll plus a $900 untouched reserve and older rules (trailing stops, +25% TP). Six-factor gate checks did not exist yet, so checks are null."
+}

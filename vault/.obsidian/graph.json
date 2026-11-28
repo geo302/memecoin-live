@@ -1,0 +1,51 @@
+{
+ "colorGroups": [
+  {
+   "query": "tag:#win",
+   "color": {
+    "a": 1,
+    "rgb": 3066993
+   }
+  },
+  {
+   "query": "tag:#loss",
+   "color": {
+    "a": 1,
+    "rgb": 15158332
+   }
+  },
+  {
+   "query": "tag:#open",
+   "color": {
+    "a": 1,
+    "rgb": 15844367
+   }
+  },
+  {
+   "query": "tag:#near-miss",
+   "color": {
+    "a": 1,
+    "rgb": 3447003
+   }
+  },
+  {
+   "query": "tag:#rule",
+   "color": {
+    "a": 1,
+    "rgb": 10181046
+   }
+  },
+  {
+   "query": "tag:#coin",
+   "color": {
+    "a": 1,
+    "rgb": 15105570
+   }
+  }
+ ],
+ "showTags": false,
+ "showAttachments": false,
+ "showOrphans": true,
+ "lineSizeMultiplier": 1,
+ "nodeSizeMultiplier": 1
+}

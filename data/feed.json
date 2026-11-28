@@ -1,0 +1,1506 @@
+{
+ "updated": "2026-11-28T09:48:57-05:00",
+ "count": 300,
+ "lines": [
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "ANTc $91.5 mc $1,678,235 liq $116,041 5m +0% 1h +0.31% b/s1h 11/3 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.31% < +100%; vol1h/liq 0.01 < 0.6; 1h buys 11 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $116,041 (need >=$30k); F4 PASS buys/sells 11/3=3.67 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "DRB $8.549e-05 mc $8,436,596 liq $810,375 5m +0.09% 1h +0.58% b/s1h 8/4 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.58% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 8 < 25 | GATE F1 FAIL 5m +0.09% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $810,375 (need >=$30k); F4 FAIL buys/sells 8/4=2.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "RSGP $0.0007663 mc $1,045,581 liq $145,141 5m +0% 1h +0% b/s1h 11/6 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 11/6 < 2x; 1h buys 11 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $145,141 (need >=$30k); F4 FAIL buys/sells 11/6=1.83 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "REPPO $0.008565 mc $3,854,818 liq $330,228 5m +0.66% 1h +15.02% b/s1h 40/43 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +15.02% < +100%; vol1h/liq 0.08 < 0.6; buys/sells 40/43 < 2x | GATE F1 FAIL 5m +0.66% (need +50..+150); F2 FAIL vol1h/liq 0.08 (need >=0.82); F3 PASS liq $330,228 (need >=$30k); F4 FAIL buys/sells 40/43=0.93 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "aeon $2.679e-05 mc $2,679,107 liq $430,882 5m +0% 1h -2.39% b/s1h 9/5 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -2.39% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 9/5 < 2x; 1h buys 9 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $430,882 (need >=$30k); F4 FAIL buys/sells 9/5=1.80 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "SNDKc $681.5 mc $2,188,286 liq $1,405,803 5m -0.08% 1h +0.24% b/s1h 370/278 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.24% < +100%; buys/sells 370/278 < 2x; 5m -0.08% <= 0 | GATE F1 FAIL 5m -0.08% (need +50..+150); F2 FAIL vol1h/liq 0.69 (need >=0.82); F3 PASS liq $1,405,803 (need >=$30k); F4 FAIL buys/sells 370/278=1.33 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "DAILY $3.732e-05 mc $36,975 liq $20,254 5m +0% 1h -0.76% b/s1h 8/5 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.76% < +100%; vol1h/liq 0.02 < 0.6; buys/sells 8/5 < 2x; 1h buys 8 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.02 (need >=0.82); F3 FAIL liq $20,254 (need >=$30k); F4 FAIL buys/sells 8/5=1.60 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "SPCXc $132.1 mc $4,094,692 liq $1,155,139 5m -0.05% 1h +0.13% b/s1h 166/127 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.13% < +100%; vol1h/liq 0.46 < 0.6; buys/sells 166/127 < 2x; 5m -0.05% <= 0 | GATE F1 FAIL 5m -0.05% (need +50..+150); F2 FAIL vol1h/liq 0.46 (need >=0.82); F3 PASS liq $1,155,139 (need >=$30k); F4 FAIL buys/sells 166/127=1.31 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "MUc $640.3 mc $1,171,494 liq $23,599 5m +0% 1h +0.15% b/s1h 3/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.15% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 3 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $23,599 (need >=$30k); F4 PASS buys/sells 3/0=3.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "AXIS $0.0732 mc $12,078,907 liq $2,391,991 5m +0.33% 1h -0.23% b/s1h 65/46 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.23% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 65/46 < 2x | GATE F1 FAIL 5m +0.33% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $2,391,991 (need >=$30k); F4 FAIL buys/sells 65/46=1.41 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "NVDAc $147.6 mc $10,779,484 liq $2,078,536 5m -0.17% 1h +0.46% b/s1h 302/273 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.46% < +100%; buys/sells 302/273 < 2x; 5m -0.17% <= 0 | GATE F1 FAIL 5m -0.17% (need +50..+150); F2 FAIL vol1h/liq 0.62 (need >=0.82); F3 PASS liq $2,078,536 (need >=$30k); F4 FAIL buys/sells 302/273=1.11 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "GOOGLc $274.3 mc $10,512,984 liq $1,467,849 5m -0.05% 1h +0.06% b/s1h 139/117 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.32 < 0.6; buys/sells 139/117 < 2x; 5m -0.05% <= 0 | GATE F1 FAIL 5m -0.05% (need +50..+150); F2 FAIL vol1h/liq 0.32 (need >=0.82); F3 PASS liq $1,467,849 (need >=$30k); F4 FAIL buys/sells 139/117=1.19 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "FLOWER $0.1163 mc $2,494,467 liq $200,957 5m +0.91% 1h +1.71% b/s1h 10/9 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +1.71% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 10/9 < 2x; 1h buys 10 < 25 | GATE F1 FAIL 5m +0.91% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $200,957 (need >=$30k); F4 FAIL buys/sells 10/9=1.11 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "PROS $0.6364 mc $2,562,414 liq $958,012 5m -0.08% 1h +0.17% b/s1h 235/314 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.17% < +100%; vol1h/liq 0.08 < 0.6; buys/sells 235/314 < 2x; 5m -0.08% <= 0 | GATE F1 FAIL 5m -0.08% (need +50..+150); F2 FAIL vol1h/liq 0.08 (need >=0.82); F3 PASS liq $958,012 (need >=$30k); F4 FAIL buys/sells 235/314=0.75 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "CTR $0.01601 mc $24,016,202 liq $649,888 5m +0.18% 1h +0.55% b/s1h 97/140 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.55% < +100%; vol1h/liq 0.03 < 0.6; buys/sells 97/140 < 2x | GATE F1 FAIL 5m +0.18% (need +50..+150); F2 FAIL vol1h/liq 0.03 (need >=0.82); F3 PASS liq $649,888 (need >=$30k); F4 FAIL buys/sells 97/140=0.69 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "VELVET $0.09388 mc $23,308,400 liq $1,259,910 5m -0.51% 1h -5.24% b/s1h 1139/1119 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -5.24% < +100%; vol1h/liq 0.11 < 0.6; buys/sells 1139/1119 < 2x; 5m -0.51% <= 0 | GATE F1 FAIL 5m -0.51% (need +50..+150); F2 FAIL vol1h/liq 0.11 (need >=0.82); F3 PASS liq $1,259,910 (need >=$30k); F4 FAIL buys/sells 1139/1119=1.02 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "NOCK $0.01391 mc $33,350,392 liq $771,701 5m +0% 1h +0% b/s1h 6/3 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 6 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $771,701 (need >=$30k); F4 FAIL buys/sells 6/3=2.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "AIDOG $0.004718 mc $4,718,510 liq $289,742 5m +0% 1h -0.75% b/s1h 2/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.75% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 2 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $289,742 (need >=$30k); F4 FAIL buys/sells 2/0=2.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "Surplus $0.0001674 mc $16,742,427 liq $1,093,574 5m -0.49% 1h +0.67% b/s1h 1/14 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.67% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/14 < 2x; 1h buys 1 < 25; 5m -0.49% <= 0 | GATE F1 FAIL 5m -0.49% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $1,093,574 (need >=$30k); F4 FAIL buys/sells 1/14=0.07 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "TN100x $3.836e-06 mc $33,003 liq $12,166 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $12,166 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "MONSTA $1.566e-05 mc $84,862 liq $32,914 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $32,914 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "ID $1.995e-05 mc $18,234 liq $13,150 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $13,150 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "AYB $1.17e-07 mc $232,839 liq $39,451 5m +0% 1h +0.28% b/s1h 5/4 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.28% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 5/4 < 2x; 1h buys 5 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $39,451 (need >=$30k); F4 FAIL buys/sells 5/4=1.25 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "Basecat $0.004558 mc $4,558,200 liq $255,415 5m +0% 1h +0.51% b/s1h 1/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.51% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/1 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $255,415 (need >=$30k); F4 FAIL buys/sells 1/1=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "DOT $0.004446 mc $3,694,771 liq $307,092 5m +0% 1h +0.06% b/s1h 1/1 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/1 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $307,092 (need >=$30k); F4 FAIL buys/sells 1/1=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "BTCB $0.03177 mc $503,292 liq $152,639 5m +0% 1h +0.06% b/s1h 1/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $152,639 (need >=$30k); F4 FAIL buys/sells 1/0=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "ALB $0.002801 mc $711,523 liq $56,033 5m +0% 1h +0.01% b/s1h 4/4 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.01% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 4/4 < 2x; 1h buys 4 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $56,033 (need >=$30k); F4 FAIL buys/sells 4/4=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "STONKEX $0.0004594 mc $407,793 liq $69,068 5m +0% 1h +0.17% b/s1h 1/2 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.17% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/2 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $69,068 (need >=$30k); F4 FAIL buys/sells 1/2=0.50 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "WIRE $0.0005918 mc $566,408 liq $116,831 5m +0.36% 1h +0.36% b/s1h 0/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.36% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/1 < 2x; 1h buys 0 < 25 | GATE F1 FAIL 5m +0.36% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $116,831 (need >=$30k); F4 FAIL buys/sells 0/1=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "MSTRc $81.59 mc $1,876,622 liq $89,350 5m +0% 1h +0% b/s1h 0/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $89,350 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "HOME $1.593e-05 mc $1,593,046 liq $257,382 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $257,382 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "cbZEC $720 mc $12,485,409 liq $317,297 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $317,297 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "TYBG $4.975e-06 mc $611,603 liq $113,295 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $113,295 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "PEPE $3.909e-09 mc $1,644,610 liq $216,361 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $216,361 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "ABX $0.0008615 mc $89,581 liq $61,990 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $61,990 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "bsdETH $1809 mc $247,047 liq $200,486 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $200,486 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "SEEDCOIN $0.0003325 mc $332,584 liq $249,438 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $249,438 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "B'CAT $0.0004372 mc $437,289 liq $349,832 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $349,832 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "MILF $5.684e-07 mc $26,267 liq $44,565 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $44,565 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "BEATS $0.0001252 mc $86,315 liq $68,794 5m +0% 1h -0.25% b/s1h 0/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.25% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/1 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $68,794 (need >=$30k); F4 FAIL buys/sells 0/1=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "BENJI $0.0007908 mc $790,806 liq $209,908 5m +0% 1h -0.43% b/s1h 0/2 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.43% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/2 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $209,908 (need >=$30k); F4 FAIL buys/sells 0/2=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "ADM $0.0003373 mc $331,151 liq $83,369 5m +0% 1h -0.45% b/s1h 0/2 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.45% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/2 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $83,369 (need >=$30k); F4 FAIL buys/sells 0/2=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "cbLTC $43.89 mc $3,095,257 liq $49,805 5m +0.21% 1h +0.04% b/s1h 7/5 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.04% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 7/5 < 2x; 1h buys 7 < 25 | GATE F1 FAIL 5m +0.21% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $49,805 (need >=$30k); F4 FAIL buys/sells 7/5=1.40 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "SOL $70.44 mc $24,723,116 liq $219,157 5m -0.18% 1h +0.3% b/s1h 202/180 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.3% < +100%; vol1h/liq 0.32 < 0.6; buys/sells 202/180 < 2x; 5m -0.18% <= 0 | GATE F1 FAIL 5m -0.18% (need +50..+150); F2 FAIL vol1h/liq 0.32 (need >=0.82); F3 PASS liq $219,157 (need >=$30k); F4 FAIL buys/sells 202/180=1.12 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "ELSA $0.1017 mc $31,198,988 liq $618,771 5m -0.41% 1h -0.79% b/s1h 1619/1475 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.79% < +100%; vol1h/liq 0.46 < 0.6; buys/sells 1619/1475 < 2x; 5m -0.41% <= 0 | GATE F1 FAIL 5m -0.41% (need +50..+150); F2 FAIL vol1h/liq 0.46 (need >=0.82); F3 PASS liq $618,771 (need >=$30k); F4 FAIL buys/sells 1619/1475=1.10 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "SOGNI $0.002822 mc $11,683,338 liq $520,230 5m +0.37% 1h +0.84% b/s1h 20/18 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.84% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 20/18 < 2x; 1h buys 20 < 25 | GATE F1 FAIL 5m +0.37% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $520,230 (need >=$30k); F4 FAIL buys/sells 20/18=1.11 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "ICNT $0.2656 mc $67,206,796 liq $122,317 5m +0% 1h +0.3% b/s1h 79/76 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.3% < +100%; vol1h/liq 0.05 < 0.6; buys/sells 79/76 < 2x; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.05 (need >=0.82); F3 PASS liq $122,317 (need >=$30k); F4 FAIL buys/sells 79/76=1.04 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "XDP $0.01223 mc $12,237,976 liq $655,395 5m -0.63% 1h +0.11% b/s1h 766/822 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.11% < +100%; vol1h/liq 0.21 < 0.6; buys/sells 766/822 < 2x; 5m -0.63% <= 0 | GATE F1 FAIL 5m -0.63% (need +50..+150); F2 FAIL vol1h/liq 0.21 (need >=0.82); F3 PASS liq $655,395 (need >=$30k); F4 FAIL buys/sells 766/822=0.93 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "POD $0.3276 mc $27,633,130 liq $2,862,010 5m +0% 1h +0.36% b/s1h 3/24 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.36% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 3/24 < 2x; 1h buys 3 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $2,862,010 (need >=$30k); F4 FAIL buys/sells 3/24=0.12 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "PORTAL $0.01473 mc $14,734,145 liq $67,549 5m -2.58% 1h -4.81% b/s1h 9/28 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -4.81% < +100%; vol1h/liq 0.06 < 0.6; buys/sells 9/28 < 2x; 1h buys 9 < 25; 5m -2.58% <= 0 | GATE F1 FAIL 5m -2.58% (need +50..+150); F2 FAIL vol1h/liq 0.06 (need >=0.82); F3 PASS liq $67,549 (need >=$30k); F4 FAIL buys/sells 9/28=0.32 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "REI $0.006601 mc $6,601,778 liq $80,706 5m +0% 1h +0.18% b/s1h 1/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.18% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $80,706 (need >=$30k); F4 FAIL buys/sells 1/0=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "SI $1.697e-05 mc $74,705 liq $140,112 5m +5.19% 1h +13.9% b/s1h 21/1 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +13.9% < +100%; vol1h/liq 0.03 < 0.6; 1h buys 21 < 25 | GATE F1 FAIL 5m +5.19% (need +50..+150); F2 FAIL vol1h/liq 0.03 (need >=0.82); F3 PASS liq $140,112 (need >=$30k); F4 PASS buys/sells 21/1=21.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "DAILY $1.242e-05 mc $12,428 liq $11,500 5m +0% 1h +89.41% b/s1h 12/2 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +89.41% < +100%; vol1h/liq 0.30 < 0.6; 1h buys 12 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.30 (need >=0.82); F3 FAIL liq $11,500 (need >=$30k); F4 PASS buys/sells 12/2=6.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "VIOR $2.292e-05 mc $22,921 liq $20,974 5m +8.93% 1h +95.48% b/s1h 47/18 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +95.48% < +100%; vol1h/liq 0.37 < 0.6 | GATE F1 FAIL 5m +8.93% (need +50..+150); F2 FAIL vol1h/liq 0.37 (need >=0.82); F3 FAIL liq $20,974 (need >=$30k); F4 PASS buys/sells 47/18=2.61 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "ANTHROPIC $1.041e-06 mc $5,831 liq $10,557 5m +3.83% 1h +22.3% b/s1h 41/7 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +22.3% < +100%; vol1h/liq 0.11 < 0.6 | GATE F1 FAIL 5m +3.83% (need +50..+150); F2 FAIL vol1h/liq 0.11 (need >=0.82); F3 FAIL liq $10,557 (need >=$30k); F4 PASS buys/sells 41/7=5.86 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "ANTHROPIC $1.309e-06 mc $7,333 liq $13,550 5m +13.12% 1h +17.3% b/s1h 15/2 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +17.3% < +100%; vol1h/liq 0.04 < 0.6; 1h buys 15 < 25 | GATE F1 FAIL 5m +13.12% (need +50..+150); F2 FAIL vol1h/liq 0.04 (need >=0.82); F3 FAIL liq $13,550 (need >=$30k); F4 PASS buys/sells 15/2=7.50 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "summary: 114 addresses from {\"DexScreener latest profiles\": 0, \"DexScreener latest boosts\": 0, \"DexScreener top boosts\": 0, \"GeckoTerminal trending\": 40, \"GeckoTerminal new pools\": 40, \"DexScreener search\": 65}, 114 priced, 57 hard-filtered, 0 honeypot-checked, 0 buys"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "F7",
+   "text": "summary: 0 checked (pass 0, fail 0, unknown 0), 0 fresh GoPlus fetches, 0 cached, 0 rate-capped"
+  },
+  {
+   "t": "2026-11-28T09:48:17-05:00",
+   "type": "SCOUT",
+   "text": "stats: round 2.1s, ledger lock held 0.18s, new pools first seen 0, 429s {}"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "TIBBIR $0.1283 mc $52,604,718 liq $1,766,012 5m +0% 1h +0.45% b/s1h 12/0 [DexScreener search + GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.45% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 12 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $1,766,012 (need >=$30k); F4 PASS buys/sells 12/0=12.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "ANTc $91.5 mc $1,678,235 liq $116,041 5m +0% 1h +0.31% b/s1h 11/3 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.31% < +100%; vol1h/liq 0.01 < 0.6; 1h buys 11 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $116,041 (need >=$30k); F4 PASS buys/sells 11/3=3.67 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "DRB $8.549e-05 mc $8,436,596 liq $810,375 5m +0.09% 1h +0.58% b/s1h 8/4 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.58% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 8 < 25 | GATE F1 FAIL 5m +0.09% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $810,375 (need >=$30k); F4 FAIL buys/sells 8/4=2.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "RSGP $0.0007663 mc $1,045,581 liq $145,141 5m +0% 1h +0% b/s1h 11/6 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 11/6 < 2x; 1h buys 11 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $145,141 (need >=$30k); F4 FAIL buys/sells 11/6=1.83 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "REPPO $0.008517 mc $3,833,311 liq $329,012 5m +0.2% 1h +14.38% b/s1h 40/44 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +14.38% < +100%; vol1h/liq 0.09 < 0.6; buys/sells 40/44 < 2x | GATE F1 FAIL 5m +0.2% (need +50..+150); F2 FAIL vol1h/liq 0.09 (need >=0.82); F3 PASS liq $329,012 (need >=$30k); F4 FAIL buys/sells 40/44=0.91 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "aeon $2.679e-05 mc $2,679,107 liq $430,882 5m +0% 1h -2.39% b/s1h 9/5 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -2.39% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 9/5 < 2x; 1h buys 9 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $430,882 (need >=$30k); F4 FAIL buys/sells 9/5=1.80 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "SNDKc $681.5 mc $2,188,223 liq $1,405,780 5m -0.08% 1h +0.23% b/s1h 356/270 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.23% < +100%; buys/sells 356/270 < 2x; 5m -0.08% <= 0 | GATE F1 FAIL 5m -0.08% (need +50..+150); F2 FAIL vol1h/liq 0.66 (need >=0.82); F3 PASS liq $1,405,780 (need >=$30k); F4 FAIL buys/sells 356/270=1.32 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "DAILY $3.732e-05 mc $36,975 liq $20,254 5m +0% 1h -0.76% b/s1h 8/5 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.76% < +100%; vol1h/liq 0.02 < 0.6; buys/sells 8/5 < 2x; 1h buys 8 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.02 (need >=0.82); F3 FAIL liq $20,254 (need >=$30k); F4 FAIL buys/sells 8/5=1.60 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "SPCXc $132.1 mc $4,094,692 liq $1,155,139 5m -0.05% 1h +0.11% b/s1h 166/127 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.11% < +100%; vol1h/liq 0.46 < 0.6; buys/sells 166/127 < 2x; 5m -0.05% <= 0 | GATE F1 FAIL 5m -0.05% (need +50..+150); F2 FAIL vol1h/liq 0.46 (need >=0.82); F3 PASS liq $1,155,139 (need >=$30k); F4 FAIL buys/sells 166/127=1.31 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "MUc $640.3 mc $1,171,494 liq $23,599 5m +0% 1h +0.15% b/s1h 3/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.15% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 3 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $23,599 (need >=$30k); F4 PASS buys/sells 3/0=3.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "AXIS $0.0732 mc $12,078,907 liq $2,391,991 5m +0.33% 1h -0.23% b/s1h 65/46 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.23% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 65/46 < 2x | GATE F1 FAIL 5m +0.33% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $2,391,991 (need >=$30k); F4 FAIL buys/sells 65/46=1.41 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "NVDAc $147.6 mc $10,779,474 liq $2,072,591 5m -0.16% 1h +0.48% b/s1h 302/275 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.48% < +100%; buys/sells 302/275 < 2x; 5m -0.16% <= 0 | GATE F1 FAIL 5m -0.16% (need +50..+150); F2 FAIL vol1h/liq 0.62 (need >=0.82); F3 PASS liq $2,072,591 (need >=$30k); F4 FAIL buys/sells 302/275=1.10 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "GOOGLc $274.3 mc $10,512,984 liq $1,467,849 5m -0.05% 1h +0.07% b/s1h 139/111 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.07% < +100%; vol1h/liq 0.31 < 0.6; buys/sells 139/111 < 2x; 5m -0.05% <= 0 | GATE F1 FAIL 5m -0.05% (need +50..+150); F2 FAIL vol1h/liq 0.31 (need >=0.82); F3 PASS liq $1,467,849 (need >=$30k); F4 FAIL buys/sells 139/111=1.25 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "FLOWER $0.1163 mc $2,494,467 liq $200,957 5m +0.91% 1h +1.71% b/s1h 10/9 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +1.71% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 10/9 < 2x; 1h buys 10 < 25 | GATE F1 FAIL 5m +0.91% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $200,957 (need >=$30k); F4 FAIL buys/sells 10/9=1.11 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "PROS $0.636 mc $2,560,817 liq $957,684 5m -0.12% 1h +0.06% b/s1h 239/317 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.08 < 0.6; buys/sells 239/317 < 2x; 5m -0.12% <= 0 | GATE F1 FAIL 5m -0.12% (need +50..+150); F2 FAIL vol1h/liq 0.08 (need >=0.82); F3 PASS liq $957,684 (need >=$30k); F4 FAIL buys/sells 239/317=0.75 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "VELVET $0.09387 mc $23,306,666 liq $1,259,868 5m -0.35% 1h -5.41% b/s1h 1142/1124 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -5.41% < +100%; vol1h/liq 0.11 < 0.6; buys/sells 1142/1124 < 2x; 5m -0.35% <= 0 | GATE F1 FAIL 5m -0.35% (need +50..+150); F2 FAIL vol1h/liq 0.11 (need >=0.82); F3 PASS liq $1,259,868 (need >=$30k); F4 FAIL buys/sells 1142/1124=1.02 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "CTR $0.016 mc $24,011,027 liq $649,822 5m +0.05% 1h +0.51% b/s1h 97/142 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.51% < +100%; vol1h/liq 0.03 < 0.6; buys/sells 97/142 < 2x | GATE F1 FAIL 5m +0.05% (need +50..+150); F2 FAIL vol1h/liq 0.03 (need >=0.82); F3 PASS liq $649,822 (need >=$30k); F4 FAIL buys/sells 97/142=0.68 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "NOCK $0.01391 mc $33,350,392 liq $771,701 5m +0% 1h +0% b/s1h 6/3 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 6 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $771,701 (need >=$30k); F4 FAIL buys/sells 6/3=2.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "AIDOG $0.004718 mc $4,718,510 liq $289,742 5m +0% 1h -0.75% b/s1h 2/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.75% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 2 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $289,742 (need >=$30k); F4 FAIL buys/sells 2/0=2.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "Surplus $0.0001674 mc $16,742,427 liq $1,093,574 5m -0.49% 1h +0.67% b/s1h 1/14 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.67% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/14 < 2x; 1h buys 1 < 25; 5m -0.49% <= 0 | GATE F1 FAIL 5m -0.49% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $1,093,574 (need >=$30k); F4 FAIL buys/sells 1/14=0.07 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "TN100x $3.836e-06 mc $33,003 liq $12,166 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $12,166 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "MONSTA $1.566e-05 mc $84,862 liq $32,914 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $32,914 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "ID $1.995e-05 mc $18,234 liq $13,150 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $13,150 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "AYB $1.17e-07 mc $232,839 liq $39,451 5m +0% 1h +0.28% b/s1h 5/4 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.28% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 5/4 < 2x; 1h buys 5 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $39,451 (need >=$30k); F4 FAIL buys/sells 5/4=1.25 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "Basecat $0.004558 mc $4,558,200 liq $255,415 5m +0% 1h +0.51% b/s1h 1/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.51% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/1 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $255,415 (need >=$30k); F4 FAIL buys/sells 1/1=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "DOT $0.004446 mc $3,694,771 liq $307,092 5m +0% 1h +0.06% b/s1h 1/1 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/1 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $307,092 (need >=$30k); F4 FAIL buys/sells 1/1=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "BTCB $0.03177 mc $503,292 liq $152,639 5m +0% 1h +0.06% b/s1h 1/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $152,639 (need >=$30k); F4 FAIL buys/sells 1/0=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "ALB $0.002801 mc $711,523 liq $56,033 5m +0% 1h +0.01% b/s1h 4/4 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.01% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 4/4 < 2x; 1h buys 4 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $56,033 (need >=$30k); F4 FAIL buys/sells 4/4=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "STONKEX $0.0004594 mc $407,793 liq $69,068 5m +0% 1h +0.17% b/s1h 1/2 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.17% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/2 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $69,068 (need >=$30k); F4 FAIL buys/sells 1/2=0.50 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "WIRE $0.0005918 mc $566,408 liq $116,831 5m +0.36% 1h +0.36% b/s1h 0/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.36% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/1 < 2x; 1h buys 0 < 25 | GATE F1 FAIL 5m +0.36% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $116,831 (need >=$30k); F4 FAIL buys/sells 0/1=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "MSTRc $81.59 mc $1,876,622 liq $89,350 5m +0% 1h +0% b/s1h 0/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $89,350 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "HOME $1.593e-05 mc $1,593,046 liq $257,382 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $257,382 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "cbZEC $720 mc $12,485,409 liq $317,297 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $317,297 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "TYBG $4.975e-06 mc $611,603 liq $113,295 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $113,295 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "PEPE $3.909e-09 mc $1,644,610 liq $216,361 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $216,361 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "ABX $0.0008615 mc $89,581 liq $61,990 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $61,990 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "bsdETH $1809 mc $247,047 liq $200,486 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $200,486 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "SEEDCOIN $0.0003325 mc $332,584 liq $249,438 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $249,438 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "B'CAT $0.0004372 mc $437,289 liq $349,832 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $349,832 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "MILF $5.684e-07 mc $26,267 liq $44,565 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $44,565 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "BEATS $0.0001252 mc $86,315 liq $68,794 5m +0% 1h -0.25% b/s1h 0/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.25% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/1 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $68,794 (need >=$30k); F4 FAIL buys/sells 0/1=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "BENJI $0.0007908 mc $790,806 liq $209,908 5m +0% 1h -0.43% b/s1h 0/2 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.43% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/2 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $209,908 (need >=$30k); F4 FAIL buys/sells 0/2=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "ADM $0.0003373 mc $331,151 liq $83,369 5m +0% 1h -0.45% b/s1h 0/2 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.45% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/2 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $83,369 (need >=$30k); F4 FAIL buys/sells 0/2=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "cbLTC $43.89 mc $3,095,257 liq $49,805 5m +0.21% 1h +0.04% b/s1h 7/5 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.04% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 7/5 < 2x; 1h buys 7 < 25 | GATE F1 FAIL 5m +0.21% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $49,805 (need >=$30k); F4 FAIL buys/sells 7/5=1.40 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "SOL $70.41 mc $24,710,844 liq $219,076 5m -0.23% 1h +0.37% b/s1h 197/175 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.37% < +100%; vol1h/liq 0.31 < 0.6; buys/sells 197/175 < 2x; 5m -0.23% <= 0 | GATE F1 FAIL 5m -0.23% (need +50..+150); F2 FAIL vol1h/liq 0.31 (need >=0.82); F3 PASS liq $219,076 (need >=$30k); F4 FAIL buys/sells 197/175=1.13 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "ELSA $0.1017 mc $31,202,696 liq $618,809 5m -0.39% 1h -0.78% b/s1h 1622/1478 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.78% < +100%; vol1h/liq 0.46 < 0.6; buys/sells 1622/1478 < 2x; 5m -0.39% <= 0 | GATE F1 FAIL 5m -0.39% (need +50..+150); F2 FAIL vol1h/liq 0.46 (need >=0.82); F3 PASS liq $618,809 (need >=$30k); F4 FAIL buys/sells 1622/1478=1.10 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "SOGNI $0.002822 mc $11,683,338 liq $520,230 5m +0.37% 1h +0.84% b/s1h 20/18 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.84% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 20/18 < 2x; 1h buys 20 < 25 | GATE F1 FAIL 5m +0.37% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $520,230 (need >=$30k); F4 FAIL buys/sells 20/18=1.11 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "ICNT $0.2659 mc $67,284,009 liq $122,397 5m +0.11% 1h +0.26% b/s1h 79/76 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.26% < +100%; vol1h/liq 0.05 < 0.6; buys/sells 79/76 < 2x | GATE F1 FAIL 5m +0.11% (need +50..+150); F2 FAIL vol1h/liq 0.05 (need >=0.82); F3 PASS liq $122,397 (need >=$30k); F4 FAIL buys/sells 79/76=1.04 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "XDP $0.01223 mc $12,235,208 liq $655,317 5m -0.34% 1h +0.13% b/s1h 760/816 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.13% < +100%; vol1h/liq 0.20 < 0.6; buys/sells 760/816 < 2x; 5m -0.34% <= 0 | GATE F1 FAIL 5m -0.34% (need +50..+150); F2 FAIL vol1h/liq 0.20 (need >=0.82); F3 PASS liq $655,317 (need >=$30k); F4 FAIL buys/sells 760/816=0.93 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "POD $0.3276 mc $27,633,130 liq $2,862,010 5m +0% 1h +0.36% b/s1h 3/24 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.36% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 3/24 < 2x; 1h buys 3 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $2,862,010 (need >=$30k); F4 FAIL buys/sells 3/24=0.12 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "PORTAL $0.01473 mc $14,734,145 liq $67,549 5m -2.2% 1h -4.81% b/s1h 9/28 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -4.81% < +100%; vol1h/liq 0.06 < 0.6; buys/sells 9/28 < 2x; 1h buys 9 < 25; 5m -2.2% <= 0 | GATE F1 FAIL 5m -2.2% (need +50..+150); F2 FAIL vol1h/liq 0.06 (need >=0.82); F3 PASS liq $67,549 (need >=$30k); F4 FAIL buys/sells 9/28=0.32 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "REI $0.006601 mc $6,601,778 liq $80,706 5m +0% 1h +0.18% b/s1h 1/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.18% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $80,706 (need >=$30k); F4 FAIL buys/sells 1/0=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "SI $1.698e-05 mc $74,716 liq $140,123 5m +5.06% 1h +13.92% b/s1h 22/1 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +13.92% < +100%; vol1h/liq 0.03 < 0.6; 1h buys 22 < 25 | GATE F1 FAIL 5m +5.06% (need +50..+150); F2 FAIL vol1h/liq 0.03 (need >=0.82); F3 PASS liq $140,123 (need >=$30k); F4 PASS buys/sells 22/1=22.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "DAILY $1.242e-05 mc $12,428 liq $11,500 5m +0% 1h +89.41% b/s1h 12/2 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +89.41% < +100%; vol1h/liq 0.30 < 0.6; 1h buys 12 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.30 (need >=0.82); F3 FAIL liq $11,500 (need >=$30k); F4 PASS buys/sells 12/2=6.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "VIOR $2.292e-05 mc $22,921 liq $20,974 5m +10.96% 1h +95.48% b/s1h 47/18 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +95.48% < +100%; vol1h/liq 0.37 < 0.6 | GATE F1 FAIL 5m +10.96% (need +50..+150); F2 FAIL vol1h/liq 0.37 (need >=0.82); F3 FAIL liq $20,974 (need >=$30k); F4 PASS buys/sells 47/18=2.61 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "ANTHROPIC $1.046e-06 mc $5,861 liq $10,584 5m +3.35% 1h +22.92% b/s1h 42/7 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +22.92% < +100%; vol1h/liq 0.11 < 0.6 | GATE F1 FAIL 5m +3.35% (need +50..+150); F2 FAIL vol1h/liq 0.11 (need >=0.82); F3 FAIL liq $10,584 (need >=$30k); F4 PASS buys/sells 42/7=6.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "ANTHROPIC $1.313e-06 mc $7,355 liq $13,569 5m +12.15% 1h +17.64% b/s1h 16/2 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +17.64% < +100%; vol1h/liq 0.04 < 0.6; 1h buys 16 < 25 | GATE F1 FAIL 5m +12.15% (need +50..+150); F2 FAIL vol1h/liq 0.04 (need >=0.82); F3 FAIL liq $13,569 (need >=$30k); F4 PASS buys/sells 16/2=8.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "summary: 114 addresses from {\"DexScreener latest profiles\": 0, \"DexScreener latest boosts\": 0, \"DexScreener top boosts\": 0, \"GeckoTerminal trending\": 40, \"GeckoTerminal new pools\": 40, \"DexScreener search\": 65}, 114 priced, 57 hard-filtered, 0 honeypot-checked, 0 buys"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "F7",
+   "text": "summary: 0 checked (pass 0, fail 0, unknown 0), 0 fresh GoPlus fetches, 0 cached, 0 rate-capped"
+  },
+  {
+   "t": "2026-11-28T09:48:26-05:00",
+   "type": "SCOUT",
+   "text": "stats: round 3.1s, ledger lock held 0.17s, new pools first seen 0, 429s {}"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "TIBBIR $0.1283 mc $52,604,718 liq $1,766,012 5m +0% 1h +0.45% b/s1h 12/0 [DexScreener search + GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.45% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 12 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $1,766,012 (need >=$30k); F4 PASS buys/sells 12/0=12.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "ANTc $91.5 mc $1,678,235 liq $116,041 5m +0% 1h +0.31% b/s1h 11/3 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.31% < +100%; vol1h/liq 0.01 < 0.6; 1h buys 11 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $116,041 (need >=$30k); F4 PASS buys/sells 11/3=3.67 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "DRB $8.549e-05 mc $8,436,596 liq $810,375 5m +0.09% 1h +0.58% b/s1h 8/4 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.58% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 8 < 25 | GATE F1 FAIL 5m +0.09% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $810,375 (need >=$30k); F4 FAIL buys/sells 8/4=2.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "RSGP $0.0007663 mc $1,045,581 liq $145,141 5m +0% 1h +0% b/s1h 11/6 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 11/6 < 2x; 1h buys 11 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $145,141 (need >=$30k); F4 FAIL buys/sells 11/6=1.83 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "REPPO $0.008517 mc $3,833,311 liq $329,012 5m +0.2% 1h +14.38% b/s1h 40/44 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +14.38% < +100%; vol1h/liq 0.09 < 0.6; buys/sells 40/44 < 2x | GATE F1 FAIL 5m +0.2% (need +50..+150); F2 FAIL vol1h/liq 0.09 (need >=0.82); F3 PASS liq $329,012 (need >=$30k); F4 FAIL buys/sells 40/44=0.91 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "aeon $2.679e-05 mc $2,679,107 liq $430,882 5m +0% 1h -2.39% b/s1h 9/5 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -2.39% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 9/5 < 2x; 1h buys 9 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $430,882 (need >=$30k); F4 FAIL buys/sells 9/5=1.80 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "SNDKc $681.5 mc $2,188,223 liq $1,405,780 5m -0.08% 1h +0.23% b/s1h 356/270 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.23% < +100%; buys/sells 356/270 < 2x; 5m -0.08% <= 0 | GATE F1 FAIL 5m -0.08% (need +50..+150); F2 FAIL vol1h/liq 0.66 (need >=0.82); F3 PASS liq $1,405,780 (need >=$30k); F4 FAIL buys/sells 356/270=1.32 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "DAILY $3.732e-05 mc $36,975 liq $20,254 5m +0% 1h -0.76% b/s1h 8/5 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.76% < +100%; vol1h/liq 0.02 < 0.6; buys/sells 8/5 < 2x; 1h buys 8 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.02 (need >=0.82); F3 FAIL liq $20,254 (need >=$30k); F4 FAIL buys/sells 8/5=1.60 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "SPCXc $132.1 mc $4,094,692 liq $1,155,139 5m -0.05% 1h +0.11% b/s1h 166/127 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.11% < +100%; vol1h/liq 0.46 < 0.6; buys/sells 166/127 < 2x; 5m -0.05% <= 0 | GATE F1 FAIL 5m -0.05% (need +50..+150); F2 FAIL vol1h/liq 0.46 (need >=0.82); F3 PASS liq $1,155,139 (need >=$30k); F4 FAIL buys/sells 166/127=1.31 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "MUc $640.3 mc $1,171,494 liq $23,599 5m +0% 1h +0.15% b/s1h 3/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.15% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 3 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $23,599 (need >=$30k); F4 PASS buys/sells 3/0=3.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "AXIS $0.0732 mc $12,078,907 liq $2,391,991 5m +0.33% 1h -0.23% b/s1h 65/46 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.23% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 65/46 < 2x | GATE F1 FAIL 5m +0.33% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $2,391,991 (need >=$30k); F4 FAIL buys/sells 65/46=1.41 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "NVDAc $147.6 mc $10,779,474 liq $2,072,591 5m -0.16% 1h +0.48% b/s1h 302/275 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.48% < +100%; buys/sells 302/275 < 2x; 5m -0.16% <= 0 | GATE F1 FAIL 5m -0.16% (need +50..+150); F2 FAIL vol1h/liq 0.62 (need >=0.82); F3 PASS liq $2,072,591 (need >=$30k); F4 FAIL buys/sells 302/275=1.10 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "GOOGLc $274.3 mc $10,512,984 liq $1,467,849 5m -0.05% 1h +0.07% b/s1h 139/111 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.07% < +100%; vol1h/liq 0.31 < 0.6; buys/sells 139/111 < 2x; 5m -0.05% <= 0 | GATE F1 FAIL 5m -0.05% (need +50..+150); F2 FAIL vol1h/liq 0.31 (need >=0.82); F3 PASS liq $1,467,849 (need >=$30k); F4 FAIL buys/sells 139/111=1.25 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "FLOWER $0.1163 mc $2,494,467 liq $200,957 5m +0.91% 1h +1.71% b/s1h 10/9 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +1.71% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 10/9 < 2x; 1h buys 10 < 25 | GATE F1 FAIL 5m +0.91% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $200,957 (need >=$30k); F4 FAIL buys/sells 10/9=1.11 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "PROS $0.636 mc $2,560,817 liq $957,684 5m -0.12% 1h +0.06% b/s1h 239/317 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.08 < 0.6; buys/sells 239/317 < 2x; 5m -0.12% <= 0 | GATE F1 FAIL 5m -0.12% (need +50..+150); F2 FAIL vol1h/liq 0.08 (need >=0.82); F3 PASS liq $957,684 (need >=$30k); F4 FAIL buys/sells 239/317=0.75 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "VELVET $0.09387 mc $23,306,666 liq $1,259,868 5m -0.35% 1h -5.41% b/s1h 1142/1124 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -5.41% < +100%; vol1h/liq 0.11 < 0.6; buys/sells 1142/1124 < 2x; 5m -0.35% <= 0 | GATE F1 FAIL 5m -0.35% (need +50..+150); F2 FAIL vol1h/liq 0.11 (need >=0.82); F3 PASS liq $1,259,868 (need >=$30k); F4 FAIL buys/sells 1142/1124=1.02 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "CTR $0.016 mc $24,011,027 liq $649,822 5m +0.05% 1h +0.51% b/s1h 97/142 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.51% < +100%; vol1h/liq 0.03 < 0.6; buys/sells 97/142 < 2x | GATE F1 FAIL 5m +0.05% (need +50..+150); F2 FAIL vol1h/liq 0.03 (need >=0.82); F3 PASS liq $649,822 (need >=$30k); F4 FAIL buys/sells 97/142=0.68 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "NOCK $0.01391 mc $33,350,392 liq $771,701 5m +0% 1h +0% b/s1h 6/3 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 6 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $771,701 (need >=$30k); F4 FAIL buys/sells 6/3=2.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "AIDOG $0.004718 mc $4,718,510 liq $289,742 5m +0% 1h -0.75% b/s1h 2/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.75% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 2 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $289,742 (need >=$30k); F4 FAIL buys/sells 2/0=2.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "Surplus $0.0001674 mc $16,742,427 liq $1,093,574 5m -0.49% 1h +0.67% b/s1h 1/14 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.67% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/14 < 2x; 1h buys 1 < 25; 5m -0.49% <= 0 | GATE F1 FAIL 5m -0.49% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $1,093,574 (need >=$30k); F4 FAIL buys/sells 1/14=0.07 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "TN100x $3.836e-06 mc $33,003 liq $12,166 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $12,166 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "MONSTA $1.566e-05 mc $84,862 liq $32,914 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $32,914 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "ID $1.995e-05 mc $18,234 liq $13,150 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $13,150 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "AYB $1.17e-07 mc $232,839 liq $39,451 5m +0% 1h +0.28% b/s1h 5/4 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.28% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 5/4 < 2x; 1h buys 5 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $39,451 (need >=$30k); F4 FAIL buys/sells 5/4=1.25 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "Basecat $0.004558 mc $4,558,200 liq $255,415 5m +0% 1h +0.51% b/s1h 1/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.51% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/1 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $255,415 (need >=$30k); F4 FAIL buys/sells 1/1=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "DOT $0.004446 mc $3,694,771 liq $307,092 5m +0% 1h +0.06% b/s1h 1/1 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/1 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $307,092 (need >=$30k); F4 FAIL buys/sells 1/1=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "BTCB $0.03177 mc $503,292 liq $152,639 5m +0% 1h +0.06% b/s1h 1/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $152,639 (need >=$30k); F4 FAIL buys/sells 1/0=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "ALB $0.002801 mc $711,523 liq $56,033 5m +0% 1h +0.01% b/s1h 4/4 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.01% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 4/4 < 2x; 1h buys 4 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $56,033 (need >=$30k); F4 FAIL buys/sells 4/4=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "STONKEX $0.0004594 mc $407,793 liq $69,068 5m +0% 1h +0.17% b/s1h 1/2 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.17% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/2 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $69,068 (need >=$30k); F4 FAIL buys/sells 1/2=0.50 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "WIRE $0.0005918 mc $566,408 liq $116,831 5m +0.36% 1h +0.36% b/s1h 0/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.36% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/1 < 2x; 1h buys 0 < 25 | GATE F1 FAIL 5m +0.36% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $116,831 (need >=$30k); F4 FAIL buys/sells 0/1=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "MSTRc $81.59 mc $1,876,622 liq $89,350 5m +0% 1h +0% b/s1h 0/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $89,350 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "HOME $1.593e-05 mc $1,593,046 liq $257,382 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $257,382 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "cbZEC $720 mc $12,485,409 liq $317,297 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $317,297 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "TYBG $4.975e-06 mc $611,603 liq $113,295 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $113,295 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "PEPE $3.909e-09 mc $1,644,610 liq $216,361 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $216,361 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "ABX $0.0008615 mc $89,581 liq $61,990 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $61,990 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "bsdETH $1809 mc $247,047 liq $200,486 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $200,486 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "SEEDCOIN $0.0003325 mc $332,584 liq $249,438 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $249,438 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "B'CAT $0.0004372 mc $437,289 liq $349,832 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $349,832 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "MILF $5.684e-07 mc $26,267 liq $44,565 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $44,565 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "BEATS $0.0001252 mc $86,315 liq $68,794 5m +0% 1h -0.25% b/s1h 0/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.25% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/1 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $68,794 (need >=$30k); F4 FAIL buys/sells 0/1=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "BENJI $0.0007908 mc $790,806 liq $209,908 5m +0% 1h -0.43% b/s1h 0/2 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.43% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/2 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $209,908 (need >=$30k); F4 FAIL buys/sells 0/2=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "ADM $0.0003373 mc $331,151 liq $83,369 5m +0% 1h -0.45% b/s1h 0/2 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.45% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/2 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $83,369 (need >=$30k); F4 FAIL buys/sells 0/2=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "cbLTC $43.89 mc $3,095,257 liq $49,805 5m +0.21% 1h +0.04% b/s1h 7/5 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.04% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 7/5 < 2x; 1h buys 7 < 25 | GATE F1 FAIL 5m +0.21% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $49,805 (need >=$30k); F4 FAIL buys/sells 7/5=1.40 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "SOL $70.41 mc $24,710,844 liq $219,076 5m -0.23% 1h +0.37% b/s1h 197/175 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.37% < +100%; vol1h/liq 0.31 < 0.6; buys/sells 197/175 < 2x; 5m -0.23% <= 0 | GATE F1 FAIL 5m -0.23% (need +50..+150); F2 FAIL vol1h/liq 0.31 (need >=0.82); F3 PASS liq $219,076 (need >=$30k); F4 FAIL buys/sells 197/175=1.13 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "ELSA $0.1017 mc $31,202,696 liq $618,809 5m -0.39% 1h -0.78% b/s1h 1622/1478 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.78% < +100%; vol1h/liq 0.46 < 0.6; buys/sells 1622/1478 < 2x; 5m -0.39% <= 0 | GATE F1 FAIL 5m -0.39% (need +50..+150); F2 FAIL vol1h/liq 0.46 (need >=0.82); F3 PASS liq $618,809 (need >=$30k); F4 FAIL buys/sells 1622/1478=1.10 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "SOGNI $0.002822 mc $11,683,338 liq $520,230 5m +0.37% 1h +0.84% b/s1h 20/18 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.84% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 20/18 < 2x; 1h buys 20 < 25 | GATE F1 FAIL 5m +0.37% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $520,230 (need >=$30k); F4 FAIL buys/sells 20/18=1.11 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "ICNT $0.2659 mc $67,284,009 liq $122,397 5m +0.11% 1h +0.26% b/s1h 79/76 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.26% < +100%; vol1h/liq 0.05 < 0.6; buys/sells 79/76 < 2x | GATE F1 FAIL 5m +0.11% (need +50..+150); F2 FAIL vol1h/liq 0.05 (need >=0.82); F3 PASS liq $122,397 (need >=$30k); F4 FAIL buys/sells 79/76=1.04 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "XDP $0.01223 mc $12,235,208 liq $655,317 5m -0.34% 1h +0.13% b/s1h 760/816 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.13% < +100%; vol1h/liq 0.20 < 0.6; buys/sells 760/816 < 2x; 5m -0.34% <= 0 | GATE F1 FAIL 5m -0.34% (need +50..+150); F2 FAIL vol1h/liq 0.20 (need >=0.82); F3 PASS liq $655,317 (need >=$30k); F4 FAIL buys/sells 760/816=0.93 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "POD $0.3276 mc $27,633,130 liq $2,862,010 5m +0% 1h +0.36% b/s1h 3/24 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.36% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 3/24 < 2x; 1h buys 3 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $2,862,010 (need >=$30k); F4 FAIL buys/sells 3/24=0.12 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "PORTAL $0.01473 mc $14,734,145 liq $67,549 5m -2.2% 1h -4.81% b/s1h 9/28 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -4.81% < +100%; vol1h/liq 0.06 < 0.6; buys/sells 9/28 < 2x; 1h buys 9 < 25; 5m -2.2% <= 0 | GATE F1 FAIL 5m -2.2% (need +50..+150); F2 FAIL vol1h/liq 0.06 (need >=0.82); F3 PASS liq $67,549 (need >=$30k); F4 FAIL buys/sells 9/28=0.32 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "REI $0.006601 mc $6,601,778 liq $80,706 5m +0% 1h +0.18% b/s1h 1/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.18% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $80,706 (need >=$30k); F4 FAIL buys/sells 1/0=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "SI $1.698e-05 mc $74,716 liq $140,123 5m +5.06% 1h +13.92% b/s1h 22/1 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +13.92% < +100%; vol1h/liq 0.03 < 0.6; 1h buys 22 < 25 | GATE F1 FAIL 5m +5.06% (need +50..+150); F2 FAIL vol1h/liq 0.03 (need >=0.82); F3 PASS liq $140,123 (need >=$30k); F4 PASS buys/sells 22/1=22.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "VIOR $2.292e-05 mc $22,921 liq $20,974 5m +10.96% 1h +95.48% b/s1h 47/18 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +95.48% < +100%; vol1h/liq 0.37 < 0.6 | GATE F1 FAIL 5m +10.96% (need +50..+150); F2 FAIL vol1h/liq 0.37 (need >=0.82); F3 FAIL liq $20,974 (need >=$30k); F4 PASS buys/sells 47/18=2.61 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "ANTHROPIC $1.046e-06 mc $5,861 liq $10,584 5m +3.35% 1h +22.92% b/s1h 42/7 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +22.92% < +100%; vol1h/liq 0.11 < 0.6 | GATE F1 FAIL 5m +3.35% (need +50..+150); F2 FAIL vol1h/liq 0.11 (need >=0.82); F3 FAIL liq $10,584 (need >=$30k); F4 PASS buys/sells 42/7=6.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "DAILY $1.242e-05 mc $12,428 liq $11,500 5m +0% 1h +0% b/s1h 0/0 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $11,500 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "ANTHROPIC $1.313e-06 mc $7,355 liq $13,569 5m +12.15% 1h +17.64% b/s1h 16/2 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +17.64% < +100%; vol1h/liq 0.04 < 0.6; 1h buys 16 < 25 | GATE F1 FAIL 5m +12.15% (need +50..+150); F2 FAIL vol1h/liq 0.04 (need >=0.82); F3 FAIL liq $13,569 (need >=$30k); F4 PASS buys/sells 16/2=8.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "summary: 114 addresses from {\"DexScreener latest profiles\": 0, \"DexScreener latest boosts\": 0, \"DexScreener top boosts\": 0, \"GeckoTerminal trending\": 40, \"GeckoTerminal new pools\": 40, \"DexScreener search\": 65}, 114 priced, 57 hard-filtered, 0 honeypot-checked, 0 buys"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "F7",
+   "text": "summary: 0 checked (pass 0, fail 0, unknown 0), 0 fresh GoPlus fetches, 0 cached, 0 rate-capped"
+  },
+  {
+   "t": "2026-11-28T09:48:34-05:00",
+   "type": "SCOUT",
+   "text": "stats: round 2.3s, ledger lock held 0.17s, new pools first seen 0, 429s {}"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "TIBBIR $0.1283 mc $52,604,718 liq $1,766,012 5m +0% 1h +0.45% b/s1h 12/0 [DexScreener search + GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.45% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 12 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $1,766,012 (need >=$30k); F4 PASS buys/sells 12/0=12.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "ANTc $91.5 mc $1,678,235 liq $116,041 5m +0% 1h +0.31% b/s1h 11/3 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.31% < +100%; vol1h/liq 0.01 < 0.6; 1h buys 11 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $116,041 (need >=$30k); F4 PASS buys/sells 11/3=3.67 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "DRB $8.549e-05 mc $8,436,597 liq $810,375 5m +0.09% 1h +0.58% b/s1h 9/4 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.58% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 9 < 25 | GATE F1 FAIL 5m +0.09% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $810,375 (need >=$30k); F4 FAIL buys/sells 9/4=2.25 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "RSGP $0.0007663 mc $1,045,581 liq $145,141 5m +0% 1h +0% b/s1h 11/6 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 11/6 < 2x; 1h buys 11 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $145,141 (need >=$30k); F4 FAIL buys/sells 11/6=1.83 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "REPPO $0.008517 mc $3,833,311 liq $329,012 5m +0.2% 1h +14.38% b/s1h 40/44 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +14.38% < +100%; vol1h/liq 0.09 < 0.6; buys/sells 40/44 < 2x | GATE F1 FAIL 5m +0.2% (need +50..+150); F2 FAIL vol1h/liq 0.09 (need >=0.82); F3 PASS liq $329,012 (need >=$30k); F4 FAIL buys/sells 40/44=0.91 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "aeon $2.679e-05 mc $2,679,107 liq $430,882 5m +0% 1h -2.39% b/s1h 9/5 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -2.39% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 9/5 < 2x; 1h buys 9 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $430,882 (need >=$30k); F4 FAIL buys/sells 9/5=1.80 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "SNDKc $681.5 mc $2,188,223 liq $1,405,780 5m -0.08% 1h +0.23% b/s1h 356/270 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.23% < +100%; buys/sells 356/270 < 2x; 5m -0.08% <= 0 | GATE F1 FAIL 5m -0.08% (need +50..+150); F2 FAIL vol1h/liq 0.66 (need >=0.82); F3 PASS liq $1,405,780 (need >=$30k); F4 FAIL buys/sells 356/270=1.32 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "DAILY $3.732e-05 mc $36,975 liq $20,254 5m +0% 1h -0.76% b/s1h 8/5 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.76% < +100%; vol1h/liq 0.02 < 0.6; buys/sells 8/5 < 2x; 1h buys 8 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.02 (need >=0.82); F3 FAIL liq $20,254 (need >=$30k); F4 FAIL buys/sells 8/5=1.60 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "SPCXc $132.1 mc $4,094,692 liq $1,155,139 5m -0.05% 1h +0.11% b/s1h 160/124 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.11% < +100%; vol1h/liq 0.45 < 0.6; buys/sells 160/124 < 2x; 5m -0.05% <= 0 | GATE F1 FAIL 5m -0.05% (need +50..+150); F2 FAIL vol1h/liq 0.45 (need >=0.82); F3 PASS liq $1,155,139 (need >=$30k); F4 FAIL buys/sells 160/124=1.29 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "MUc $640.3 mc $1,171,494 liq $23,599 5m +0% 1h +0.15% b/s1h 3/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.15% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 3 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $23,599 (need >=$30k); F4 PASS buys/sells 3/0=3.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "AXIS $0.0732 mc $12,078,907 liq $2,391,991 5m +0.33% 1h -0.23% b/s1h 65/46 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.23% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 65/46 < 2x | GATE F1 FAIL 5m +0.33% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $2,391,991 (need >=$30k); F4 FAIL buys/sells 65/46=1.41 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "NVDAc $147.6 mc $10,778,476 liq $2,072,457 5m -0.17% 1h +0.47% b/s1h 297/268 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.47% < +100%; buys/sells 297/268 < 2x; 5m -0.17% <= 0 | GATE F1 FAIL 5m -0.17% (need +50..+150); F2 FAIL vol1h/liq 0.61 (need >=0.82); F3 PASS liq $2,072,457 (need >=$30k); F4 FAIL buys/sells 297/268=1.11 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "GOOGLc $274.3 mc $10,512,984 liq $1,467,849 5m -0.05% 1h +0.07% b/s1h 139/111 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.07% < +100%; vol1h/liq 0.31 < 0.6; buys/sells 139/111 < 2x; 5m -0.05% <= 0 | GATE F1 FAIL 5m -0.05% (need +50..+150); F2 FAIL vol1h/liq 0.31 (need >=0.82); F3 PASS liq $1,467,849 (need >=$30k); F4 FAIL buys/sells 139/111=1.25 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "FLOWER $0.1163 mc $2,494,467 liq $200,957 5m +0.91% 1h +1.71% b/s1h 10/9 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +1.71% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 10/9 < 2x; 1h buys 10 < 25 | GATE F1 FAIL 5m +0.91% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $200,957 (need >=$30k); F4 FAIL buys/sells 10/9=1.11 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "VELVET $0.09405 mc $23,350,296 liq $1,260,921 5m -0.16% 1h -5.23% b/s1h 1136/1114 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -5.23% < +100%; vol1h/liq 0.11 < 0.6; buys/sells 1136/1114 < 2x; 5m -0.16% <= 0 | GATE F1 FAIL 5m -0.16% (need +50..+150); F2 FAIL vol1h/liq 0.11 (need >=0.82); F3 PASS liq $1,260,921 (need >=$30k); F4 FAIL buys/sells 1136/1114=1.02 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "PROS $0.636 mc $2,560,817 liq $957,684 5m -0.12% 1h +0.06% b/s1h 239/317 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.08 < 0.6; buys/sells 239/317 < 2x; 5m -0.12% <= 0 | GATE F1 FAIL 5m -0.12% (need +50..+150); F2 FAIL vol1h/liq 0.08 (need >=0.82); F3 PASS liq $957,684 (need >=$30k); F4 FAIL buys/sells 239/317=0.75 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "CTR $0.016 mc $24,008,287 liq $649,788 5m +0.04% 1h +0.5% b/s1h 96/142 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.5% < +100%; vol1h/liq 0.03 < 0.6; buys/sells 96/142 < 2x | GATE F1 FAIL 5m +0.04% (need +50..+150); F2 FAIL vol1h/liq 0.03 (need >=0.82); F3 PASS liq $649,788 (need >=$30k); F4 FAIL buys/sells 96/142=0.68 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "NOCK $0.01391 mc $33,350,392 liq $771,701 5m +0% 1h +0% b/s1h 6/3 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 6 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $771,701 (need >=$30k); F4 FAIL buys/sells 6/3=2.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "AIDOG $0.004718 mc $4,718,510 liq $289,742 5m +0% 1h -0.75% b/s1h 2/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.75% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 2 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $289,742 (need >=$30k); F4 FAIL buys/sells 2/0=2.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "Surplus $0.0001674 mc $16,742,427 liq $1,093,574 5m -0.49% 1h +0.67% b/s1h 1/14 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.67% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/14 < 2x; 1h buys 1 < 25; 5m -0.49% <= 0 | GATE F1 FAIL 5m -0.49% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $1,093,574 (need >=$30k); F4 FAIL buys/sells 1/14=0.07 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "TN100x $3.836e-06 mc $33,003 liq $12,166 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $12,166 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "MONSTA $1.566e-05 mc $84,862 liq $32,914 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $32,914 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "ID $1.995e-05 mc $18,234 liq $13,150 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $13,150 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "AYB $1.17e-07 mc $232,839 liq $39,451 5m +0% 1h +0.28% b/s1h 5/4 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.28% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 5/4 < 2x; 1h buys 5 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $39,451 (need >=$30k); F4 FAIL buys/sells 5/4=1.25 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "Basecat $0.004558 mc $4,558,200 liq $255,415 5m +0% 1h +0.51% b/s1h 1/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.51% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/1 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $255,415 (need >=$30k); F4 FAIL buys/sells 1/1=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "DOT $0.004446 mc $3,694,771 liq $307,092 5m +0% 1h +0.06% b/s1h 1/1 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/1 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $307,092 (need >=$30k); F4 FAIL buys/sells 1/1=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "BTCB $0.03177 mc $503,292 liq $152,639 5m +0% 1h +0.06% b/s1h 1/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $152,639 (need >=$30k); F4 FAIL buys/sells 1/0=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "ALB $0.002801 mc $711,523 liq $56,033 5m +0% 1h +0.01% b/s1h 4/4 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.01% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 4/4 < 2x; 1h buys 4 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $56,033 (need >=$30k); F4 FAIL buys/sells 4/4=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "STONKEX $0.0004594 mc $407,793 liq $69,068 5m +0% 1h +0.17% b/s1h 1/2 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.17% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/2 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $69,068 (need >=$30k); F4 FAIL buys/sells 1/2=0.50 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "WIRE $0.0005918 mc $566,408 liq $116,831 5m +0.36% 1h +0.36% b/s1h 0/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.36% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/1 < 2x; 1h buys 0 < 25 | GATE F1 FAIL 5m +0.36% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $116,831 (need >=$30k); F4 FAIL buys/sells 0/1=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "MSTRc $81.59 mc $1,876,622 liq $89,350 5m +0% 1h +0% b/s1h 0/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $89,350 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "HOME $1.593e-05 mc $1,593,046 liq $257,382 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $257,382 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "cbZEC $720 mc $12,485,409 liq $317,297 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $317,297 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "TYBG $4.975e-06 mc $611,603 liq $113,295 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $113,295 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "PEPE $3.909e-09 mc $1,644,610 liq $216,361 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $216,361 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "ABX $0.0008615 mc $89,581 liq $61,990 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $61,990 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "bsdETH $1809 mc $247,047 liq $200,486 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $200,486 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "SEEDCOIN $0.0003325 mc $332,584 liq $249,438 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $249,438 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "B'CAT $0.0004372 mc $437,289 liq $349,832 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $349,832 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "MILF $5.684e-07 mc $26,267 liq $44,565 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $44,565 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "BEATS $0.0001252 mc $86,315 liq $68,794 5m +0% 1h -0.25% b/s1h 0/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.25% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/1 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $68,794 (need >=$30k); F4 FAIL buys/sells 0/1=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "BENJI $0.0007908 mc $790,806 liq $209,908 5m +0% 1h -0.43% b/s1h 0/2 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.43% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/2 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $209,908 (need >=$30k); F4 FAIL buys/sells 0/2=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "ADM $0.0003373 mc $331,151 liq $83,369 5m +0% 1h -0.45% b/s1h 0/2 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.45% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/2 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $83,369 (need >=$30k); F4 FAIL buys/sells 0/2=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "cbLTC $43.89 mc $3,095,257 liq $49,805 5m +0.21% 1h +0.04% b/s1h 7/5 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.04% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 7/5 < 2x; 1h buys 7 < 25 | GATE F1 FAIL 5m +0.21% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $49,805 (need >=$30k); F4 FAIL buys/sells 7/5=1.40 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "ELSA $0.1019 mc $31,260,322 liq $619,408 5m -0.04% 1h -0.58% b/s1h 1619/1466 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.58% < +100%; vol1h/liq 0.46 < 0.6; buys/sells 1619/1466 < 2x; 5m -0.04% <= 0 | GATE F1 FAIL 5m -0.04% (need +50..+150); F2 FAIL vol1h/liq 0.46 (need >=0.82); F3 PASS liq $619,408 (need >=$30k); F4 FAIL buys/sells 1619/1466=1.10 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "SOL $70.41 mc $24,710,844 liq $219,076 5m -0.23% 1h +0.37% b/s1h 197/175 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.37% < +100%; vol1h/liq 0.31 < 0.6; buys/sells 197/175 < 2x; 5m -0.23% <= 0 | GATE F1 FAIL 5m -0.23% (need +50..+150); F2 FAIL vol1h/liq 0.31 (need >=0.82); F3 PASS liq $219,076 (need >=$30k); F4 FAIL buys/sells 197/175=1.13 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "SOGNI $0.002822 mc $11,683,338 liq $520,230 5m +0.37% 1h +0.81% b/s1h 19/18 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.81% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 19/18 < 2x; 1h buys 19 < 25 | GATE F1 FAIL 5m +0.37% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $520,230 (need >=$30k); F4 FAIL buys/sells 19/18=1.06 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "ICNT $0.2659 mc $67,284,009 liq $122,397 5m +0.11% 1h +0.26% b/s1h 79/76 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.26% < +100%; vol1h/liq 0.05 < 0.6; buys/sells 79/76 < 2x | GATE F1 FAIL 5m +0.11% (need +50..+150); F2 FAIL vol1h/liq 0.05 (need >=0.82); F3 PASS liq $122,397 (need >=$30k); F4 FAIL buys/sells 79/76=1.04 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "XDP $0.01223 mc $12,235,208 liq $655,317 5m -0.34% 1h +0.13% b/s1h 760/816 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.13% < +100%; vol1h/liq 0.20 < 0.6; buys/sells 760/816 < 2x; 5m -0.34% <= 0 | GATE F1 FAIL 5m -0.34% (need +50..+150); F2 FAIL vol1h/liq 0.20 (need >=0.82); F3 PASS liq $655,317 (need >=$30k); F4 FAIL buys/sells 760/816=0.93 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "POD $0.3276 mc $27,633,130 liq $2,862,010 5m +0% 1h +0.36% b/s1h 3/24 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.36% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 3/24 < 2x; 1h buys 3 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $2,862,010 (need >=$30k); F4 FAIL buys/sells 3/24=0.12 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "PORTAL $0.01473 mc $14,734,145 liq $67,549 5m -2.2% 1h -4.81% b/s1h 9/28 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -4.81% < +100%; vol1h/liq 0.06 < 0.6; buys/sells 9/28 < 2x; 1h buys 9 < 25; 5m -2.2% <= 0 | GATE F1 FAIL 5m -2.2% (need +50..+150); F2 FAIL vol1h/liq 0.06 (need >=0.82); F3 PASS liq $67,549 (need >=$30k); F4 FAIL buys/sells 9/28=0.32 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "REI $0.006601 mc $6,601,778 liq $80,706 5m +0% 1h +0.18% b/s1h 1/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.18% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $80,706 (need >=$30k); F4 FAIL buys/sells 1/0=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "SI $1.715e-05 mc $75,504 liq $140,861 5m +6.17% 1h +15.12% b/s1h 23/1 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +15.12% < +100%; vol1h/liq 0.03 < 0.6; 1h buys 23 < 25 | GATE F1 FAIL 5m +6.17% (need +50..+150); F2 FAIL vol1h/liq 0.03 (need >=0.82); F3 PASS liq $140,861 (need >=$30k); F4 PASS buys/sells 23/1=23.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "VIOR $2.292e-05 mc $22,921 liq $20,974 5m +10.96% 1h +95.48% b/s1h 47/18 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +95.48% < +100%; vol1h/liq 0.37 < 0.6 | GATE F1 FAIL 5m +10.96% (need +50..+150); F2 FAIL vol1h/liq 0.37 (need >=0.82); F3 FAIL liq $20,974 (need >=$30k); F4 PASS buys/sells 47/18=2.61 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "ANTHROPIC $1.317e-06 mc $7,380 liq $13,592 5m +12.53% 1h +18.04% b/s1h 17/3 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +18.04% < +100%; vol1h/liq 0.04 < 0.6; 1h buys 17 < 25 | GATE F1 FAIL 5m +12.53% (need +50..+150); F2 FAIL vol1h/liq 0.04 (need >=0.82); F3 FAIL liq $13,592 (need >=$30k); F4 PASS buys/sells 17/3=5.67 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "ANTHROPIC $1.047e-06 mc $5,866 liq $10,589 5m +3.44% 1h +23.03% b/s1h 44/7 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +23.03% < +100%; vol1h/liq 0.11 < 0.6 | GATE F1 FAIL 5m +3.44% (need +50..+150); F2 FAIL vol1h/liq 0.11 (need >=0.82); F3 FAIL liq $10,589 (need >=$30k); F4 PASS buys/sells 44/7=6.29 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "DAILY $1.242e-05 mc $12,428 liq $11,500 5m +0% 1h +0% b/s1h 0/0 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $11,500 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "summary: 114 addresses from {\"DexScreener latest profiles\": 0, \"DexScreener latest boosts\": 0, \"DexScreener top boosts\": 0, \"GeckoTerminal trending\": 40, \"GeckoTerminal new pools\": 40, \"DexScreener search\": 65}, 114 priced, 57 hard-filtered, 0 honeypot-checked, 0 buys"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "F7",
+   "text": "summary: 0 checked (pass 0, fail 0, unknown 0), 0 fresh GoPlus fetches, 0 cached, 0 rate-capped"
+  },
+  {
+   "t": "2026-11-28T09:48:42-05:00",
+   "type": "SCOUT",
+   "text": "stats: round 2.2s, ledger lock held 0.19s, new pools first seen 0, 429s {}"
+  },
+  {
+   "t": "2026-11-28T09:48:44-05:00",
+   "type": "IDLE",
+   "text": "equity $10439.89 cash $10439.89 | no open positions, waiting for scout entries"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "TIBBIR $0.1283 mc $52,604,718 liq $1,766,012 5m +0% 1h +0.45% b/s1h 12/0 [DexScreener search + GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.45% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 12 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $1,766,012 (need >=$30k); F4 PASS buys/sells 12/0=12.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "ANTc $91.5 mc $1,678,235 liq $116,041 5m +0% 1h +0.31% b/s1h 11/3 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.31% < +100%; vol1h/liq 0.01 < 0.6; 1h buys 11 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $116,041 (need >=$30k); F4 PASS buys/sells 11/3=3.67 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "DRB $8.549e-05 mc $8,436,597 liq $810,375 5m +0.09% 1h +0.58% b/s1h 9/4 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.58% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 9 < 25 | GATE F1 FAIL 5m +0.09% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $810,375 (need >=$30k); F4 FAIL buys/sells 9/4=2.25 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "RSGP $0.0007663 mc $1,045,581 liq $145,141 5m +0% 1h +0% b/s1h 11/6 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 11/6 < 2x; 1h buys 11 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $145,141 (need >=$30k); F4 FAIL buys/sells 11/6=1.83 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "REPPO $0.008517 mc $3,833,311 liq $329,012 5m +0.2% 1h +14.38% b/s1h 40/44 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +14.38% < +100%; vol1h/liq 0.09 < 0.6; buys/sells 40/44 < 2x | GATE F1 FAIL 5m +0.2% (need +50..+150); F2 FAIL vol1h/liq 0.09 (need >=0.82); F3 PASS liq $329,012 (need >=$30k); F4 FAIL buys/sells 40/44=0.91 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "aeon $2.679e-05 mc $2,679,107 liq $430,882 5m +0% 1h -2.39% b/s1h 9/5 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -2.39% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 9/5 < 2x; 1h buys 9 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $430,882 (need >=$30k); F4 FAIL buys/sells 9/5=1.80 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "SNDKc $681.5 mc $2,188,223 liq $1,405,780 5m -0.08% 1h +0.23% b/s1h 356/270 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.23% < +100%; buys/sells 356/270 < 2x; 5m -0.08% <= 0 | GATE F1 FAIL 5m -0.08% (need +50..+150); F2 FAIL vol1h/liq 0.66 (need >=0.82); F3 PASS liq $1,405,780 (need >=$30k); F4 FAIL buys/sells 356/270=1.32 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "DAILY $3.732e-05 mc $36,975 liq $20,254 5m +0% 1h -0.76% b/s1h 8/5 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.76% < +100%; vol1h/liq 0.02 < 0.6; buys/sells 8/5 < 2x; 1h buys 8 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.02 (need >=0.82); F3 FAIL liq $20,254 (need >=$30k); F4 FAIL buys/sells 8/5=1.60 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "SPCXc $132.1 mc $4,094,692 liq $1,155,139 5m -0.05% 1h +0.11% b/s1h 160/124 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.11% < +100%; vol1h/liq 0.45 < 0.6; buys/sells 160/124 < 2x; 5m -0.05% <= 0 | GATE F1 FAIL 5m -0.05% (need +50..+150); F2 FAIL vol1h/liq 0.45 (need >=0.82); F3 PASS liq $1,155,139 (need >=$30k); F4 FAIL buys/sells 160/124=1.29 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "MUc $640.3 mc $1,171,494 liq $23,599 5m +0% 1h +0.15% b/s1h 3/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.15% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 3 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $23,599 (need >=$30k); F4 PASS buys/sells 3/0=3.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "AXIS $0.0732 mc $12,078,907 liq $2,391,991 5m +0.33% 1h -0.23% b/s1h 65/46 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.23% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 65/46 < 2x | GATE F1 FAIL 5m +0.33% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $2,391,991 (need >=$30k); F4 FAIL buys/sells 65/46=1.41 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "NVDAc $147.6 mc $10,778,476 liq $2,072,457 5m -0.17% 1h +0.47% b/s1h 297/268 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.47% < +100%; buys/sells 297/268 < 2x; 5m -0.17% <= 0 | GATE F1 FAIL 5m -0.17% (need +50..+150); F2 FAIL vol1h/liq 0.61 (need >=0.82); F3 PASS liq $2,072,457 (need >=$30k); F4 FAIL buys/sells 297/268=1.11 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "GOOGLc $274.3 mc $10,512,984 liq $1,467,849 5m -0.05% 1h +0.07% b/s1h 139/111 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.07% < +100%; vol1h/liq 0.31 < 0.6; buys/sells 139/111 < 2x; 5m -0.05% <= 0 | GATE F1 FAIL 5m -0.05% (need +50..+150); F2 FAIL vol1h/liq 0.31 (need >=0.82); F3 PASS liq $1,467,849 (need >=$30k); F4 FAIL buys/sells 139/111=1.25 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "FLOWER $0.1163 mc $2,494,467 liq $200,957 5m +0.91% 1h +1.71% b/s1h 10/9 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +1.71% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 10/9 < 2x; 1h buys 10 < 25 | GATE F1 FAIL 5m +0.91% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $200,957 (need >=$30k); F4 FAIL buys/sells 10/9=1.11 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "VELVET $0.09405 mc $23,350,296 liq $1,260,921 5m -0.16% 1h -5.23% b/s1h 1136/1114 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -5.23% < +100%; vol1h/liq 0.11 < 0.6; buys/sells 1136/1114 < 2x; 5m -0.16% <= 0 | GATE F1 FAIL 5m -0.16% (need +50..+150); F2 FAIL vol1h/liq 0.11 (need >=0.82); F3 PASS liq $1,260,921 (need >=$30k); F4 FAIL buys/sells 1136/1114=1.02 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "PROS $0.636 mc $2,560,817 liq $957,684 5m -0.12% 1h +0.06% b/s1h 239/317 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.08 < 0.6; buys/sells 239/317 < 2x; 5m -0.12% <= 0 | GATE F1 FAIL 5m -0.12% (need +50..+150); F2 FAIL vol1h/liq 0.08 (need >=0.82); F3 PASS liq $957,684 (need >=$30k); F4 FAIL buys/sells 239/317=0.75 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "CTR $0.016 mc $24,008,287 liq $649,788 5m +0.04% 1h +0.5% b/s1h 96/142 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.5% < +100%; vol1h/liq 0.03 < 0.6; buys/sells 96/142 < 2x | GATE F1 FAIL 5m +0.04% (need +50..+150); F2 FAIL vol1h/liq 0.03 (need >=0.82); F3 PASS liq $649,788 (need >=$30k); F4 FAIL buys/sells 96/142=0.68 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "NOCK $0.01391 mc $33,350,392 liq $771,701 5m +0% 1h +0% b/s1h 6/3 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 6 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $771,701 (need >=$30k); F4 FAIL buys/sells 6/3=2.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "AIDOG $0.004718 mc $4,718,510 liq $289,742 5m +0% 1h -0.75% b/s1h 2/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.75% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 2 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $289,742 (need >=$30k); F4 FAIL buys/sells 2/0=2.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "Surplus $0.0001674 mc $16,742,427 liq $1,093,574 5m -0.49% 1h +0.67% b/s1h 1/14 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.67% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/14 < 2x; 1h buys 1 < 25; 5m -0.49% <= 0 | GATE F1 FAIL 5m -0.49% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $1,093,574 (need >=$30k); F4 FAIL buys/sells 1/14=0.07 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "TN100x $3.836e-06 mc $33,003 liq $12,166 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $12,166 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "MONSTA $1.566e-05 mc $84,862 liq $32,914 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $32,914 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "ID $1.995e-05 mc $18,234 liq $13,150 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $13,150 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "AYB $1.17e-07 mc $232,839 liq $39,451 5m +0% 1h +0.28% b/s1h 5/4 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.28% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 5/4 < 2x; 1h buys 5 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $39,451 (need >=$30k); F4 FAIL buys/sells 5/4=1.25 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "Basecat $0.004558 mc $4,558,200 liq $255,415 5m +0% 1h +0.51% b/s1h 1/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.51% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/1 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $255,415 (need >=$30k); F4 FAIL buys/sells 1/1=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "DOT $0.004446 mc $3,694,771 liq $307,092 5m +0% 1h +0.06% b/s1h 1/1 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/1 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $307,092 (need >=$30k); F4 FAIL buys/sells 1/1=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "BTCB $0.03177 mc $503,292 liq $152,639 5m +0% 1h +0.06% b/s1h 1/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.06% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $152,639 (need >=$30k); F4 FAIL buys/sells 1/0=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "ALB $0.002801 mc $711,523 liq $56,033 5m +0% 1h +0.01% b/s1h 4/4 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.01% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 4/4 < 2x; 1h buys 4 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $56,033 (need >=$30k); F4 FAIL buys/sells 4/4=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "STONKEX $0.0004594 mc $407,793 liq $69,068 5m +0% 1h +0.17% b/s1h 1/2 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.17% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 1/2 < 2x; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $69,068 (need >=$30k); F4 FAIL buys/sells 1/2=0.50 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "WIRE $0.0005918 mc $566,408 liq $116,831 5m +0.36% 1h +0.36% b/s1h 0/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.36% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/1 < 2x; 1h buys 0 < 25 | GATE F1 FAIL 5m +0.36% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $116,831 (need >=$30k); F4 FAIL buys/sells 0/1=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "MSTRc $81.59 mc $1,876,622 liq $89,350 5m +0% 1h +0% b/s1h 0/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $89,350 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "HOME $1.593e-05 mc $1,593,046 liq $257,382 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $257,382 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "cbZEC $720 mc $12,485,409 liq $317,297 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $317,297 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "TYBG $4.975e-06 mc $611,603 liq $113,295 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $113,295 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "PEPE $3.909e-09 mc $1,644,610 liq $216,361 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $216,361 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "ABX $0.0008615 mc $89,581 liq $61,990 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $61,990 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "bsdETH $1809 mc $247,047 liq $200,486 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $200,486 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "SEEDCOIN $0.0003325 mc $332,584 liq $249,438 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $249,438 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "B'CAT $0.0004372 mc $437,289 liq $349,832 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $349,832 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "MILF $5.684e-07 mc $26,267 liq $44,565 5m +0% 1h +0% b/s1h 0/0 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $44,565 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "BEATS $0.0001252 mc $86,315 liq $68,794 5m +0% 1h -0.25% b/s1h 0/1 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.25% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/1 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $68,794 (need >=$30k); F4 FAIL buys/sells 0/1=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "BENJI $0.0007908 mc $790,806 liq $209,908 5m +0% 1h -0.43% b/s1h 0/2 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.43% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/2 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $209,908 (need >=$30k); F4 FAIL buys/sells 0/2=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "ADM $0.0003373 mc $331,151 liq $83,369 5m +0% 1h -0.45% b/s1h 0/2 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.45% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 0/2 < 2x; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $83,369 (need >=$30k); F4 FAIL buys/sells 0/2=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "cbLTC $43.89 mc $3,095,257 liq $49,805 5m +0.21% 1h +0.04% b/s1h 7/5 [DexScreener search] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.04% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 7/5 < 2x; 1h buys 7 < 25 | GATE F1 FAIL 5m +0.21% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $49,805 (need >=$30k); F4 FAIL buys/sells 7/5=1.40 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "ELSA $0.1019 mc $31,260,322 liq $619,408 5m -0.04% 1h -0.58% b/s1h 1619/1466 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -0.58% < +100%; vol1h/liq 0.46 < 0.6; buys/sells 1619/1466 < 2x; 5m -0.04% <= 0 | GATE F1 FAIL 5m -0.04% (need +50..+150); F2 FAIL vol1h/liq 0.46 (need >=0.82); F3 PASS liq $619,408 (need >=$30k); F4 FAIL buys/sells 1619/1466=1.10 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "SOL $70.41 mc $24,710,844 liq $219,076 5m -0.23% 1h +0.37% b/s1h 197/175 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.37% < +100%; vol1h/liq 0.31 < 0.6; buys/sells 197/175 < 2x; 5m -0.23% <= 0 | GATE F1 FAIL 5m -0.23% (need +50..+150); F2 FAIL vol1h/liq 0.31 (need >=0.82); F3 PASS liq $219,076 (need >=$30k); F4 FAIL buys/sells 197/175=1.13 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "SOGNI $0.002822 mc $11,683,338 liq $520,230 5m +0.37% 1h +0.81% b/s1h 19/18 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.81% < +100%; vol1h/liq 0.01 < 0.6; buys/sells 19/18 < 2x; 1h buys 19 < 25 | GATE F1 FAIL 5m +0.37% (need +50..+150); F2 FAIL vol1h/liq 0.01 (need >=0.82); F3 PASS liq $520,230 (need >=$30k); F4 FAIL buys/sells 19/18=1.06 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "ICNT $0.2659 mc $67,284,009 liq $122,397 5m +0.11% 1h +0.26% b/s1h 79/76 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.26% < +100%; vol1h/liq 0.05 < 0.6; buys/sells 79/76 < 2x | GATE F1 FAIL 5m +0.11% (need +50..+150); F2 FAIL vol1h/liq 0.05 (need >=0.82); F3 PASS liq $122,397 (need >=$30k); F4 FAIL buys/sells 79/76=1.04 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "XDP $0.01223 mc $12,235,208 liq $655,317 5m -0.34% 1h +0.13% b/s1h 760/816 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.13% < +100%; vol1h/liq 0.20 < 0.6; buys/sells 760/816 < 2x; 5m -0.34% <= 0 | GATE F1 FAIL 5m -0.34% (need +50..+150); F2 FAIL vol1h/liq 0.20 (need >=0.82); F3 PASS liq $655,317 (need >=$30k); F4 FAIL buys/sells 760/816=0.93 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "POD $0.3276 mc $27,633,130 liq $2,862,010 5m +0% 1h +0.36% b/s1h 3/24 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.36% < +100%; vol1h/liq 0.00 < 0.6; buys/sells 3/24 < 2x; 1h buys 3 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $2,862,010 (need >=$30k); F4 FAIL buys/sells 3/24=0.12 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "PORTAL $0.01473 mc $14,734,145 liq $67,549 5m -2.2% 1h -4.81% b/s1h 9/28 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h -4.81% < +100%; vol1h/liq 0.06 < 0.6; buys/sells 9/28 < 2x; 1h buys 9 < 25; 5m -2.2% <= 0 | GATE F1 FAIL 5m -2.2% (need +50..+150); F2 FAIL vol1h/liq 0.06 (need >=0.82); F3 PASS liq $67,549 (need >=$30k); F4 FAIL buys/sells 9/28=0.32 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "REI $0.006601 mc $6,601,778 liq $80,706 5m +0% 1h +0.18% b/s1h 1/0 [GeckoTerminal trending] -> Pass: Pass: winner_pattern unmet: age>=6h/unknown (needs fresh_launch <6h); 1h +0.18% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 1 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 PASS liq $80,706 (need >=$30k); F4 FAIL buys/sells 1/0=1.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "SI $1.715e-05 mc $75,504 liq $140,861 5m +6.17% 1h +15.12% b/s1h 23/1 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +15.12% < +100%; vol1h/liq 0.03 < 0.6; 1h buys 23 < 25 | GATE F1 FAIL 5m +6.17% (need +50..+150); F2 FAIL vol1h/liq 0.03 (need >=0.82); F3 PASS liq $140,861 (need >=$30k); F4 PASS buys/sells 23/1=23.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "VIOR $2.292e-05 mc $22,921 liq $20,974 5m +10.96% 1h +95.48% b/s1h 47/18 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +95.48% < +100%; vol1h/liq 0.37 < 0.6 | GATE F1 FAIL 5m +10.96% (need +50..+150); F2 FAIL vol1h/liq 0.37 (need >=0.82); F3 FAIL liq $20,974 (need >=$30k); F4 PASS buys/sells 47/18=2.61 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "ANTHROPIC $1.317e-06 mc $7,380 liq $13,592 5m +12.53% 1h +18.04% b/s1h 17/3 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +18.04% < +100%; vol1h/liq 0.04 < 0.6; 1h buys 17 < 25 | GATE F1 FAIL 5m +12.53% (need +50..+150); F2 FAIL vol1h/liq 0.04 (need >=0.82); F3 FAIL liq $13,592 (need >=$30k); F4 PASS buys/sells 17/3=5.67 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "ANTHROPIC $1.047e-06 mc $5,866 liq $10,589 5m +3.44% 1h +23.03% b/s1h 44/7 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +23.03% < +100%; vol1h/liq 0.11 < 0.6 | GATE F1 FAIL 5m +3.44% (need +50..+150); F2 FAIL vol1h/liq 0.11 (need >=0.82); F3 FAIL liq $10,589 (need >=$30k); F4 PASS buys/sells 44/7=6.29 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "DAILY $1.242e-05 mc $12,428 liq $11,500 5m +0% 1h +0% b/s1h 0/0 [GeckoTerminal new pools] -> Pass: Pass: winner_pattern unmet: 1h +0% < +100%; vol1h/liq 0.00 < 0.6; 1h buys 0 < 25; 5m +0% <= 0 | GATE F1 FAIL 5m +0% (need +50..+150); F2 FAIL vol1h/liq 0.00 (need >=0.82); F3 FAIL liq $11,500 (need >=$30k); F4 FAIL buys/sells 0/0=0.00 (need >=2.3); F5 PASS fresh (no TP on ticker/address <6h); F6 PASS exit rule: +10% within 8m or sell; F7 SKIP not checked (2+ other checks failed); F8 SKIP recheck not run (runs only after every other check passes)"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "summary: 114 addresses from {\"DexScreener latest profiles\": 0, \"DexScreener latest boosts\": 0, \"DexScreener top boosts\": 0, \"GeckoTerminal trending\": 40, \"GeckoTerminal new pools\": 40, \"DexScreener search\": 65}, 114 priced, 57 hard-filtered, 0 honeypot-checked, 0 buys"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "F7",
+   "text": "summary: 0 checked (pass 0, fail 0, unknown 0), 0 fresh GoPlus fetches, 0 cached, 0 rate-capped"
+  },
+  {
+   "t": "2026-11-28T09:48:50-05:00",
+   "type": "SCOUT",
+   "text": "stats: round 2.0s, ledger lock held 0.17s, new pools first seen 0, 429s {}"
+  }
+ ]
+}

@@ -1,0 +1,128 @@
+---
+rule: "Rule F7"
+linked: 114
+failed: 102
+tags: ["rule"]
+---
+# Rule F7
+
+Entry gate F7 (added 2026-11-23): contract safety via GoPlus (+ honeypot.is). Blocks honeypot / cannot sell, buy or sell tax > 10%, owner can mint / pause / blacklist / change balances (unless renounced), hidden owner, self-destruct, top-10 holders excl. LP/pool/burn > 40%. API error or token not indexed = UNKNOWN = blocked (fail closed). LP lock/burn % is logged as info only, not a gate (the LP block was dropped 2026-11-23 07:40 ET by user decision). Missing data does NOT block on Rio (F7 PASS NO_DATA). A strict version (sellability confirmed + mint/blacklist/pause/change-balance flags reported, else blocked) ran live 2026-11-24 10:53-12:0x ET after SVAG #5 and was then moved by user decision to the Experiments Lab as shadow experiment E10 (log only).
+
+[[Rules]]
+
+Linked notes: 114 (102 failed or near-miss)
+
+- [[R1-T3 SOUP]] N/A
+- [[R1-T1 CHUBBY]] N/A
+- [[R1-T2 LAPTOP]] N/A
+- [[R1-T7 ANTHROPIC]] N/A
+- [[R1-T8 PEPKING]] N/A
+- [[R1-T12 PEPKING]] N/A
+- [[R1-T4 BLKX]] N/A
+- [[R1-T5 VICEVI]] N/A
+- [[R1-T6 DOTF]] N/A
+- [[R1-T16 After]] N/A
+- [[R1-T18 AI]] N/A
+- [[R1-T9 AX1]] N/A
+- [[R1-T10 NOTF]] N/A
+- [[R1-T11 GOAF]] N/A
+- [[R1-T13 DRB]] N/A
+- [[R1-T20 SPCX]] N/A
+- [[R1-T19 ID]] N/A
+- [[R1-T14 DCTY]] N/A
+- [[R1-T15 TYBG]] N/A
+- [[R1-T17 GOV]] N/A
+- [[R1-T21 CHUBBY]] N/A
+- [[R1-T22 NTAF]] N/A
+- [[R1-T23 USAR]] N/A
+- [[R1-T24 USRP]] N/A
+- [[R1-T25 AOFD]] N/A
+- [[R1-T26 NAFF]] N/A
+- [[R1-T28 UDSA]] N/A
+- [[R1-T29 USPR]] N/A
+- [[R1-T30 ADFO]] N/A
+- [[R1-T32 AI]] N/A
+- [[R1-T27 EXEN]] N/A
+- [[R1-T37 1KTO100M]] N/A
+- [[R1-T33 UGOS]] N/A
+- [[R1-T36 URPS]] N/A
+- [[R1-T39 UGOS]] N/A
+- [[R1-T41 GOAF]] N/A
+- [[R1-T43 ANTHROPIC]] N/A
+- [[R1-T31 DRB]] N/A
+- [[R1-T42 Basecat]] N/A
+- [[R1-T34 ABX]] N/A
+- [[R1-T35 NOTF]] N/A
+- [[R1-T44 doginme]] N/A
+- [[R1-T38 DOT]] N/A
+- [[R1-T40 UDOF]] N/A
+- [[R1-T47 DCTY]] N/A
+- [[R1-T45 worth]] N/A
+- [[R1-T49 DCTY]] N/A
+- [[R1-T46 ADM]] N/A
+- [[R1-T48 GTASZN]] N/A
+- [[R1-T50 RST]] N/A
+- [[R1-T51 REPPO]] N/A
+- [[R1-T52 USIO]] N/A
+- [[R1-T53 USOROIL]] N/A
+- [[R1-T54 OFDC]] N/A
+- [[R1-T57 AX1]] N/A
+- [[R1-T58 KIARA]] N/A
+- [[R1-T55 VTC6]] N/A
+- [[R1-T56 TIBBIR]] N/A
+- [[R1-T61 CATMARIO]] N/A
+- [[R1-T59 USAR]] N/A
+- [[R1-T63 CATMARIO]] N/A
+- [[R1-T60 UGOS]] N/A
+- [[R1-T64 ANTc]] N/A
+- [[R1-T62 aeon]] N/A
+- [[R1-T65 IPO]] N/A
+- [[R1-T66 IPO]] N/A
+- [[R1-T67 GI]] N/A
+- [[R1-T68 ROUTER]] N/A
+- [[R1-T69 ROUTER]] N/A
+- [[R1-T70 nu]] N/A
+- [[R1-T71 ROUTER]] N/A
+- [[R1-T72 GI]] N/A
+- [[R1-T73 BSTONK]] N/A
+- [[R1-T74 USIO]] N/A
+- [[R1-T75 USOI]] N/A
+- [[R1-T76 ANTCOIN]] N/A
+- [[R1-T77 Anthropic]] N/A
+- [[R1-T78 A]] N/A
+- [[R1-T80 GI]] N/A
+- [[R1-T81 NOFT]] N/A
+- [[R1-T79 OFDC]] N/A
+- [[R1-T82 USOROIL]] N/A
+- [[R1-T83 GI]] N/A
+- [[R1-T84 IOF]] N/A
+- [[R1-T85 USEF]] N/A
+- [[R1-T86 VELVET]] N/A
+- [[R1-T87 DCTY]] N/A
+- [[R1-T88 GI]] N/A
+- [[R1-T89 GI]] N/A
+- [[R1-T90 AX1]] N/A
+- [[R1-T91 XDP]] N/A
+- [[R1-T92 AX1]] N/A
+- [[R1-T93 AX1]] N/A
+- [[R1-T94 PI]] N/A
+- [[R1-T96 VVVCAT]] N/A
+- [[R1-T97 VDINO]] N/A
+- [[R1-T98 VDINO]] N/A
+- [[R1-T99 FAN]] N/A
+- [[R1-T100 AUTO]] N/A
+- [[R1-T101 VDINO]] N/A
+- [[R1-T95 VVVCAT]] N/A
+- [[R2-T0 MINELIUS]] PASS
+- [[R2-T1 Jacket]] PASS
+- [[R2-T2 Lucia]] PASS
+- [[R2-T3 REALM]] PASS
+- [[R2-T4 FOFT]] PASS
+- [[R2-T5 SVAG]] PASS
+- [[R2-T6 Circel]] PASS
+- [[R2-T7 SEAL]] PASS
+- [[R2-T8 ROSTRUM]] PASS
+- [[R2-T9 JESSE]] PASS
+- [[R2-T10 BANK]] PASS
+- [[R2-T11 SAOFOIL]] PASS
+- [[NM-0025 Circel]] NEAR-MISS FAIL

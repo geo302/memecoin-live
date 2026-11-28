@@ -1,0 +1,114 @@
+---
+run: 1
+trades: 101
+wins: 20
+losses: 81
+tags: ["moc"]
+---
+# Trades Run 1
+
+[[00 Index]]
+
+101 trades, 20 wins, 81 losses.
+
+- [[R1-T3 SOUP]] loss -34.5%
+- [[R1-T1 CHUBBY]] loss -100.0%
+- [[R1-T2 LAPTOP]] loss -100.0%
+- [[R1-T7 ANTHROPIC]] loss -100.0%
+- [[R1-T8 PEPKING]] loss -100.0%
+- [[R1-T12 PEPKING]] win +1.1%
+- [[R1-T4 BLKX]] loss -1.7%
+- [[R1-T5 VICEVI]] loss -1.5%
+- [[R1-T6 DOTF]] loss -2.0%
+- [[R1-T16 After]] win +26.1%
+- [[R1-T18 AI]] loss -100.0%
+- [[R1-T9 AX1]] loss -3.5%
+- [[R1-T10 NOTF]] loss -2.1%
+- [[R1-T11 GOAF]] loss -2.2%
+- [[R1-T13 DRB]] loss -2.3%
+- [[R1-T20 SPCX]] loss -100.0%
+- [[R1-T19 ID]] loss -27.8%
+- [[R1-T14 DCTY]] win +1.3%
+- [[R1-T15 TYBG]] loss -0.1%
+- [[R1-T17 GOV]] loss -2.0%
+- [[R1-T21 CHUBBY]] loss -100.0%
+- [[R1-T22 NTAF]] loss -2.0%
+- [[R1-T23 USAR]] loss -2.0%
+- [[R1-T24 USRP]] loss -2.0%
+- [[R1-T25 AOFD]] loss -2.0%
+- [[R1-T26 NAFF]] loss -2.0%
+- [[R1-T28 UDSA]] loss -2.0%
+- [[R1-T29 USPR]] loss -2.0%
+- [[R1-T30 ADFO]] loss -2.0%
+- [[R1-T32 AI]] loss -100.0%
+- [[R1-T27 EXEN]] win +5.4%
+- [[R1-T37 1KTO100M]] loss -100.0%
+- [[R1-T33 UGOS]] loss -2.0%
+- [[R1-T36 URPS]] loss -2.4%
+- [[R1-T39 UGOS]] loss -2.0%
+- [[R1-T41 GOAF]] loss -2.0%
+- [[R1-T43 ANTHROPIC]] loss -0.8%
+- [[R1-T31 DRB]] loss -1.4%
+- [[R1-T42 Basecat]] loss -100.0%
+- [[R1-T34 ABX]] loss -0.9%
+- [[R1-T35 NOTF]] loss -2.0%
+- [[R1-T44 doginme]] loss -4.3%
+- [[R1-T38 DOT]] loss -4.4%
+- [[R1-T40 UDOF]] loss -1.7%
+- [[R1-T47 DCTY]] win +41.0%
+- [[R1-T45 worth]] loss -13.4%
+- [[R1-T49 DCTY]] loss -14.6%
+- [[R1-T46 ADM]] loss -1.5%
+- [[R1-T48 GTASZN]] win +0.6%
+- [[R1-T50 RST]] loss -1.6%
+- [[R1-T51 REPPO]] loss -3.9%
+- [[R1-T52 USIO]] loss -2.7%
+- [[R1-T53 USOROIL]] loss -2.7%
+- [[R1-T54 OFDC]] loss -2.8%
+- [[R1-T57 AX1]] win +21.8%
+- [[R1-T58 KIARA]] loss -27.3%
+- [[R1-T55 VTC6]] loss -2.1%
+- [[R1-T56 TIBBIR]] loss -2.7%
+- [[R1-T61 CATMARIO]] win +66.4%
+- [[R1-T59 USAR]] loss -2.9%
+- [[R1-T63 CATMARIO]] win +45.5%
+- [[R1-T60 UGOS]] loss -2.9%
+- [[R1-T64 ANTc]] loss -4.2%
+- [[R1-T62 aeon]] loss -1.7%
+- [[R1-T65 IPO]] win +52.3%
+- [[R1-T66 IPO]] loss -39.2%
+- [[R1-T67 GI]] loss -14.2%
+- [[R1-T68 ROUTER]] win +10.3%
+- [[R1-T69 ROUTER]] win +43.0%
+- [[R1-T70 nu]] win +28.9%
+- [[R1-T71 ROUTER]] loss -6.1%
+- [[R1-T72 GI]] loss -13.6%
+- [[R1-T73 BSTONK]] loss -2.1%
+- [[R1-T74 USIO]] loss -2.0%
+- [[R1-T75 USOI]] loss -2.0%
+- [[R1-T76 ANTCOIN]] loss -2.0%
+- [[R1-T77 Anthropic]] loss -2.0%
+- [[R1-T78 A]] loss -11.3%
+- [[R1-T80 GI]] win +31.5%
+- [[R1-T81 NOFT]] win +20.1%
+- [[R1-T79 OFDC]] loss -1.3%
+- [[R1-T82 USOROIL]] loss -1.5%
+- [[R1-T83 GI]] loss -9.7%
+- [[R1-T84 IOF]] loss -85.5%
+- [[R1-T85 USEF]] loss -2.0%
+- [[R1-T86 VELVET]] loss -3.5%
+- [[R1-T87 DCTY]] loss -1.9%
+- [[R1-T88 GI]] win +15.5%
+- [[R1-T89 GI]] loss -18.6%
+- [[R1-T90 AX1]] loss -15.1%
+- [[R1-T91 XDP]] loss -2.0%
+- [[R1-T92 AX1]] win +31.0%
+- [[R1-T93 AX1]] loss -13.9%
+- [[R1-T94 PI]] win +39.3%
+- [[R1-T96 VVVCAT]] win +27.3%
+- [[R1-T97 VDINO]] win +79.3%
+- [[R1-T98 VDINO]] loss -35.9%
+- [[R1-T99 FAN]] loss -61.0%
+- [[R1-T100 AUTO]] loss -18.7%
+- [[R1-T101 VDINO]] loss -6.0%
+- [[R1-T95 VVVCAT]] loss -2.0%
